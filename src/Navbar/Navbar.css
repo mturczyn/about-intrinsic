@@ -1,0 +1,45 @@
+:root {
+    --hover-transition-duration: 500ms;
+    --alpha-level: 0.7;
+}
+
+nav {
+    z-index: 100;
+    display: flex;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    left: 0;
+    box-shadow: 0 0 30px 0 #000;
+    background: rgb(var(--main-bg-color), var(--alpha-level));
+    backdrop-filter: blur(20px);
+}
+
+nav > a {
+    opacity: 1;
+}
+
+nav > a {
+    padding: 1rem;
+    text-decoration: none;
+    color: rgb(var(--main-color));
+    -webkit-transition: background-color var(--hover-transition-duration) linear;
+    -moz-transition: background-color var(--hover-transition-duration) linear;
+    -o-transition: background-color var(--hover-transition-duration) linear;
+    -ms-transition: background-color var(--hover-transition-duration) linear;
+    transition: background-color var(--hover-transition-duration) linear;
+}
+
+nav > a:hover {
+    background-color: rgb(var(--secondary-bg-color));
+}
+
+nav > a:hover,
+nav > a:hover:visited {
+    color: rgb(var(--secondary-color));
+}
+
+nav > a,
+nav > a:visited {
+    color: rgb(var(--main-color));
+}
