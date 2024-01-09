@@ -35,7 +35,7 @@
     object-fit: contain;
 }
 
-@keyframes Image-spin {
+@keyframes image-spin {
     from {
         transform: rotate(0deg);
     }
