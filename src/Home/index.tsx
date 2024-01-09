@@ -27,7 +27,7 @@ const Home = () => {
             <div>
                 <header className="Home-header">
                     <img
-                        style={{ float: 'left' }}
+                        style={{ float: 'left', marginRight: '2ch' }}
                         src={authorImage}
                         className="Sized-image"
                         alt="me"
@@ -41,23 +41,11 @@ const Home = () => {
                     </p>
                     <div
                         className="programming-languages"
-                        style={{ float: 'right' }}
+                        style={{ float: 'right', marginLeft: '2ch' }}
                     >
-                        <img
-                            src={cSharpLogo}
-                            alt="C#"
-                            style={{ gridArea: 'csharp' }}
-                        />
-                        <img
-                            src={jsLogo}
-                            alt="JavaScript"
-                            style={{ gridArea: 'js' }}
-                        />
-                        <img
-                            src={reactLogo}
-                            alt="React"
-                            style={{ gridArea: 'react' }}
-                        />
+                        <img src={cSharpLogo} alt="C#" className="csharp" />
+                        <img src={jsLogo} alt="JavaScript" className="js" />
+                        <img src={reactLogo} alt="React" className="react" />
                     </div>
                     <p>
                         I am Maths graduate, which helped me a lot gaining

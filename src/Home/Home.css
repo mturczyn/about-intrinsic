@@ -1,11 +1,10 @@
 .Home-header {
     background-color: rgb(var(--main-bg-color));
-    font-size: calc(10px + 2vmin);
+    text-align: justify;
 }
 
 .Home-header img {
     max-height: 15rem;
-    margin: 0 2rem 2rem 2rem;
 }
 
 .programming-languages {
@@ -16,6 +15,18 @@
     grid-template-columns: 2fr 1fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas: 'csharp js' 'csharp react';
+}
+
+.programming-languages .react {
+    grid-area: react;
+}
+
+.programming-languages .js {
+    grid-area: js;
+}
+
+.programming-languages .csharp {
+    grid-area: csharp;
 }
 
 .programming-languages img {

@@ -1,5 +1,17 @@
+/* Here are defined variables responsible for theming. */
+:root {
+    --main-bg-color: 40, 44, 52;
+    --secondary-bg-color: 66, 75, 94;
+    --main-color: 255, 255, 255;
+    --secondary-color: 221, 221, 221;
+    --anchor-color: 20, 174, 234;
+    --anchor-visited-color: 197, 138, 249;
+}
+
 body {
-    margin: 0;
+    font-size: calc(10px + 2vmin);
+    max-width: 80vw;
+    margin: 0 auto;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
         'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
         'Helvetica Neue', sans-serif;
@@ -12,4 +24,23 @@ body {
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;
+}
+
+.Sized-image {
+    height: 40vmin;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .Spin-image {
+        animation: Image-spin infinite 20s linear;
+    }
+}
+
+a {
+    color: rgb(var(--anchor-color));
+}
+
+a:visited {
+    color: rgb(var(--anchor-visited-color));
 }
