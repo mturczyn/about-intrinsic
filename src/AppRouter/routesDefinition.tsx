@@ -1,5 +1,6 @@
-import { About } from '../About'
-import { AppRoute } from './AppRoute'
+import { ContactInfo } from 'ContactInfo'
+import { TechStack } from 'TechStack'
+import { AppRoute } from 'AppRouter/AppRoute'
 import Home from 'Home'
 
 export const appRoutes: AppRoute[] = [
@@ -11,12 +12,12 @@ export const appRoutes: AppRoute[] = [
     },
     {
         name: 'Contact info',
-        path: '/about',
-        element: <About />,
+        path: '/contact-info',
+        element: <ContactInfo />,
     },
     {
-        name: 'About this page',
-        path: '/about',
-        element: <About />,
+        name: 'Technology stack',
+        path: '/technology-stack',
+        element: <TechStack />,
     },
 ]

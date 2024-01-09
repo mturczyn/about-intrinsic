@@ -1,9 +1,13 @@
 import authorImage from 'images/author-image.jpg'
-import arcelorMittal from 'images/employees-logos/arcelormittal-logo.jpg'
-import flightScope from 'images/employees-logos/flightscope-logo.png'
-import exadel from 'images/employees-logos/exadel-logo.png'
-import rite from 'images/employees-logos/rite-nrg-logo.png'
-import rac from 'images/employees-logos/rac-logo.png'
+import arcelorMittal from 'images/employees-logos/arcelormittal.png'
+import flightScope from 'images/employees-logos/Flightscope.webp'
+import exadel from 'images/employees-logos/exadel.png'
+import rite from 'images/employees-logos/rite-nrg.png'
+import rac from 'images/employees-logos/rac.png'
+import rsm from 'images/employees-logos/rsm.png'
+import cSharpLogo from 'images/programming-languages-logo/c-sharp.png'
+import jsLogo from 'images/programming-languages-logo/js-logo.webp'
+import reactLogo from 'react-logo.svg'
 import './Home.css'
 
 const EmployersLogos = () => (
@@ -12,6 +16,7 @@ const EmployersLogos = () => (
         <img src={flightScope} alt="FlightScope" />
         <img src={exadel} alt="Exadel" />
         <img src={rite} alt="RiteNRG" />
+        <img src={rsm} alt="RSM" />
         <img src={rac} alt="RAC" />
     </div>
 )
@@ -21,16 +26,53 @@ const Home = () => {
         <>
             <div>
                 <header className="Home-header">
-                    <img src={authorImage} className="Sized-image" alt="me" />
-                    <h1>Hello</h1>
-                    <p className="no-indent">
-                        I am Michał, I work with various technologies, such as
-                        C# or JS to create variety of apps - desktop,
-                        microservices, websites.
+                    <img
+                        style={{ float: 'left' }}
+                        src={authorImage}
+                        className="Sized-image"
+                        alt="me"
+                    />
+                    <h1>Hello, I am Michał</h1>
+                    <p>
+                        My name is Michał Turczyn. I work as as software
+                        engineer, I develop websites (such as this one) and I
+                        enjoy what I do. I generally like to deeply understand
+                        whatever I do and drive things to completion.
+                    </p>
+                    <div
+                        className="programming-languages"
+                        style={{ float: 'right' }}
+                    >
+                        <img
+                            src={cSharpLogo}
+                            alt="C#"
+                            style={{ gridArea: 'csharp' }}
+                        />
+                        <img
+                            src={jsLogo}
+                            alt="JavaScript"
+                            style={{ gridArea: 'js' }}
+                        />
+                        <img
+                            src={reactLogo}
+                            alt="React"
+                            style={{ gridArea: 'react' }}
+                        />
+                    </div>
+                    <p>
+                        I am Maths graduate, which helped me a lot gaining
+                        programming skills.
+                    </p>
+                    <p>
+                        My first programming language which I leanred was C#
+                        with WinForms framework. Over the years I could
+                        experience many .NET frameworks, such as ASP.NET, WPF,
+                        Blazor. I also leanred JS along the way (HTML, CSS, JS)
+                        and React framework.
                     </p>
                 </header>
 
-                <h2>Past employers</h2>
+                <h1>Past employers</h1>
                 <p>
                     I have worked for following companies throughout my career.
                 </p>
@@ -38,66 +80,6 @@ const Home = () => {
                     <EmployersLogos />
                     <EmployersLogos />
                 </div>
-
-                <h2>Lorem ipsum</h2>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Maecenas quis tortor eleifend, gravida ante congue, rhoncus
-                    nisl. Sed semper turpis imperdiet, sodales tellus ac,
-                    gravida orci. Cras lacinia posuere porta. Nulla condimentum
-                    sem ornare, egestas massa vestibulum, auctor metus. Nulla id
-                    eros non massa lobortis imperdiet. Nullam vehicula elit sit
-                    amet magna finibus imperdiet. Nulla commodo ex sed nunc
-                    consequat vehicula. Cras quam est, elementum in mi sit amet,
-                    vestibulum accumsan erat. Phasellus blandit massa sed porta
-                    dictum. Nunc libero sapien, varius nec massa at, suscipit
-                    malesuada augue. Duis rutrum dui ante, quis tempus urna
-                    suscipit at. Mauris eget dapibus enim. Nullam consequat nisi
-                    sed turpis viverra aliquet. Sed vel faucibus eros. Interdum
-                    et malesuada fames ac ante ipsum primis in faucibus. Ut in
-                    odio aliquam, suscipit mauris ac, auctor mi. Aenean aliquam
-                    tortor nec felis vestibulum, vitae tempus odio egestas.
-                    Morbi aliquet odio eu enim venenatis, non maximus ligula
-                    rutrum. Maecenas et ex cursus, bibendum odio a, vulputate
-                    ante. Aliquam lobortis eleifend massa. Etiam fermentum arcu
-                    nisl, vitae pretium libero semper at. Nam placerat
-                    vestibulum dolor id scelerisque. Fusce id rhoncus eros.
-                    Pellentesque lectus magna, feugiat ut magna vel, malesuada
-                    vestibulum tortor. Vivamus vestibulum laoreet nulla. Etiam
-                    quis risus odio. Mauris ornare, est quis tempus venenatis,
-                    ipsum dolor molestie neque, eget ultricies metus orci sit
-                    amet dolor. In tempor rutrum ipsum vitae aliquam. Vivamus
-                    mauris risus, varius at placerat at, pharetra at diam.
-                    Vestibulum vestibulum sollicitudin nisi hendrerit pulvinar.
-                    Fusce interdum erat vel massa condimentum, a sollicitudin
-                    ante sodales. Morbi rutrum sapien id metus laoreet euismod.
-                    Etiam ut malesuada ex, ut tempor lectus. Praesent at est
-                    fermentum tellus sodales tincidunt. Vivamus varius pretium
-                    orci, ac semper leo tincidunt et. Aenean faucibus
-                    condimentum libero, quis fringilla lacus accumsan non. Proin
-                    pharetra ultricies libero, a pellentesque quam elementum at.
-                    Donec semper viverra ipsum. Curabitur a imperdiet nibh, non
-                    vestibulum nisi. Sed vel enim venenatis, posuere turpis
-                    blandit, consequat lacus. Orci varius natoque penatibus et
-                    magnis dis parturient montes, nascetur ridiculus mus. Sed
-                    consequat leo sit amet arcu fringilla lobortis. Duis ac eros
-                    est. Maecenas ultrices pellentesque arcu, a facilisis sapien
-                    lacinia sit amet. In luctus vulputate eros, eu scelerisque
-                    lacus. Pellentesque posuere maximus ultricies. Sed aliquet
-                    nulla vitae efficitur vestibulum. Curabitur semper metus vel
-                    finibus rutrum. Ut tellus tellus, malesuada vel suscipit at,
-                    rutrum consectetur dolor. Aenean in augue commodo, aliquet
-                    libero et, maximus tortor. Sed et convallis nulla. Integer
-                    maximus velit nec lacus molestie faucibus. Nunc lorem quam,
-                    vestibulum non tortor a, bibendum rhoncus turpis. Nulla
-                    dictum diam eu laoreet ultricies. Duis rutrum, erat non
-                    convallis pretium, mauris magna egestas massa, non maximus
-                    risus tellus vel sem. Aenean dictum interdum venenatis.
-                    Proin porttitor magna in odio pellentesque, nec vestibulum
-                    dui tincidunt. Aliquam nec cursus magna, nec pharetra diam.
-                    Aliquam sollicitudin bibendum sagittis. Praesent ac aliquam
-                    tellus.
-                </p>
             </div>
         </>
     )

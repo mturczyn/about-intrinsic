@@ -1,0 +1,47 @@
+.contact-info-card {
+    display: flex;
+    flex-direction: column;
+    grid-area: contactcard;
+}
+
+.contact-info-card > * {
+    margin: 1ch;
+    display: flex;
+    place-items: center;
+}
+
+.contact-info-card > * > * {
+    margin: 1ch;
+}
+
+.contact-info-card svg {
+    min-height: 1.5rem;
+    min-width: 1.5rem;
+}
+
+header.contact-card > img:first-child {
+    filter: drop-shadow(0px 0px 15px rgba(255, 255, 255));
+    height: 100%;
+    max-block-size: 100%;
+    max-inline-size: 10rem;
+    margin: 2ch;
+    grid-area: websitelogo;
+}
+
+header.contact-card {
+    display: grid;
+    grid-template-rows: 1fr min-content;
+    grid-template-columns: min-content 1fr;
+    grid-template-areas:
+        'websitelogo contactcard'
+        'companyname contactcard';
+}
+
+header.contact-card > h1 {
+    font-size: 200%;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+        monospace;
+    grid-area: companyname;
+    color: black;
+    text-shadow: 0px 0px 15px rgba(255, 255, 255);
+}

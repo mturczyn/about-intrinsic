@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import reactLogo from 'react-logo.svg'
 import websiteLogo from 'website-logo.svg'
-import './About.css'
+import './TechStack.css'
 
-export const About = () => {
+export const TechStack = () => {
     const [useWebsiteLogo, setUseWebsiteLogo] = useState<boolean>(false)
 
     return (

@@ -4,6 +4,8 @@
     --secondary-bg-color: 66, 75, 94;
     --main-color: 255, 255, 255;
     --secondary-color: 221, 221, 221;
+    --anchor-color: 20, 174, 234;
+    --anchor-visited-color: 197, 138, 249;
 }
 
 .Sized-image {
@@ -19,9 +21,12 @@
 
 p {
     margin: 2ch 4ch;
-    text-indent: 4ch;
 }
 
-p.no-indent {
-    text-indent: initial;
+a {
+    color: rgb(var(--anchor-color));
+}
+
+a:visited {
+    color: rgb(var(--anchor-visited-color));
 }
