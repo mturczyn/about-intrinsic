@@ -57,8 +57,8 @@ const resources = {
                 'Intrinsic - web development and programming',
             'Intrinsic - contact info': 'Intrinsic - contact info',
             // Misc
-            'I have worked for following companies throughout my career.':
-                'I have worked for following companies throughout my career.',
+            'I have worked for following companies throughout my career:':
+                'I have worked for following companies throughout my career:',
         },
     },
     pl: {
@@ -102,7 +102,7 @@ const resources = {
                 '<p>Na platformie Azure, w centrum wdrażania w usłudze Web App, włączyłem automatyczne wdrażanie, które ma miejsce po każdym zmergowaniu do głównej gałęzi repozytorium dla tej strony (na GitHubie, GitHub Actions zajmuje się tym, a plik pipeline utworzony został przez Azure).</p>',
             // Misc
             'I have worked for following companies throughout my career.':
-                'Przez całą moją karierę pracowałem dla następujących firm.',
+                'Przez całą moją karierę pracowałem dla następujących firm:',
         },
     },
 }

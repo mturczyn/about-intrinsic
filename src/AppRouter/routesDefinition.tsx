@@ -1,14 +1,13 @@
-import ContactInfo from 'ContactInfo'
-import TechStack from 'TechStack'
 import { AppRoute } from 'AppRouter/AppRoute'
+import ContactInfo from 'ContactInfo'
 import Home from 'Home'
+import TechStack from 'TechStack'
 
 export const appRoutes: AppRoute[] = [
     {
         name: 'Home',
         path: '/',
         element: <Home />,
-        index: true,
     },
     {
         name: 'Contact info',

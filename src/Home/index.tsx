@@ -59,7 +59,7 @@ const Home = () => {
                 <h1>{t('pastEmployers')}</h1>
                 <p>
                     {t(
-                        'I have worked for following companies throughout my career.'
+                        'I have worked for following companies throughout my career:'
                     )}
                 </p>
                 <div className="logos">
