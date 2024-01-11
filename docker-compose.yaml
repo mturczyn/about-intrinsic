@@ -1,0 +1,12 @@
+# docker-compose.yaml
+version: '3.8'
+
+services:
+    frontend:
+        container_name: about-intrinsic
+        build:
+            context: .
+        ports:
+            - 3000:80
+        env_file:
+            - .env
