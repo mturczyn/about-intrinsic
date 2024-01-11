@@ -5,17 +5,22 @@ import gbFlag from 'images/flags/gb.svg'
 import { useTranslation } from 'react-i18next'
 
 export const Navbar = () => {
-    const { i18n } = useTranslation()
+    const { i18n, t } = useTranslation()
+
+    const changeLanguage = (languageCode: string) => {
+        i18n.changeLanguage(languageCode)
+        document.documentElement.setAttribute('lang', languageCode)
+    }
 
     return (
         <nav>
             {appRoutes.map((i) => (
                 <a key={i.path + i.name} href={i.path}>
-                    {i.name}
+                    {t(i.name)}
                 </a>
             ))}
             <button
-                onClick={() => i18n.changeLanguage('pl')}
+                onClick={() => changeLanguage('pl')}
                 style={{
                     backgroundImage: 'url(' + plFlag + ')',
                     backgroundPosition: '0px 0px',
@@ -25,7 +30,7 @@ export const Navbar = () => {
                 <span>PL</span>
             </button>
             <button
-                onClick={() => i18n.changeLanguage('en')}
+                onClick={() => changeLanguage('en')}
                 className="langButton"
                 style={{ backgroundImage: 'url(' + gbFlag + ')' }}
             >

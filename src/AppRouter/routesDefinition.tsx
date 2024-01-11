@@ -1,5 +1,5 @@
-import { ContactInfo } from 'ContactInfo'
-import { TechStack } from 'TechStack'
+import ContactInfo from 'ContactInfo'
+import TechStack from 'TechStack'
 import { AppRoute } from 'AppRouter/AppRoute'
 import Home from 'Home'
 

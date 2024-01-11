@@ -8,9 +8,16 @@ import { AnchorWithNewPage } from 'CoreComponents/AnchorWithNewPage'
 import websiteLogo from 'website-logo.svg'
 import { CiLocationOn } from 'react-icons/ci'
 import { useTranslation } from 'react-i18next'
+import { useEffect } from 'react'
 
-export const ContactInfo = () => {
+const PAGE_TITLE = 'Intrinsic - contact info'
+
+const ContactInfo = () => {
     const { t } = useTranslation()
+
+    useEffect(() => {
+        document.title = t(PAGE_TITLE)
+    }, [t])
 
     return (
         <header className="contact-card">
@@ -63,3 +70,5 @@ const ContactInfoEntry = ({
         </div>
     )
 }
+
+export default ContactInfo

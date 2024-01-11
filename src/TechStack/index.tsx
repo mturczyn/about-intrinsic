@@ -1,11 +1,17 @@
 import reactLogo from 'react-logo.svg'
-import websiteLogo from 'website-logo.svg'
 import './TechStack.css'
 import { useTranslation, Trans } from 'react-i18next'
 import { AnchorWithNewPage } from 'CoreComponents/AnchorWithNewPage'
+import { useEffect } from 'react'
 
-export const TechStack = () => {
+const PAGE_TITLE = 'Intrinsic - website technology stack'
+
+const TechStack = () => {
     const { t } = useTranslation()
+
+    useEffect(() => {
+        document.title = t(PAGE_TITLE)
+    }, [t])
 
     return (
         <>
@@ -103,3 +109,5 @@ export const TechStack = () => {
         </>
     )
 }
+
+export default TechStack

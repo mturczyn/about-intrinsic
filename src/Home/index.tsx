@@ -10,6 +10,9 @@ import jsLogo from 'images/programming-languages-logo/js-logo.webp'
 import reactLogo from 'react-logo.svg'
 import './Home.css'
 import { useTranslation } from 'react-i18next'
+import { useEffect } from 'react'
+
+const PAGE_TITLE = 'Intrinsic - web development and programming'
 
 const EmployersLogos = () => (
     <div className="logos-slide">
@@ -24,6 +27,10 @@ const EmployersLogos = () => (
 
 const Home = () => {
     const { t } = useTranslation()
+
+    useEffect(() => {
+        document.title = t(PAGE_TITLE)
+    }, [t])
 
     return (
         <>
