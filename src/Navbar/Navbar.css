@@ -10,9 +10,36 @@ nav {
     position: sticky;
     top: 0;
     left: 0;
-    box-shadow: 0 10px 5px -5px #000;
+    box-shadow: 0 10px 30px 10px #000;
     background: rgb(var(--main-bg-color), var(--alpha-level));
     backdrop-filter: blur(20px);
+}
+
+nav > button.langButton:hover {
+    cursor: pointer;
+}
+
+nav > button.langButton span {
+    opacity: 0;
+}
+
+nav > button.langButton {
+    color: transparent;
+    align-self: center;
+    width: 3rem;
+    height: 3rem;
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    margin: 0 1ch;
+    border-radius: 50%;
+    background-size: cover;
+}
+
+nav > button.langButton:first-of-type {
+    margin-left: auto;
 }
 
 nav > a {

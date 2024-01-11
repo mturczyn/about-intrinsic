@@ -9,8 +9,12 @@
 }
 
 body {
+    box-shadow: 0 0px 30px 30px #000;
     font-size: calc(10px + 2vmin);
-    max-width: 80vw;
+    max-width: min(70ch, 100%);
+    /* To make bottom shadow not visible to user */
+    min-height: 110vh;
+    padding-bottom: 1vh;
     margin: 0 auto;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
         'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
@@ -39,6 +43,10 @@ code {
 
 a {
     color: rgb(var(--anchor-color));
+}
+
+p {
+    margin: 2ch;
 }
 
 a:visited {

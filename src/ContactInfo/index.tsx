@@ -7,8 +7,11 @@ import { FaGithub } from 'react-icons/fa'
 import { AnchorWithNewPage } from 'CoreComponents/AnchorWithNewPage'
 import websiteLogo from 'website-logo.svg'
 import { CiLocationOn } from 'react-icons/ci'
+import { useTranslation } from 'react-i18next'
 
 export const ContactInfo = () => {
+    const { t } = useTranslation()
+
     return (
         <header className="contact-card">
             <img src={websiteLogo} alt="Intrinsic Michał Turczyn logo"></img>
@@ -21,7 +24,7 @@ export const ContactInfo = () => {
                     turek1992@o2.pl
                 </ContactInfoEntry>
                 <ContactInfoEntry icon={<CiLocationOn />}>
-                    Zabrze, Poland
+                    Zabrze, {t('Poland')}
                 </ContactInfoEntry>
                 <ContactInfoEntry icon={<CiLinkedin />}>
                     <AnchorWithNewPage

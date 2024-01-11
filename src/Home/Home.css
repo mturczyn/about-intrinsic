@@ -1,6 +1,5 @@
 .Home-header {
     background-color: rgb(var(--main-bg-color));
-    text-align: justify;
 }
 
 .Home-header img {
@@ -99,7 +98,7 @@
     display: inline-flex;
     justify-content: space-around;
     align-items: center;
-    animation: 10s slide infinite linear;
+    animation: 20s slide infinite linear;
     overflow-y: visible;
 }
 
@@ -108,7 +107,7 @@
 }
 
 .logos-slide img {
-    filter: contrast(125%) drop-shadow(0px 0px 10px rgb(212, 212, 212));
+    filter: brightness(1.25);
     max-height: 20vh;
     max-width: 200px;
     margin: 0 40px;

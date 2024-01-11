@@ -21,23 +21,26 @@
 
 header.contact-card > img:first-child {
     filter: drop-shadow(0px 0px 15px rgba(255, 255, 255));
-    height: 100%;
     max-block-size: 100%;
-    max-inline-size: 10rem;
+    inline-size: 10rem;
     margin: 2ch;
+    align-self: flex-start;
+    justify-self: center;
     grid-area: websitelogo;
 }
 
 header.contact-card {
     display: grid;
-    grid-template-rows: 1fr min-content;
-    grid-template-columns: min-content 1fr;
+    grid-template-rows: 1fr 2fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-areas:
-        'websitelogo contactcard'
-        'companyname contactcard';
+        'companyname contactcard'
+        'websitelogo contactcard';
 }
 
 header.contact-card > h1 {
+    align-self: flex-end;
+    justify-self: center;
     font-size: 200%;
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;
