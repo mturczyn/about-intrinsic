@@ -20,7 +20,7 @@ export const Navbar = () => {
                 </a>
             ))}
             <button
-                onClick={() => changeLanguage('pl')}
+                onClick={() => changeLanguage('pl-PL')}
                 style={{
                     backgroundImage: 'url(' + plFlag + ')',
                     backgroundPosition: '0px 0px',
@@ -30,7 +30,7 @@ export const Navbar = () => {
                 <span>PL</span>
             </button>
             <button
-                onClick={() => changeLanguage('en')}
+                onClick={() => changeLanguage('en-US')}
                 className="langButton"
                 style={{ backgroundImage: 'url(' + gbFlag + ')' }}
             >
