@@ -17,6 +17,7 @@ nav {
 
 nav > button.langButton:hover {
     cursor: pointer;
+    filter: brightness(0.5);
 }
 
 nav > button.langButton span {
