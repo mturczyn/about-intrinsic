@@ -3,6 +3,7 @@ import { appRoutes } from 'AppRouter/routesDefinition'
 import plFlag from 'images/flags/pl.svg'
 import gbFlag from 'images/flags/gb.svg'
 import { useTranslation } from 'react-i18next'
+import { SUPPORTED_LANGUAGES } from 'i18n'
 
 export const Navbar = () => {
     const { i18n, t } = useTranslation()
@@ -20,7 +21,7 @@ export const Navbar = () => {
                 </a>
             ))}
             <button
-                onClick={() => changeLanguage('pl-PL')}
+                onClick={() => changeLanguage(SUPPORTED_LANGUAGES.pl)}
                 style={{
                     backgroundImage: 'url(' + plFlag + ')',
                     backgroundPosition: '0px 0px',
@@ -30,7 +31,7 @@ export const Navbar = () => {
                 <span>PL</span>
             </button>
             <button
-                onClick={() => changeLanguage('en-US')}
+                onClick={() => changeLanguage(SUPPORTED_LANGUAGES.en)}
                 className="langButton"
                 style={{ backgroundImage: 'url(' + gbFlag + ')' }}
             >

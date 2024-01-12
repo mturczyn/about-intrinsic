@@ -8,7 +8,11 @@ export const AppRouter = ({ children }) => {
                 <Routes>
                     <Route element={children}>
                         {appRoutes.map((i) => (
-                            <Route path={i.path} element={i.element} />
+                            <Route
+                                key={i.path}
+                                path={i.path}
+                                element={i.element}
+                            />
                         ))}
                     </Route>
                     <Route path="*" element={<Navigate to="/Home" replace />} />
