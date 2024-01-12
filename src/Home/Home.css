@@ -103,6 +103,7 @@
 }
 
 .logos-slide * {
+    display: inline;
     flex: 1 1 auto;
 }
 

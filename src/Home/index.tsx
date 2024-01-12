@@ -15,14 +15,26 @@ import { useEffect } from 'react'
 const PAGE_TITLE = 'Intrinsic - web development and programming'
 
 const EmployersLogos = () => (
-    <div className="logos-slide">
-        <img src={arcelorMittal} alt="ArcelorMittal" />
-        <img src={flightScope} alt="FlightScope" />
-        <img src={exadel} alt="Exadel" />
-        <img src={rite} alt="RiteNRG" />
-        <img src={rsm} alt="RSM" />
-        <img src={rac} alt="RAC" />
-    </div>
+    <ul role="list" className="logos-slide">
+        <li>
+            <img src={arcelorMittal} alt="ArcelorMittal" />
+        </li>
+        <li>
+            <img src={flightScope} alt="FlightScope" />
+        </li>
+        <li>
+            <img src={exadel} alt="Exadel" />
+        </li>
+        <li>
+            <img src={rite} alt="RiteNRG" />
+        </li>
+        <li>
+            <img src={rsm} alt="RSM" />
+        </li>
+        <li>
+            <img src={rac} alt="RAC" />
+        </li>
+    </ul>
 )
 
 const Home = () => {
