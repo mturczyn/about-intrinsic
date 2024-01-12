@@ -14,6 +14,8 @@ const PAGE_TITLE = 'Intrinsic - contact info'
 
 const ContactInfo = () => {
     const { t } = useTranslation()
+    const phoneNumber = '503 536 506'
+    const mailAddress = 'turek1992@o2.pl'
 
     useEffect(() => {
         document.title = t(PAGE_TITLE)
@@ -25,10 +27,12 @@ const ContactInfo = () => {
             <h1>INTRINSIC</h1>
             <div className="contact-info-card">
                 <ContactInfoEntry icon={<BsTelephone />}>
-                    503 536 506
+                    <a href={`tel:${phoneNumber.replace(' ', '')}`}>
+                        {phoneNumber}
+                    </a>
                 </ContactInfoEntry>
                 <ContactInfoEntry icon={<MdOutlineEmail />}>
-                    turek1992@o2.pl
+                    <a href={`mailto:${mailAddress}`}>{mailAddress}</a>
                 </ContactInfoEntry>
                 <ContactInfoEntry icon={<CiLocationOn />}>
                     Zabrze, {t('Poland')}
