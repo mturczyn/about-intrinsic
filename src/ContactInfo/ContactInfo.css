@@ -32,7 +32,7 @@ header.contact-card > img:first-child {
 header.contact-card {
     display: grid;
     grid-template-rows: 1fr 2fr;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(33vw, 1fr) 1fr;
     grid-template-areas:
         'companyname contactcard'
         'websitelogo contactcard';
