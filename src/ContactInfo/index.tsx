@@ -10,7 +10,7 @@ import { CiLocationOn } from 'react-icons/ci'
 import { useTranslation } from 'react-i18next'
 import { useEffect } from 'react'
 
-const PAGE_TITLE = 'Intrinsic - contact info'
+export const PAGE_TITLE = 'Intrinsic - contact info'
 
 const ContactInfo = () => {
     const { t } = useTranslation()

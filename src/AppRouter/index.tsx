@@ -15,7 +15,7 @@ export const AppRouter = ({ children }) => {
                             />
                         ))}
                     </Route>
-                    <Route path="*" element={<Navigate to="/Home" replace />} />
+                    <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
             </BrowserRouter>
         </>

@@ -4,7 +4,7 @@ import { useTranslation, Trans } from 'react-i18next'
 import { AnchorWithNewPage } from 'CoreComponents/AnchorWithNewPage'
 import { useEffect } from 'react'
 
-const PAGE_TITLE = 'Intrinsic - website technology stack'
+export const PAGE_TITLE = 'Intrinsic - website technology stack'
 
 const TechStack = () => {
     const { t } = useTranslation()

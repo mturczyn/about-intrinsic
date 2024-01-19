@@ -12,7 +12,7 @@ import './Home.css'
 import { useTranslation } from 'react-i18next'
 import { useEffect } from 'react'
 
-const PAGE_TITLE = 'Intrinsic - web development and programming'
+export const PAGE_TITLE = 'Intrinsic - web development and programming'
 
 const EmployersLogos = () => (
     <ul role="list" className="logos-slide">
