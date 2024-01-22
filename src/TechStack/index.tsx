@@ -17,27 +17,25 @@ const TechStack = () => {
         <>
             <div
                 style={{
-                    float: 'left',
+                    overflow: 'hidden',
+                    maxWidth: '15rem',
+                    width: '40%',
+                    float: 'right',
                     margin: '2ch 2ch 0 2ch',
+                    maxHeight: '15rem',
+                    boxShadow: 'inset 5px 5px 20px 5px #000',
+                    placeItems: 'center',
+                    display: 'grid',
                 }}
             >
-                <div
+                <img
+                    src={reactLogo}
+                    className="Spin-image"
                     style={{
-                        overflow: 'hidden',
-                        maxWidth: '15rem',
-                        maxHeight: '15rem',
-                        boxShadow: 'inset 5px 5px 20px 5px #000',
-                        placeItems: 'center',
-                        display: 'grid',
+                        width: '120%',
                     }}
-                >
-                    <img
-                        src={reactLogo}
-                        className="Spin-image"
-                        style={{ width: '120%' }}
-                        alt="React logo"
-                    />
-                </div>
+                    alt="React logo"
+                />
             </div>
 
             <h1>{t('Theming')}</h1>

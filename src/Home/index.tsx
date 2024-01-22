@@ -49,7 +49,7 @@ const Home = () => {
             <div>
                 <header className="Home-header">
                     <img
-                        style={{ float: 'left', margin: '2ch' }}
+                        style={{ float: 'right', margin: '2ch' }}
                         src={authorImage}
                         className="Sized-image"
                         alt="me"
@@ -58,7 +58,7 @@ const Home = () => {
                     <p>{t('homePageIntroduction.firstPara')}</p>
                     <div
                         className="programming-languages"
-                        style={{ float: 'right', margin: '2ch' }}
+                        style={{ float: 'left', margin: '2ch' }}
                     >
                         <img src={cSharpLogo} alt="C#" className="csharp" />
                         <img src={jsLogo} alt="JavaScript" className="js" />

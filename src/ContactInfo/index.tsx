@@ -11,11 +11,11 @@ import { useTranslation } from 'react-i18next'
 import { useEffect } from 'react'
 
 export const PAGE_TITLE = 'Intrinsic - contact info'
+const PHONE_NUMBER = '503 536 506'
+const MAIL_ADDRESS = 'turek1992@o2.pl'
 
 const ContactInfo = () => {
     const { t } = useTranslation()
-    const phoneNumber = '503 536 506'
-    const mailAddress = 'turek1992@o2.pl'
 
     useEffect(() => {
         document.title = t(PAGE_TITLE)
@@ -27,12 +27,12 @@ const ContactInfo = () => {
             <h1>INTRINSIC</h1>
             <div className="contact-info-card">
                 <ContactInfoEntry icon={<BsTelephone />}>
-                    <a href={`tel:${phoneNumber.replace(' ', '')}`}>
-                        {phoneNumber}
+                    <a href={`tel:${PHONE_NUMBER.replace(' ', '')}`}>
+                        {PHONE_NUMBER}
                     </a>
                 </ContactInfoEntry>
                 <ContactInfoEntry icon={<MdOutlineEmail />}>
-                    <a href={`mailto:${mailAddress}`}>{mailAddress}</a>
+                    <a href={`mailto:${MAIL_ADDRESS}`}>{MAIL_ADDRESS}</a>
                 </ContactInfoEntry>
                 <ContactInfoEntry icon={<CiLocationOn />}>
                     Zabrze, {t('Poland')}

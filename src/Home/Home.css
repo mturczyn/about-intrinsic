@@ -9,6 +9,7 @@
 .programming-languages {
     margin: 2rem 0 2rem 2rem;
     max-width: 15rem;
+    width: 40%;
     display: grid;
     place-items: center;
     grid-template-columns: 2fr 1fr;

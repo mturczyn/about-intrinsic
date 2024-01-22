@@ -13,7 +13,7 @@ const resources = {
             homePageIntroduction: {
                 firstPara: `My name is Michał Turczyn. I work as as software
                         engineer, I develop websites (such as this one) and I
-                        enjoy what I do. I generally like to deeply understand
+                        enjoy what I do. I like to deeply understand
                         whatever I do and drive things to completion.`,
                 secondPara: `
                         I am Maths graduate, which helped me a lot gaining
@@ -76,7 +76,7 @@ const resources = {
 
             helloWithIntro: 'Cześć, jestem Michał',
             homePageIntroduction: {
-                firstPara: `Nazywam się Michał Turczyn. Pracuję jako inżynier oprogramowania, tworzę strony internetowe (takie jak ta) i cieszę się z tego, co robię. Zazwyczaj lubię dogłębnie rozumieć to, co robię, i doprowadzać rzeczy do końca.`,
+                firstPara: `Nazywam się Michał Turczyn. Pracuję jako inżynier oprogramowania, tworzę strony internetowe (takie jak ta) i cieszę się z tego, co robię. Lubię dogłębnie rozumieć to, co robię, i doprowadzać rzeczy do końca.`,
                 secondPara: `
                         Jestem absolwentem matematyki, co bardzo pomogło mi w zdobywaniu umiejętności programowania.`,
                 thirdPara: `Mój pierwszy język programowania, który nauczyłem się, to C# wraz z frameworkiem WinForms. Przez lata miałem okazję pracować z wieloma frameworkami .NET, takimi jak ASP.NET (Core, Razor Pages) czy WPF, Blazor. Nauczyłem się również JS (HTML, CSS, JS) i frameworka React.`,
@@ -86,7 +86,7 @@ const resources = {
             // technologyStackPage
             Theming: 'Motywy',
             themingDescription:
-                'Do motywów użyłem jedynie zmiennych CSS. Mogłem użyć jakiegoś pakietu, takiego jak MaterialUI czy PrimeReact, aby szybciej budować lepsze interfejsy użytkownika, ale nie było to konieczne, więc postanowiłem utrzymać rozmiar tej strony na minimalnym poziomie.',
+                'Do motywów użyłem jedynie zmiennych CSS. Mogłem użyć jakiejś biblioteki, takiej jak MaterialUI czy PrimeReact, aby szybciej budować lepsze interfejsy użytkownika, ale nie było to konieczne, więc postanowiłem utrzymać rozmiar tej strony na minimalnym poziomie.',
             frameworkAndLibraries: 'Frameworki i biblioteki',
             '<p>To create this website, I have used React framework, in order to optimize development process. I did not use any advanced React features, such as hooks, as this page did not require complex logic. I think, I could even find lighter library, with fewer features, that would accomplish the same.</p><p>I also used React libraries for features: routing is implemented with react-router package and there is multilanguage (PL and ENG) support, thanks to react-nexti18n package.</p>':
                 '<p>Do stworzenia tej strony użyłem frameworka React, aby zoptymalizować proces deweloperski. Nie korzystałem z zaawansowanych funkcji React, takich jak haki (hooks), ponieważ ta strona nie wymagała skomplikowanej logiki. Myślę, że mogłem nawet znaleźć lżejszą bibliotekę, z mniejszą liczbą funkcji, która osiągnęłaby to samo.</p><p>Użyłem również bibliotek React do funkcji: routing jest implementowany przy użyciu pakietu react-router, a obsługiwane są różne języki (PL i ENG), dzięki pakietowi react-nexti18n.</p>',
