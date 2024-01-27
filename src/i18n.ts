@@ -53,11 +53,12 @@ const resources = {
             'Contact info': 'Contact info',
             'Technology stack': 'Technology stack',
 
-            'Intrinsic - website technology stack':
-                'Intrinsic - website technology stack',
-            'Intrinsic - web development and programming':
-                'Intrinsic - web development and programming',
-            'Intrinsic - contact info': 'Intrinsic - contact info',
+            'Intrinsic | Web Development and Programming | Technology stack':
+                'Intrinsic | Web Development and Programming | Technology stack',
+            'Intrinsic | Web Development and Programming | Zabrze':
+                'Intrinsic | Web Development and Programming | Zabrze',
+            'Intrinsic | Web Development and Programming | Contact info':
+                'Intrinsic | Web Development and Programming | Contact info',
             // Misc
             'I have worked for following companies throughout my career:':
                 'I have worked for following companies throughout my career:',
@@ -65,11 +66,12 @@ const resources = {
     },
     [SUPPORTED_LANGUAGES.pl]: {
         translation: {
-            'Intrinsic - website technology stack':
-                'Intrinsic - stos technologiczny strony internetowej',
-            'Intrinsic - web development and programming':
-                'Intrinsic - rozwój i programowanie stron internetowych',
-            'Intrinsic - contact info': 'Intrinsic - informacje kontaktowe',
+            'Intrinsic | Web Development and Programming | Technology stack':
+                'Intrinsic | Tworzenie stron internetowych i programowanie | Stos technologiczny',
+            'Intrinsic | Web Development and Programming | Zabrze':
+                'Intrinsic | Tworzenie stron internetowych | Zabrze',
+            'Intrinsic | Web Development and Programming | Contact info':
+                'Intrinsic | Tworzenie stron internetowych | Informacje kontaktowe',
             Home: 'Glówna',
             'Contact info': 'Kontakt',
             'Technology stack': 'Stack technologiczny',

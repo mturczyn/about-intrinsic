@@ -10,7 +10,8 @@ import { CiLocationOn } from 'react-icons/ci'
 import { useTranslation } from 'react-i18next'
 import { useEffect } from 'react'
 
-export const PAGE_TITLE = 'Intrinsic - contact info'
+export const PAGE_TITLE =
+    'Intrinsic | Web Development and Programming | Contact info'
 const PHONE_NUMBER = '503 536 506'
 const MAIL_ADDRESS = 'turek1992@o2.pl'
 
