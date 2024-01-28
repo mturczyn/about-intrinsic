@@ -41,7 +41,7 @@ header.contact-card {
 header.contact-card > h1 {
     align-self: flex-end;
     justify-self: center;
-    font-size: 200%;
+    font-size: 150%;
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
         monospace;
     grid-area: companyname;
