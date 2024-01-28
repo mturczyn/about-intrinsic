@@ -1,3 +1,7 @@
+:root {
+    --shadow-def: 0px 0px 15px rgba(255, 255, 255);
+}
+
 .contact-info-card {
     display: flex;
     flex-direction: column;
@@ -20,7 +24,7 @@
 }
 
 header.contact-card > img:first-child {
-    filter: drop-shadow(0px 0px 15px rgba(255, 255, 255));
+    filter: drop-shadow(var(--shadow-def));
     max-block-size: 100%;
     inline-size: 10rem;
     margin: 2ch;
@@ -46,5 +50,5 @@ header.contact-card > h1 {
         monospace;
     grid-area: companyname;
     color: black;
-    text-shadow: 0px 0px 15px rgba(255, 255, 255);
+    text-shadow: var(--shadow-def);
 }
