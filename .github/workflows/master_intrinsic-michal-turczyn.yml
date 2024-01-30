@@ -18,7 +18,8 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: '14'
-    - run: npm run test
+    - working-directory: ./
+      run: npm run test
     
   build:
     runs-on: 'ubuntu-latest'
