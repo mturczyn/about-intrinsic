@@ -18,7 +18,9 @@ jobs:
     - uses: actions/setup-node@v3
       with:
         node-version: '20'
-    - working-directory: ./
+    - name: 'Install node packages'
+      run: npm i
+    - name: 'Run tests'
       run: npm run test
     
   build:
