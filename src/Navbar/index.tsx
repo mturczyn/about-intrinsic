@@ -4,10 +4,15 @@ import plFlag from 'images/flags/pl.svg'
 import gbFlag from 'images/flags/gb.svg'
 import { useTranslation } from 'react-i18next'
 import { SUPPORTED_LANGUAGES } from 'i18n'
+import { useEffect } from 'react'
+import clsx from 'clsx'
 
 export const Navbar = () => {
     const { i18n, t } = useTranslation()
-
+    useEffect(() => {
+        console.log(window.location)
+        console.log(appRoutes)
+    }, [])
     const changeLanguage = (languageCode: string) => {
         i18n.changeLanguage(languageCode)
         document.documentElement.setAttribute('lang', languageCode)
@@ -16,7 +21,13 @@ export const Navbar = () => {
     return (
         <nav>
             {appRoutes.map((i) => (
-                <a key={i.path + i.name} href={i.path}>
+                <a
+                    key={i.path + i.name}
+                    href={i.path}
+                    className={clsx({
+                        'current-location': window.location.pathname === i.path,
+                    })}
+                >
                     {t(i.name)}
                 </a>
             ))}
