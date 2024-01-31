@@ -10,9 +10,9 @@ export const PAGE_TITLE =
 const TechStack = () => {
     const { t } = useTranslation()
 
-    useEffect(() => {
-        document.title = t(PAGE_TITLE)
-    }, [t])
+    // useEffect(() => {
+    //     document.title = t(PAGE_TITLE)
+    // }, [t])
 
     return (
         <>
