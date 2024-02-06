@@ -9,33 +9,10 @@ import cSharpLogo from 'images/programming-languages-logo/c-sharp.png'
 import jsLogo from 'images/programming-languages-logo/js-logo.webp'
 import reactLogo from 'react-logo.svg'
 import './Home.css'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useEffect } from 'react'
 
 export const PAGE_TITLE = 'Intrinsic | Web Development and Programming | Zabrze'
-
-const EmployersLogos = () => (
-    <ul role="list" className="logos-slide">
-        <li>
-            <img src={arcelorMittal} alt="ArcelorMittal" />
-        </li>
-        <li>
-            <img src={flightScope} alt="FlightScope" />
-        </li>
-        <li>
-            <img src={exadel} alt="Exadel" />
-        </li>
-        <li>
-            <img src={rite} alt="RiteNRG" />
-        </li>
-        <li>
-            <img src={rsm} alt="RSM" />
-        </li>
-        <li>
-            <img src={rac} alt="RAC" />
-        </li>
-    </ul>
-)
 
 const Home = () => {
     const { t } = useTranslation()
@@ -66,6 +43,11 @@ const Home = () => {
                     </div>
                     <p>{t('homePageIntroduction.secondPara')}</p>
                     <p>{t('homePageIntroduction.thirdPara')}</p>
+                    <Trans i18nKey="homePageIntroduction.fourthPara">
+                        <p>
+                            <a href="https://about-intrinsic-nextjs.vercel.app"></a>
+                        </p>
+                    </Trans>
                 </header>
 
                 <h1>{t('pastEmployers')}</h1>
@@ -82,5 +64,28 @@ const Home = () => {
         </>
     )
 }
+
+const EmployersLogos = () => (
+    <ul role="list" className="logos-slide">
+        <li>
+            <img src={arcelorMittal} alt="ArcelorMittal" />
+        </li>
+        <li>
+            <img src={flightScope} alt="FlightScope" />
+        </li>
+        <li>
+            <img src={exadel} alt="Exadel" />
+        </li>
+        <li>
+            <img src={rite} alt="RiteNRG" />
+        </li>
+        <li>
+            <img src={rsm} alt="RSM" />
+        </li>
+        <li>
+            <img src={rac} alt="RAC" />
+        </li>
+    </ul>
+)
 
 export default Home

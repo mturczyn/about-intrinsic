@@ -26,6 +26,8 @@ const resources = {
                 secondPara: `
                         Jestem absolwentem matematyki, co bardzo pomogło mi w zdobywaniu umiejętności programowania.`,
                 thirdPara: `Mój pierwszy język programowania, który nauczyłem się, to C# wraz z frameworkiem WinForms. Przez lata miałem okazję pracować z wieloma frameworkami .NET, takimi jak ASP.NET (Core, Razor Pages) czy WPF, Blazor. Nauczyłem się również JS (HTML, CSS, JS) i frameworka React.`,
+                fourthPara:
+                    '<0>Wciąż staram się uczyć i rozwijać. Obecnie pracuję nad <0>kolejną stroną</0>, napisaną w Next.js.</0>',
             },
             pastEmployers: 'Poprzedni pracodawcy',
             Poland: 'Polska',
@@ -68,6 +70,8 @@ const resources = {
                         with WinForms framework. Over the years I could
                         experience other .NET frameworks, such as ASP.NET (Core, Razor Pages) or WPF. I also leanred JS along the way (HTML, CSS, JS)
                         and React framework.`,
+                fourthPara:
+                    '<0>I try to constantly learn and improve. Currently, I am working on <0>another website</0>, written in Next.js.</0>',
             },
             pastEmployers: 'Past employers',
             Poland: 'Poland',
