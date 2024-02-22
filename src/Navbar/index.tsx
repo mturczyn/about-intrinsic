@@ -5,6 +5,7 @@ import gbFlag from 'images/flags/gb.svg'
 import { useTranslation } from 'react-i18next'
 import { SUPPORTED_LANGUAGES } from 'i18n'
 import clsx from 'clsx'
+import { Link, useLocation } from 'react-router-dom'
 
 export const Navbar = () => {
     const { i18n, t } = useTranslation()
@@ -13,18 +14,20 @@ export const Navbar = () => {
         document.documentElement.setAttribute('lang', languageCode)
     }
 
+    const location = useLocation()
+
     return (
         <nav>
             {appRoutes.map((i) => (
-                <a
+                <Link
                     key={i.path + i.name}
-                    href={i.path}
+                    to={i.path}
                     className={clsx({
-                        'current-location': window.location.pathname === i.path,
+                        'current-location': location.pathname === i.path,
                     })}
                 >
                     {t(i.name)}
-                </a>
+                </Link>
             ))}
             <button
                 onClick={() => changeLanguage(SUPPORTED_LANGUAGES.pl)}
