@@ -1,7 +1,11 @@
 import { AppRoute } from 'AppRouter/AppRoute'
-import ContactInfo from 'ContactInfo'
+import { Loader } from 'CoreComponents/Loader'
+// import ContactInfo from 'ContactInfo'
 import Home from 'Home'
-import TechStack from 'TechStack'
+import { Suspense, lazy } from 'react'
+
+const ContactInfo = lazy(() => import('ContactInfo'))
+const TechStack = lazy(() => import('TechStack'))
 
 export const appRoutes: AppRoute[] = [
     {
@@ -12,11 +16,19 @@ export const appRoutes: AppRoute[] = [
     {
         name: 'Contact info',
         path: '/contact-info',
-        element: <ContactInfo />,
+        element: (
+            <Suspense fallback={<Loader />}>
+                <ContactInfo />
+            </Suspense>
+        ),
     },
     {
         name: 'Technology stack',
         path: '/technology-stack',
-        element: <TechStack />,
+        element: (
+            <Suspense fallback={<Loader />}>
+                <TechStack />
+            </Suspense>
+        ),
     },
 ]
