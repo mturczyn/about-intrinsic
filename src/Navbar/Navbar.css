@@ -60,7 +60,7 @@ nav > a {
 
 @media (max-width: 600px) {
     nav > a {
-        padding: 0.2rem;
+        padding: 0.5rem;
     }
 }
 
