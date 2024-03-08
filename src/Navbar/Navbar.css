@@ -4,9 +4,9 @@
 }
 
 nav {
+    align-items: center;
     z-index: 100;
     display: flex;
-    flex-wrap: wrap;
     position: sticky;
     top: 0;
     left: 0;
@@ -57,6 +57,12 @@ nav > a {
     -o-transition: background-color var(--hover-transition-duration) linear;
     -ms-transition: background-color var(--hover-transition-duration) linear;
     transition: background-color var(--hover-transition-duration) linear;
+}
+
+@media (max-width: 600px) {
+    nav > a {
+        padding: 0.2rem;
+    }
 }
 
 .current-location,
