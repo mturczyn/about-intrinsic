@@ -1,4 +1,20 @@
-# Getting Started with Create React App
+# PWA and service worker
+
+Enabling webpage as PWA (progressive web application) requires only specifying manifest file (`manifest.json`) correctly.
+
+Bigger challenge was to add **service worker**.
+
+Firstly, I tried to add it as usual, by creating some JS and registering it in index file, but it did not work (service worker file could not use imports, as it was totally outside build system).
+
+After some digging, I found out that there is `cra-template-pwa` template (`cra-template-pwa-typescript` for TypeScript). It includes ready implementation and registration code for service workers. So I have created an application using this template and just copied the code here.
+
+But, there is a pitfall - it does not work, when running it on localhost. As discussed in [this StackOverflow post](https://stackoverflow.com/questions/66997788/create-react-app-pwa-typescript-template-cant-detect-service-worker), service workers work in production mode only.
+
+Digging further, there is [Making a Progressive Web App documentation](https://create-react-app.dev/docs/making-a-progressive-web-app/), where it's speicified (which shines more light on the issue):
+
+> The service worker is only enabled in the production environment, e.g. the output of `npm run build`. It's recommended that you do not enable an offline-first service worker in a development environment, as it can lead to frustration when previously cached assets are used and do not include the latest changes you've made locally.
+
+# Getting Started with Create React App (CRA)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
