@@ -122,7 +122,7 @@ const TechStack = () => {
                     ></a>
                     <a
                         rel="noreferrer"
-                        href="https://pwa-workshop-codelab.vercel.app"
+                        href="https://web.dev/articles/new-pwa-training"
                         target="_blank"
                     ></a>
                 </p>
