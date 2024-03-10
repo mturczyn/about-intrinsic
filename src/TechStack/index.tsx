@@ -112,6 +112,21 @@ const TechStack = () => {
                     'By specifying manifest file for the webpage correctly, I have enabled this page to work as PWA (so it is installable as application). More over, I have added offline support using service workers (page can be still reachable, when user is offline.'
                 )}
             </p>
+            <h2>{t('PWA workshop')}</h2>
+            <Trans i18nKey={'pwa-workshop-description'}>
+                <p>
+                    <a
+                        rel="noreferrer"
+                        href="https://pwa-workshop-codelab.vercel.app"
+                        target="_blank"
+                    ></a>
+                    <a
+                        rel="noreferrer"
+                        href="https://pwa-workshop-codelab.vercel.app"
+                        target="_blank"
+                    ></a>
+                </p>
+            </Trans>
         </>
     )
 }

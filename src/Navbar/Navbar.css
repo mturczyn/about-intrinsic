@@ -37,11 +37,10 @@ nav > button.langButton {
     margin: 0 1ch;
     border-radius: 50%;
     background-size: cover;
-    margin-left: 0;
 }
 
 nav > button.langButton:first-of-type {
-    margin-left: auto;
+    margin: 0 0 0 auto;
 }
 
 nav > a {

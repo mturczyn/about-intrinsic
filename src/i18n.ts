@@ -53,6 +53,9 @@ const resources = {
             'PWA and service workers': 'PWA oraz service workers',
             'By specifying manifest file for the webpage correctly, I have enabled this page to work as PWA (so it is installable as application). More over, I have added offline support using service workers (page can be still reachable, when user is offline.':
                 'Poprzez poprawne określenie pliku manifest dla tej strony, ta strona działa jako PWA (więc jest instalowalna jako aplikacja). Ponadto dodałem obsługę trybu offline za pomocą service workers (strona jest nadal osiągalna, gdy użytkownik jest offline).',
+            'PWA workshop': 'Warsztaty PWA',
+            'pwa-workshop-description':
+                '<0>Uruchomiłem również <0>stronę PWA</0> z kodem z <1>tego samouczka</1>, który dotyczył implementacji i ulepszania strony PWA, która była prostym edytorem markdown z możliwością otwierania i zapisywania plików, oraz podglądu "na żywo" tworzonego dokumentu. Strona jednak działa poprawnie tylko na komputerach</0>',
             // Misc
             'I have worked for following companies throughout my career:':
                 'Przez całą moją karierę pracowałem dla następujących firm:',
@@ -115,6 +118,9 @@ const resources = {
             'PWA and service workers': 'PWA and service workers',
             'By specifying manifest file for the webpage correctly, I have enabled this page to work as PWA (so it is installable as application). More over, I have added offline support using service workers (page can be still reachable, when user is offline.':
                 'By specifying manifest file for the webpage correctly, I have enabled this page to work as PWA (so it is installable as application). More over, I have added offline support using service workers (page can be still reachable, when user is offline.',
+            'PWA workshop': 'PWA workshop',
+            'pwa-workshop-description':
+                '<0>I have also launched <0>PWA website</0> with code from <1>this tutorial</1>, which was about implementing and enhancing PWA website, which was simple markdown editor with possibility to open and save files, with live preview. The page, however, works correctly only on PCs.</0>',
             // Misc
             'I have worked for following companies throughout my career:':
                 'I have worked for following companies throughout my career:',
