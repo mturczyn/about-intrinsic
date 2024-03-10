@@ -128,7 +128,7 @@ const TechStack = () => {
             <h1>{t('PWA and service workers')}</h1>
             <p>
                 {t(
-                    'By specifying manifest file for the webpage correctly, I have enabled this page to work as PWA (so it is installable as application). More over, I have added offline support using service workers (page can be still reachable, when user is offline.'
+                    'By specifying manifest file for the webpage correctly, I have enabled this page to work as PWA (so it is installable as application). Moreover, I have added offline support using service workers (page can be still reachable, when user is offline.'
                 )}
             </p>
             <button id="pwa-install-button" onClick={installPwa}>
