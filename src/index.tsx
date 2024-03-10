@@ -8,6 +8,7 @@ import './i18n'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
+
 root.render(
     <React.StrictMode>
         <AppRouter>

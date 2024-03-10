@@ -2,12 +2,31 @@ import reactLogo from 'react-logo.svg'
 import './TechStack.css'
 import { useTranslation, Trans } from 'react-i18next'
 import { AnchorWithNewPage } from 'CoreComponents/AnchorWithNewPage'
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
+import { PwaInstallerContext } from 'App'
 
 export const PAGE_TITLE =
     'Intrinsic | Web Development and Programming | Technology stack'
 
 const TechStack = () => {
+    const pwaInstaller = useContext<any>(PwaInstallerContext)
+
+    const installPwa = () => {
+        if (!pwaInstaller) {
+            return
+        }
+
+        pwaInstaller.prompt()
+        // Wait for the user to respond to the prompt
+        pwaInstaller.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('User accepted installation prompt')
+            } else {
+                console.log('User dismissed installation prompt')
+            }
+        })
+    }
+
     const { t } = useTranslation()
 
     useEffect(() => {
@@ -112,6 +131,10 @@ const TechStack = () => {
                     'By specifying manifest file for the webpage correctly, I have enabled this page to work as PWA (so it is installable as application). More over, I have added offline support using service workers (page can be still reachable, when user is offline.'
                 )}
             </p>
+            <button id="pwa-install-button" onClick={installPwa}>
+                {t('Install the page as PWA')}
+            </button>
+
             <h2>{t('PWA workshop')}</h2>
             <Trans i18nKey={'pwa-workshop-description'}>
                 <p>

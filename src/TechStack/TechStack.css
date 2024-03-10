@@ -6,3 +6,14 @@ h5,
 h6 {
     margin: 1ch;
 }
+
+#pwa-install-button {
+    font-size: inherit;
+    margin-left: 1rem;
+    background: none !important;
+    border: none;
+    /*input has OS specific font-family*/
+    color: rgb(20, 174, 234);
+    text-decoration: underline;
+    cursor: pointer;
+}
