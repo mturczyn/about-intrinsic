@@ -7,6 +7,14 @@ h6 {
     margin: 1ch;
 }
 
+strong {
+    margin: 2ch;
+}
+
+strong[data-pwa-installed] {
+    color: lightgreen;
+}
+
 #pwa-install-button {
     font-size: inherit;
     margin-left: 1rem;

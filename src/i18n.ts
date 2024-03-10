@@ -57,6 +57,9 @@ const resources = {
             'pwa-workshop-description':
                 '<0>Uruchomiłem również <0>stronę PWA</0> z kodem na podstawie <1>tego samouczka</1>, który dotyczył implementacji i ulepszania strony PWA, która była prostym edytorem markdown z możliwością otwierania i zapisywania plików, oraz podglądu "na żywo" tworzonego dokumentu. Strona jednak działa poprawnie tylko na komputerach.</0>',
             'Install the page as PWA': 'Zainstaluj stronę jako PWA',
+            'PWA installation is not supported. Try different browser in order to install this page.':
+                'Instalacja PWA nie jest obsługiwana. Wypróbuj inną przeglądarkę, aby zainstalować tę stronę.',
+            'Already installed as PWA': 'Już zainstalowano jako PWA.',
             // Misc
             'I have worked for following companies throughout my career:':
                 'Przez całą moją karierę pracowałem dla następujących firm:',
@@ -123,6 +126,9 @@ const resources = {
             'pwa-workshop-description':
                 '<0>I have also launched <0>PWA website</0> with code based on <1>this tutorial</1>, which was about implementing and enhancing PWA website, which was simple markdown editor with possibility to open and save files, with live preview. The page, however, works correctly only on PCs.</0>',
             'Install the page as PWA': 'Install the page as PWA',
+            'PWA installation is not supported. Try different browser in order to install this page.':
+                'PWA installation is not supported. Try different browser in order to install this page.',
+            'Already installed as PWA': 'Already installed as PWA.',
             // Misc
             'I have worked for following companies throughout my career:':
                 'I have worked for following companies throughout my career:',

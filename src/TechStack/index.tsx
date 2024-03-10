@@ -2,23 +2,26 @@ import reactLogo from 'react-logo.svg'
 import './TechStack.css'
 import { useTranslation, Trans } from 'react-i18next'
 import { AnchorWithNewPage } from 'CoreComponents/AnchorWithNewPage'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { PwaInstallerContext } from 'App'
 
 export const PAGE_TITLE =
     'Intrinsic | Web Development and Programming | Technology stack'
 
 const TechStack = () => {
+    const [pwaInstalled, setPwaInstalled] = useState(false)
     const pwaInstaller = useContext<any>(PwaInstallerContext)
 
+    const pwaInstallationSupported = !!pwaInstaller
+
     const installPwa = () => {
-        if (!pwaInstaller.current) {
+        if (!pwaInstaller) {
             return
         }
 
-        pwaInstaller.current.prompt()
+        pwaInstaller.prompt()
         // Wait for the user to respond to the prompt
-        pwaInstaller.current.userChoice.then((choiceResult) => {
+        pwaInstaller.userChoice.then((choiceResult) => {
             if (choiceResult.outcome === 'accepted') {
                 console.log('User accepted installation prompt')
             } else {
@@ -32,6 +35,14 @@ const TechStack = () => {
     useEffect(() => {
         document.title = t(PAGE_TITLE)
     }, [t])
+
+    useEffect(() => {
+        // If we want to check if the app runs as PWA, we must check
+        // against display mode defined in manifest file.
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+            setPwaInstalled(true)
+        }
+    }, [])
 
     return (
         <>
@@ -131,10 +142,21 @@ const TechStack = () => {
                     'By specifying manifest file for the webpage correctly, I have enabled this page to work as PWA (so it is installable as application). Moreover, I have added offline support using service workers (page can be still reachable, when user is offline.'
                 )}
             </p>
-            <button id="pwa-install-button" onClick={installPwa}>
-                {t('Install the page as PWA')}
-            </button>
-
+            {pwaInstalled ? (
+                <strong data-pwa-installed>
+                    {t('Already installed as PWA')}
+                </strong>
+            ) : pwaInstallationSupported ? (
+                <button id="pwa-install-button" onClick={installPwa}>
+                    {t('Install the page as PWA')}
+                </button>
+            ) : (
+                <strong>
+                    {t(
+                        'PWA installation is not supported. Try different browser in order to install this page.'
+                    )}
+                </strong>
+            )}
             <h2>{t('PWA workshop')}</h2>
             <Trans i18nKey={'pwa-workshop-description'}>
                 <p>
