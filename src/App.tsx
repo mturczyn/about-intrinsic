@@ -1,11 +1,16 @@
-import { createContext, useEffect, useRef, useState } from 'react'
+import { createContext, useCallback, useEffect, useRef } from 'react'
 import { Navbar } from './Navbar'
 import { Outlet } from 'react-router'
 
-export const PwaInstallerContext = createContext(null)
+export const PwaInstallerContext = createContext<any>(null)
 
 function App() {
-    const [installEventRef, setInstallEvent] = useState<any>(null)
+    const installEventRef = useRef<any>(null)
+
+    const setInstallEvent = useCallback(
+        (e) => (installEventRef.current = e),
+        []
+    )
 
     useEffect(() => {
         window.addEventListener('beforeinstallprompt', setInstallEvent)

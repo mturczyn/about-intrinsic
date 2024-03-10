@@ -12,13 +12,13 @@ const TechStack = () => {
     const pwaInstaller = useContext<any>(PwaInstallerContext)
 
     const installPwa = () => {
-        if (!pwaInstaller) {
+        if (!pwaInstaller.current) {
             return
         }
 
-        pwaInstaller.prompt()
+        pwaInstaller.current.prompt()
         // Wait for the user to respond to the prompt
-        pwaInstaller.userChoice.then((choiceResult) => {
+        pwaInstaller.current.userChoice.then((choiceResult) => {
             if (choiceResult.outcome === 'accepted') {
                 console.log('User accepted installation prompt')
             } else {
