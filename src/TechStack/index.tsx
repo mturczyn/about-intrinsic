@@ -103,7 +103,7 @@ const TechStack = () => {
                 ) : (
                     <strong>
                         {t(
-                            'PWA installation is not supported. Try different browser in order to install this page.'
+                            'If viewing page in browser, page may be already installed. Another reason may be the lack of browser support for PWAs. Try different browser in order to install this page.'
                         )}
                     </strong>
                 )}
