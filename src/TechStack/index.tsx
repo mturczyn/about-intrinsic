@@ -84,28 +84,30 @@ const TechStack = () => {
                     'By specifying manifest file for the webpage correctly, I have enabled this page to work as PWA (so it is installable as application). Moreover, I have added offline support using service workers (page can be still reachable, when user is offline.'
                 )}
             </p>
-            {pwaInstalled ? (
-                <strong data-pwa-installed>
-                    {t('Already installed as PWA')}
-                </strong>
-            ) : pwaInstallationSupported ? (
-                <div id="pwa-installation">
-                    <button id="pwa-install-button" onClick={installPwa}>
-                        {t('Install the page as PWA')}
-                    </button>
+            <div id="pwa-installation">
+                {pwaInstalled ? (
+                    <strong data-pwa-installed>
+                        {t('Already installed as PWA')}
+                    </strong>
+                ) : pwaInstallationSupported ? (
+                    <>
+                        <button id="pwa-install-button" onClick={installPwa}>
+                            {t('Install the page as PWA')}
+                        </button>
+                        <strong id="pwa-browser-support-note">
+                            {t(
+                                '(if link is not working, try different browser, as some browsers, like Opera, do not support PWAs)'
+                            )}
+                        </strong>
+                    </>
+                ) : (
                     <strong>
                         {t(
-                            '(if link is not working, try different browser, as some browsers, like Opera, do not support PWAs)'
+                            'PWA installation is not supported. Try different browser in order to install this page.'
                         )}
                     </strong>
-                </div>
-            ) : (
-                <strong>
-                    {t(
-                        'PWA installation is not supported. Try different browser in order to install this page.'
-                    )}
-                </strong>
-            )}
+                )}
+            </div>
             <h2>{t('PWA workshop')}</h2>
             <Trans i18nKey={'pwa-workshop-description'}>
                 <p>

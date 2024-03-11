@@ -11,14 +11,10 @@ h6 {
     margin-left: 2rem;
 }
 
-#pwa-installation > strong {
+#pwa-browser-support-note {
     margin: 0;
     margin-inline-start: 1ch;
     font-weight: normal;
-}
-
-strong {
-    margin: 2rem;
 }
 
 strong[data-pwa-installed] {
