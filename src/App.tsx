@@ -1,4 +1,4 @@
-import { createContext, useCallback, useEffect, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import { Navbar } from './Navbar'
 import { Outlet } from 'react-router'
 
@@ -7,15 +7,12 @@ export const PwaInstallerContext = createContext<any>(null)
 function App() {
     const [installEvent, setInstallEvent] = useState<any>(null)
 
-    const captureInstallEvent = useCallback(
-        (e: any) => {
-            e.preventDefault()
-            setInstallEvent(e)
-        },
-        [setInstallEvent]
-    )
-
     useEffect(() => {
+        const captureInstallEvent = (e: any) => {
+            setInstallEvent(e)
+            e.preventDefault()
+        }
+
         window.addEventListener('beforeinstallprompt', captureInstallEvent)
         //  window.addEventListener('appinstalled', appInstalledHandler)
         return () => {
@@ -25,7 +22,7 @@ function App() {
             )
             //  window.removeEventListener('appinstalled', appInstalledHandler)
         }
-    }, [captureInstallEvent])
+    }, [setInstallEvent])
 
     return (
         <PwaInstallerContext.Provider value={installEvent}>
