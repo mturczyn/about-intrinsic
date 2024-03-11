@@ -46,19 +46,7 @@ const TechStack = () => {
 
     return (
         <>
-            <div
-                style={{
-                    overflow: 'hidden',
-                    maxWidth: '15rem',
-                    width: '40%',
-                    float: 'right',
-                    margin: '2ch 2ch 0 2ch',
-                    maxHeight: '15rem',
-                    boxShadow: 'inset 5px 5px 20px 5px #000',
-                    placeItems: 'center',
-                    display: 'grid',
-                }}
-            >
+            <div id="logo-container">
                 <img
                     src={reactLogo}
                     className="Spin-image"
