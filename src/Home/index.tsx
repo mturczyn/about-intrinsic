@@ -45,7 +45,11 @@ const Home = () => {
                     <p>{t('homePageIntroduction.thirdPara')}</p>
                     <Trans i18nKey="homePageIntroduction.fourthPara">
                         <p>
-                            <a href="https://about-intrinsic-nextjs.vercel.app"></a>
+                            <a
+                                href="https://about-intrinsic-nextjs.vercel.app"
+                                rel="noopener"
+                                target="_blank"
+                            ></a>
                         </p>
                     </Trans>
                 </header>

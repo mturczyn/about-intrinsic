@@ -112,12 +112,12 @@ const TechStack = () => {
             <Trans i18nKey={'pwa-workshop-description'}>
                 <p>
                     <a
-                        rel="noreferrer"
+                        rel="noopener"
                         href="https://pwa-workshop-codelab.vercel.app"
                         target="_blank"
                     ></a>
                     <a
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                         href="https://web.dev/articles/new-pwa-training"
                         target="_blank"
                     ></a>

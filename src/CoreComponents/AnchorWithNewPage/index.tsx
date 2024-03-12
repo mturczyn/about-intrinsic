@@ -6,7 +6,7 @@ export const AnchorWithNewPage = ({
     url: string
 }) => {
     return (
-        <a target="_blank" rel="noreferrer" href={url}>
+        <a target="_blank" rel="noopener noreferrer" href={url}>
             {description}
         </a>
     )
