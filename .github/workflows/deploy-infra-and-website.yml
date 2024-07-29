@@ -79,11 +79,17 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
+    - uses: azure/login@v1
+      name: Sign in to Azure
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
     - name: Deploy to Azure Web App
       id: deploy-to-webapp
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ needs.deploy.outputs.webAppName }}
         # slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_74f8e300dad240ab93104d5863e0758e }}
+        # publish-profile: ${{ secrets.AzureAppService_PublishProfile_74f8e300dad240ab93104d5863e0758e }}
         images: 'intrinsicweb.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_b39ad9b085d94d62a5cac8feedfcc353 }}/about-intrinsic:${{ github.sha }}'
