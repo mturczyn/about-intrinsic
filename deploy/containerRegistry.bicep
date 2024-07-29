@@ -5,6 +5,7 @@ resource containerRegistry 'Microsoft.ContainerRegistry/registries@2023-07-01' =
     name: 'Standard'
   }
   properties: {
+    #disable-next-line BCP037
     anonymousPullEnabled: false
     adminUserEnabled: true
     dataEndpointEnabled:  false
@@ -12,6 +13,7 @@ resource containerRegistry 'Microsoft.ContainerRegistry/registries@2023-07-01' =
       status: 'disabled'
     }
     policies: {
+      #disable-next-line BCP037
       azureADAuthenticationAsArmPolicy: {
         status: 'enabled'
       }
@@ -19,6 +21,7 @@ resource containerRegistry 'Microsoft.ContainerRegistry/registries@2023-07-01' =
         days: 7 
         status: 'disabled'
       }
+      #disable-next-line BCP037
       softDeletePolicy: {
         retentionDays: 7
         status: 'disabled'
