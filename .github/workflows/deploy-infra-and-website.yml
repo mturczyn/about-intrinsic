@@ -1,7 +1,11 @@
-name: Build and deploy container app to Azure Web App
+name: Deploy Azure Resources and Web Application
 
 on:
   workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
 
 env:
     AZURE_RESOURCEGROUP_NAME: intrinsic-rg
@@ -9,6 +13,8 @@ env:
 
 jobs:
   deploy:
+    environment:
+      name: 'production'
     runs-on: ubuntu-latest
     outputs:
       containerRegistryName: ${{ steps.deploy-to-webapp.outputs.containerRegistryName }}
@@ -30,7 +36,7 @@ jobs:
 
   test:
     runs-on: 'ubuntu-latest'
-    
+    needs: deploy
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3

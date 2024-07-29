@@ -1,11 +1,11 @@
 param environmentType string
 
 module containerRegistry 'containerRegistry.bicep' = {
-  name: 'Deploy Container Registry'
+  name: 'deploy-container-registry'
 }
 
 module webApp 'webAppWithPlan.bicep' = {
-  name: 'Deploy Web Application with Service Plan'
+  name: 'deploy-web-application-with-service-plan'
   params: {
     environmentType: environmentType
   }
