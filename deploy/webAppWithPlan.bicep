@@ -3,10 +3,10 @@ param environmentType string
 var location = resourceGroup().location
 var tags = { env: environmentType }
 
-var appServicePlanName = '${environmentType}-intrinsic-asp'
-var webappName = environmentType == 'Prod' 
+var appServicePlanName = 'intrinsic-${environmentType}-asp'
+var webappName = environmentType == 'production' 
   ? 'intrinsic-michal-turczyn' 
-  : 'intrinsic-michal-turczyn-${environmentType}'
+  : 'intrinsic-michal-turczyn-${environmentType}-webapp'
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2023-12-01' = {
   name: appServicePlanName
