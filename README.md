@@ -21,6 +21,12 @@ That might fix this issue. But anyway - we don't want to use publish profile any
 
 Finally, resolution was to execute Azure CLI command to define docker server URL, which sets up depoyed web app resource correctly.
 
+Additional resources searched in order to resolve the issue:
+- [`az webapp config container` at Microsoft](https://learn.microsoft.com/en-us/cli/azure/webapp/config/container?view=azure-cli-latest#az-webapp-config-container-show) - here we can see how to manage container settings for webapp. Most notable is setting configuration:
+    ```
+    az webapp config container set --docker-custom-image-name MyDockerCustomImage --docker-registry-server-password StrongPassword --docker-registry-server-url https://{azure-container-registry-name}.azurecr.io --docker-registry-server-user DockerUserId --name MyWebApp --resource-group MyResourceGroup
+    ```
+
 # PWA and service worker
 
 Enabling webpage as PWA (progressive web application) requires only specifying manifest file (`manifest.json`) correctly.

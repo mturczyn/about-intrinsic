@@ -90,11 +90,12 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ needs.deploy.outputs.webAppName }}
-        # slot-name: 'production'
-        # publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_NONPROD }}
-        # images: 'intrinsicweb.azurecr.io/intrinsicweb/about-intrinsic:3ffc273bfb951faafc7abc276f7c791cbdf8d1c3'
         images: '${{ needs.deploy.outputs.containerRegistryName }}.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_b39ad9b085d94d62a5cac8feedfcc353 }}/about-intrinsic:${{ github.sha }}'
-    # - name: Set Docker Settings in Web App
-    #   uses: azure/cli@v2
-    #   with: 
-    #     inlineScript: az webapp config container set --docker-registry-server-url 'https://${{ needs.deploy.outputs.containerRegistryName }}.azurecr.io' --name intrinsic-michal-turczyn-nonprod-webapp --resource-group intrinsic-rg
+    - name: Set Docker Settings in Web App
+      uses: azure/cli@v2
+      with: 
+        inlineScript: |
+          az webapp config container set \
+            --docker-registry-server-url 'https://${{ needs.deploy.outputs.containerRegistryName }}.azurecr.io' \
+            --name ${{ needs.deploy.outputs.webAppName }} \
+            --resource-group ${{ env.AZURE_RESOURCEGROUP_NAME }}
