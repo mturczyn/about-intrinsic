@@ -3,40 +3,13 @@ name: Deploy Azure Resources and Web Application
 on:
   workflow_dispatch:
 
-permissions:
-  id-token: write
-  contents: read
-
 env:
-    AZURE_RESOURCEGROUP_NAME: intrinsic-rg
-    ENVIRONMENT: nonprod
+  AZURE_RESOURCEGROUP_NAME: intrinsic-rg
+  ENVIRONMENT: nonprod
 
 jobs:
-  deploy:
-    environment:
-      name: 'production'
-    runs-on: ubuntu-latest
-    outputs:
-      containerRegistryName: ${{ steps.deploy-infrastructure.outputs.containerRegistryName }}
-      webAppName: ${{ steps.deploy-infrastructure.outputs.webAppName }}
-    steps:
-    - uses: actions/checkout@v3
-    - uses: azure/login@v1
-      with:
-        client-id: ${{ secrets.AZURE_CLIENT_ID }}
-        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-    - uses: azure/arm-deploy@v1
-      id: deploy-infrastructure
-      with:
-        deploymentNumber: ${{ github.run_number }}
-        resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
-        template: ./deploy/main.bicep
-        parameters: environmentType=${{ env.ENVIRONMENT }}
-
   test:
     runs-on: 'ubuntu-latest'
-    needs: deploy
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
@@ -46,56 +19,17 @@ jobs:
       run: npm i
     - name: 'Run tests'
       run: npm run test
-    
-  build:
-    runs-on: 'ubuntu-latest'
-    needs: [deploy, test]
 
-    steps:
-    - uses: actions/checkout@v2
+  deploy-to-nonprod:
+    needs: test
+    uses: './.github/workflows/deploy-infra-and-website-to-env.yml'
+    with:
+      environmentType: 'nonprod'
+      resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2
-
-    - name: Log in to registry
-      uses: docker/login-action@v2
-      with:
-        registry: https://${{ needs.deploy.outputs.containerRegistryName }}.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_b39ad9b085d94d62a5cac8feedfcc353 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_5968fbbf25fa492887c20302677761ef }}
-
-    - name: Build and push container image to registry
-      uses: docker/build-push-action@v3
-      with:
-        push: true
-        tags: ${{ needs.deploy.outputs.containerRegistryName }}.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_b39ad9b085d94d62a5cac8feedfcc353 }}/about-intrinsic:${{ github.sha }}
-        file: ./Dockerfile
-
-  deploy-app:
-    runs-on: ubuntu-latest
-    needs: [deploy, build]
-    environment:
-      name: 'production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
-    steps:
-    - uses: azure/login@v1
-      name: Sign in to Azure
-      with:
-        client-id: ${{ secrets.AZURE_CLIENT_ID }}
-        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-    - name: Deploy to Azure Web App
-      id: deploy-to-webapp
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: ${{ needs.deploy.outputs.webAppName }}
-        images: '${{ needs.deploy.outputs.containerRegistryName }}.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_b39ad9b085d94d62a5cac8feedfcc353 }}/about-intrinsic:${{ github.sha }}'
-    - name: Set Docker Settings in Web App
-      uses: azure/cli@v2
-      with: 
-        inlineScript: |
-          az webapp config container set \
-            --docker-registry-server-url 'https://${{ needs.deploy.outputs.containerRegistryName }}.azurecr.io' \
-            --name ${{ needs.deploy.outputs.webAppName }} \
-            --resource-group ${{ env.AZURE_RESOURCEGROUP_NAME }}
+  deploy-to-prod:
+    needs: deploy-tp-nonprod
+    uses: './.github/workflows/deploy-infra-and-website-to-env.yml'
+    with:
+      environmentType: 'prod'
+      resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}

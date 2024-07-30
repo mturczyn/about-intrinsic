@@ -1,3 +1,4 @@
+@allowed(['prod', 'nonprod'])
 param environmentType string
 
 module containerRegistry 'containerRegistry.bicep' = {
