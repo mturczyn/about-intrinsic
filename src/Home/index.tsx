@@ -32,7 +32,6 @@ const Home = () => {
                         alt="me"
                     />
                     <h1>{t('helloWithIntro')}</h1>
-                    <h1>Did i break my initial pipeline?</h1>
                     <p>{t('homePageIntroduction.firstPara')}</p>
                     <div
                         className="programming-languages"
