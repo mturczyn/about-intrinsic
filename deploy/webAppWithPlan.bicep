@@ -1,10 +1,11 @@
+@allowed(['prod', 'nonprod'])
 param environmentType string
 
 var location = resourceGroup().location
 var tags = { env: environmentType }
 
 var appServicePlanName = 'intrinsic-${environmentType}-asp'
-var webappName = environmentType == 'production' 
+var webappName = environmentType == 'prod' 
   ? 'intrinsic-michal-turczyn' 
   : 'intrinsic-michal-turczyn-${environmentType}-webapp'
 
