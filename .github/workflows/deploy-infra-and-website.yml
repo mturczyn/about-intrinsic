@@ -7,6 +7,10 @@ env:
   AZURE_RESOURCEGROUP_NAME: intrinsic-rg
   ENVIRONMENT: nonprod
 
+permissions:
+  id-token: write
+  contents: read
+  
 jobs:
   test:
     runs-on: 'ubuntu-latest'
@@ -19,17 +23,31 @@ jobs:
       run: npm i
     - name: 'Run tests'
       run: npm run test
+    outputs:
+      resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
 
   deploy-to-nonprod:
     needs: test
     uses: './.github/workflows/deploy-infra-and-website-to-env.yml'
     with:
       environmentType: 'nonprod'
-      resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
+      resourceGroupName: ${{ needs.test.outputs.resourceGroupName }}
+    secrets:
+      AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+      AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      AzureAppService_ContainerUsername: ${{ secrets.AzureAppService_ContainerUsername_b39ad9b085d94d62a5cac8feedfcc353 }}
+      AzureAppService_ContainerPassword: ${{ secrets.AzureAppService_ContainerPassword_5968fbbf25fa492887c20302677761ef }}
 
   deploy-to-prod:
-    needs: deploy-tp-nonprod
+    needs: [test, deploy-to-nonprod]
     uses: './.github/workflows/deploy-infra-and-website-to-env.yml'
     with:
       environmentType: 'prod'
-      resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
+      resourceGroupName: ${{ needs.test.outputs.resourceGroupName }}
+    secrets:
+      AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+      AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      AzureAppService_ContainerUsername: ${{ secrets.AzureAppService_ContainerUsername_b39ad9b085d94d62a5cac8feedfcc353 }}
+      AzureAppService_ContainerPassword: ${{ secrets.AzureAppService_ContainerPassword_5968fbbf25fa492887c20302677761ef }}

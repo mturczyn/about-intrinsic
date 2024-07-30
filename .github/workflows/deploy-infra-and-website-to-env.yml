@@ -7,10 +7,17 @@ on:
         type: string
       resourceGroupName:
         type: string
-
-permissions:
-  id-token: write
-  contents: read
+    secrets:
+      AZURE_CLIENT_ID:
+        required: true
+      AZURE_TENANT_ID:
+        required: true
+      AZURE_SUBSCRIPTION_ID:
+        required: true
+      AzureAppService_ContainerUsername:
+        required: true
+      AzureAppService_ContainerPassword:
+        required: true
 
 jobs:
   test:
@@ -62,14 +69,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://${{ needs.deploy-infra.outputs.containerRegistryName }}.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_b39ad9b085d94d62a5cac8feedfcc353 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_5968fbbf25fa492887c20302677761ef }}
+        username: ${{ secrets.AzureAppService_ContainerUsername }}
+        password: ${{ secrets.AzureAppService_ContainerPassword }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: ${{ needs.deploy-infra.outputs.containerRegistryName }}.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_b39ad9b085d94d62a5cac8feedfcc353 }}/about-intrinsic:${{ github.sha }}
+        tags: ${{ needs.deploy-infra.outputs.containerRegistryName }}.azurecr.io/${{ secrets.AzureAppService_ContainerUsername }}/about-intrinsic:${{ github.sha }}
         file: ./Dockerfile
 
   deploy-app:
@@ -91,7 +98,7 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ needs.deploy-infra.outputs.webAppName }}
-        images: '${{ needs.deploy-infra.outputs.containerRegistryName }}.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_b39ad9b085d94d62a5cac8feedfcc353 }}/about-intrinsic:${{ github.sha }}'
+        images: '${{ needs.deploy-infra.outputs.containerRegistryName }}.azurecr.io/${{ secrets.AzureAppService_ContainerUsername }}/about-intrinsic:${{ github.sha }}'
     - name: Set Docker Settings in Web App
       uses: azure/cli@v2
       with: 
