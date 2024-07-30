@@ -11,7 +11,13 @@ During the process of creating GitHub Action, there were challenges:
 - when using publish profile, we had an error
   > Deployment Failed, Error: Failed to get app runtime OS
 
-  We had to click "rerun failed jobs" and check "debug logs" checkbox to see there were soe authorization problem (we had HTTP status code 401 along the way)
+  We had to click "re-run failed jobs" and check "enable debug logging" checkbox to see there were soe authorization problem (we had HTTP status code 401 along the way).
+
+[This StackOverflow post](https://stackoverflow.com/questions/67974780/unable-to-deploy-to-azure-container-using-github-actions-deployment-failed-wit) talks about this issue. It has suggestion:
+
+> For me, this was resolved by removing Access Restrictions from app.scm.azurewebsites.net
+
+That might fix this issue. But anyway - we don't want to use publish profile anyway, so this is just information. Below is solution without using publish profile.
 
 Finally, resolution was to execute Azure CLI command to define docker server URL, which sets up depoyed web app resource correctly.
 
