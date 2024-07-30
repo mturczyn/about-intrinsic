@@ -34,6 +34,14 @@ resource webApplication 'Microsoft.Web/sites@2023-12-01' = {
           name: 'DOCKER_REGISTRY_SERVER_URL'
           value: 'https://intrinsicweb.azurecr.io'
         }
+        {
+          name: 'DOCKER_REGISTRY_SERVER_USERNAME'
+          value: 'intrinsicweb'
+        }
+        {
+          name: 'DOCKER_REGISTRY_SERVER_PASSWORD'
+          value: null
+        }
       ]
       linuxFxVersion: 'DOCKER|intrinsicweb.azurecr.io/intrinsicweb/about-intrinsic:724fee6883ff4fa2ba1b5a9c4f1939687dafbcd0'
     }
