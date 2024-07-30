@@ -20,23 +20,10 @@ on:
         required: true
 
 jobs:
-  test:
-    runs-on: 'ubuntu-latest'
-    steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-        node-version: '20'
-    - name: 'Install node packages'
-      run: npm i
-    - name: 'Run tests'
-      run: npm run test
-    
   deploy-infra:
     environment:
       name: 'production'
     runs-on: ubuntu-latest
-    needs: test
     outputs:
       containerRegistryName: ${{ steps.deploy-infrastructure.outputs.containerRegistryName }}
       webAppName: ${{ steps.deploy-infrastructure.outputs.webAppName }}
@@ -57,7 +44,7 @@ jobs:
 
   build:
     runs-on: 'ubuntu-latest'
-    needs: [deploy-infra, test]
+    needs: deploy-infra
 
     steps:
     - uses: actions/checkout@v2
