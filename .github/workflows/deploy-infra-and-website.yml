@@ -1,4 +1,4 @@
-name: Deploy Azure Resources and Web Application
+name: Deploy Azure Resources and Web Application to all Environments
 
 on:
   workflow_dispatch:
