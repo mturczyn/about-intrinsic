@@ -28,7 +28,13 @@ resource webApplication 'Microsoft.Web/sites@2023-12-01' = {
   kind: 'app,linux,container'
   properties: {
     serverFarmId: appServicePlan.id
-    siteConfig:{
+    siteConfig: {
+      appSettings: [
+        {
+          name: 'DOCKER_REGISTRY_SERVER_URL'
+          value: 'https://intrinsicweb.azurecr.io'
+        }
+      ]
       linuxFxVersion: 'DOCKER|intrinsicweb.azurecr.io/intrinsicweb/about-intrinsic:724fee6883ff4fa2ba1b5a9c4f1939687dafbcd0'
     }
   }
