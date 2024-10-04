@@ -1,4 +1,4 @@
 docker-compose.yaml
 Dockerfile
-.github\workflows\
-deploy\
+.github/workflows/
+deploy/
