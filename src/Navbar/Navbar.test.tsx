@@ -14,6 +14,14 @@ jest.mock('react-router-dom', () => ({
 const linkMock = jest.spyOn(reactRouterDom, 'Link')
 
 test('Renders Link element for in-browser navigation', () => {
+    // Mock the CSS.escape function
+    Object.defineProperty(global, 'CSS', {
+        value: {
+            escape: jest.fn((str: string) => str),
+        },
+        writable: true,
+    })
+
     render(<Navbar />)
 
     appRoutes.forEach((route) => {
