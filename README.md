@@ -38,6 +38,40 @@ Additional resources searched in order to resolve the issue:
     az webapp config container set --docker-custom-image-name MyDockerCustomImage --docker-registry-server-password StrongPassword --docker-registry-server-url https://{azure-container-registry-name}.azurecr.io --docker-registry-server-user DockerUserId --name MyWebApp --resource-group MyResourceGroup
     ```
 
+# Dockerizing application
+
+How to dockerize React app can be found online and also was partially describwd in the page itself.
+
+However, here's recap of some important things:
+- in order to build docker image, we need to either run `docker image build` command or `docker build` in directory with Dockerfile
+- in order to run image, we need to run `docker run`.
+
+In this repo we have Dockerfile, so roughly the process of building and running docker container is:
+- build docker image with tag `about-intrinsic` from current directory
+    ```
+    docker build -t about-intrinsic .
+    ```
+- run docker image from previous step by providing tag fro previous step to the `run` command:
+    ```
+    docker run -p 3000:80 about-intrinsic
+    ```
+Important bit is to provide parameters (for `-p` or `-t`) before "main" parameter. There were problems with, for example, such command:
+```
+docker run about-intrinsic -p 3000:80
+```
+
+## Tips on running containers
+
+Having built docker image, when we try to run the container based on image, each time new container will be created (old one will be forgotten and needs to be cleaned up). In order to improve, following command should be used to run the container from image:
+```
+docker run --name about-me-fe -p 3000:80 about-me-fe
+```
+By providing `--name about-me-fe` we assign name to the container for better tracking. Then we can use following command
+```
+docker container start about-me-fe
+```
+To start the container and not bloat docker with random cotntainers.
+
 # PWA and service worker
 
 Enabling webpage as PWA (progressive web application) requires only specifying manifest file (`manifest.json`) correctly.
