@@ -1,23 +1,22 @@
 import { render } from '@testing-library/react'
 import { appRoutes } from 'AppRouter/routesDefinition'
 import { Navbar } from 'Navbar'
+import { expect, test, vi } from 'vitest'
 
-const reactRouterDom = require('react-router-dom')
+const linkMock = vi.fn()
 
-jest.mock('react-router-dom', () => ({
-    Link: jest.fn(),
+vi.mock('react-router-dom', () => ({
+    Link: (props) => linkMock(props),
     useLocation: () => ({
         pathname: 'home',
     }),
 }))
 
-const linkMock = jest.spyOn(reactRouterDom, 'Link')
-
 test('Renders Link element for in-browser navigation', () => {
     // Mock the CSS.escape function
     Object.defineProperty(global, 'CSS', {
         value: {
-            escape: jest.fn((str: string) => str),
+            escape: vi.fn((str: string) => str),
         },
         writable: true,
     })
@@ -26,8 +25,7 @@ test('Renders Link element for in-browser navigation', () => {
 
     appRoutes.forEach((route) => {
         expect(linkMock).toHaveBeenCalledWith(
-            expect.objectContaining({ to: route.path }),
-            {}
+            expect.objectContaining({ to: route.path })
         )
     })
 })

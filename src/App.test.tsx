@@ -1,22 +1,20 @@
 import { render } from '@testing-library/react'
 import App from './App'
+import { expect, test, vi } from 'vitest'
 
-const reactRouter = require('react-router')
-const navbar = require('Navbar')
+const outletMock = vi.fn()
+const navbarMock = vi.fn()
 
-jest.mock('react-router', () => ({
-    Outlet: () => jest.fn(),
+vi.mock('react-router', () => ({
+    Outlet: () => outletMock(),
 }))
 
-jest.mock('Navbar', () => ({
-    Navbar: () => jest.fn(),
+vi.mock('Navbar', () => ({
+    Navbar: () => navbarMock(),
 }))
-
-const outletMock = jest.spyOn(reactRouter, 'Outlet')
-const NavbarMock = jest.spyOn(navbar, 'Navbar')
 
 test('Renders outlet to host sub pages and navigation bar', () => {
     render(<App />)
     expect(outletMock).toBeCalled()
-    expect(NavbarMock).toBeCalled()
+    expect(navbarMock).toBeCalled()
 })
