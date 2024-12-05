@@ -1,11 +1,11 @@
 import { AppRoute } from 'AppRouter/AppRoute'
 import { Loader } from 'CoreComponents/Loader'
-// import ContactInfo from 'ContactInfo'
 import Home from 'Home'
 import { Suspense, lazy } from 'react'
 
 const ContactInfo = lazy(() => import('ContactInfo'))
 const TechStack = lazy(() => import('TechStack'))
+const Chat = lazy(() => import('Chat'))
 
 export const appRoutes: AppRoute[] = [
     {
@@ -28,6 +28,15 @@ export const appRoutes: AppRoute[] = [
         element: (
             <Suspense fallback={<Loader />}>
                 <TechStack />
+            </Suspense>
+        ),
+    },
+    {
+        name: 'Chat with AI bot',
+        path: '/chat',
+        element: (
+            <Suspense fallback={<Loader />}>
+                <Chat />
             </Suspense>
         ),
     },

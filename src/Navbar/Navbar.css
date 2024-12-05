@@ -4,6 +4,20 @@
 }
 
 nav {
+    overflow: hidden;
+    background: rgb(var(--main-bg-color));
+    position: absolute;
+    box-shadow: 0 2rem 2rem 0 #000;
+    transition: max-height 0.5s linear;
+    max-height: 0;
+}
+
+nav.isOpen {
+    max-height: 100vh;
+}
+
+.navbar {
+    height: 3rem;
     align-items: stretch;
     z-index: 100;
     display: flex;
@@ -13,18 +27,26 @@ nav {
     box-shadow: 0 10px 30px 10px #000;
     background: rgb(var(--main-bg-color), var(--alpha-level));
     backdrop-filter: blur(20px);
+
+    & div {
+        flex: 1;
+        position: relative;
+        & div:has(.hamburger-react) {
+            width: fit-content;
+        }
+    }
 }
 
-nav > button.langButton:hover {
+button.langButton:hover {
     cursor: pointer;
     filter: brightness(0.5);
 }
 
-nav > button.langButton span {
+button.langButton span {
     opacity: 0;
 }
 
-nav > button.langButton {
+button.langButton {
     color: transparent;
     align-self: center;
     width: 3rem;
@@ -39,11 +61,8 @@ nav > button.langButton {
     background-size: cover;
 }
 
-nav > button.langButton:first-of-type {
-    margin: 0 0 0 auto;
-}
-
 nav > a {
+    transition: height 0.5s linear;
     display: flex;
     align-items: center;
     opacity: 1;
@@ -55,12 +74,6 @@ nav > a {
     -o-transition: background-color var(--hover-transition-duration) linear;
     -ms-transition: background-color var(--hover-transition-duration) linear;
     transition: background-color var(--hover-transition-duration) linear;
-}
-
-@media (max-width: 600px) {
-    nav > a {
-        padding: 0.5rem;
-    }
 }
 
 .current-location,
