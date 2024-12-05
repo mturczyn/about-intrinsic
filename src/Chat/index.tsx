@@ -31,7 +31,7 @@ const Chat = () => {
     }, [aiAnswerDone, aiAnswer])
 
     const handleInputKeyUp = (e) => {
-        if (e.code !== 'Enter') {
+        if (e.keyCode !== 13) {
             return
         }
 

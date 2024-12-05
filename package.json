@@ -28,7 +28,7 @@
     },
     "scripts": {
         "test": "vitest",
-        "start": "vite",
+        "start": "vite --host",
         "build": "tsc && vite build",
         "preview": "vite preview"
     },
