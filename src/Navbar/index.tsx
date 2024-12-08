@@ -7,15 +7,7 @@ import { SUPPORTED_LANGUAGES } from 'i18n'
 import clsx from 'clsx'
 import { Link, useLocation } from 'react-router-dom'
 import Hamburger from 'hamburger-react'
-import {
-    ForwardedRef,
-    forwardRef,
-    LegacyRef,
-    MutableRefObject,
-    useEffect,
-    useRef,
-    useState,
-} from 'react'
+import { ForwardedRef, forwardRef, useRef, useState } from 'react'
 import { useDocumentMouseDown } from 'hooks/useClickOutside'
 
 export const Navbar = () => {

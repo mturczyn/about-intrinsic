@@ -56,7 +56,7 @@ button.langButton {
     padding: 20px;
     text-align: center;
     text-decoration: none;
-    margin: 0 1ch;
+    margin-right: 1ch;
     border-radius: 50%;
     background-size: cover;
 }

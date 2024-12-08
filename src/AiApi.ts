@@ -1,18 +1,30 @@
-const baseUrl = import.meta.env.VITE_AI_SERVER_HOST
+export const baseUrl = import.meta.env.VITE_AI_SERVER_HOST
 const generatePath = '/api/generate'
-const listModels = '/api/tags'
+export const listModels = '/api/tags'
 
-export async function checkAiAvailability() {
+export interface Model {
+    name: string
+    model: string
+}
+
+export async function checkModelsAvailable(): Promise<Model[]> {
     try {
         const response = await fetch(baseUrl + listModels, {
             headers: {
                 Authorization: 'Bearer 1234',
             },
         })
-        return response.ok
+
+        if (!response.ok) {
+            return []
+        }
+
+        const json = await response.text()
+        const models = JSON.parse(json) as { models: Model[] }
+        return models.models
     } catch (error) {
         console.warn('Error in checkAiAvailability:', error)
-        return false
+        return []
     }
 }
 

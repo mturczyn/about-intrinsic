@@ -6,6 +6,7 @@
     --secondary-color: 221, 221, 221;
     --anchor-color: 20, 174, 234;
     --anchor-visited-color: 197, 138, 249;
+    --primary-font-size: calc(10px + 2vmin);
 }
 
 body {
@@ -13,8 +14,7 @@ body {
     font-size: calc(10px + 2vmin);
     max-width: min(60ch, 100%);
     /* To make bottom shadow not visible to user */
-    min-height: 110vh;
-    padding-bottom: 1vh;
+    min-height: 100vh;
     margin: 0 auto;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
         'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',

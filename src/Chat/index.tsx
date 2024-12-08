@@ -1,7 +1,8 @@
-import { fetchAiResponse } from 'fetchAIResponse'
+import { checkModelsAvailable, fetchAiResponse, Model } from 'AiApi'
 import { useEffect, useRef, useState } from 'react'
 import './Chat.css'
 import Markdown from 'react-markdown'
+import { t } from 'i18next'
 
 type ChatMessageType = 'sent' | 'received'
 
@@ -13,8 +14,29 @@ interface ChatMessage {
 const Chat = () => {
     const [messages, setMessages] = useState<ChatMessage[]>([])
     const [aiAnswer, setAiAnswer] = useState<string>('')
+    const [modelsAvailable, setModelsAvailable] = useState<Model[]>()
     const [aiAnswerDone, setAiAnswerDone] = useState(true)
     const chatContainerRef = useRef<HTMLDivElement>(null)
+    const aiAvailable = modelsAvailable && modelsAvailable.length > 0
+    const modelsList = modelsAvailable?.map((m) => m.name).join(', ')
+
+    useEffect(() => {
+        if (!aiAvailable) return
+
+        const availabilitiyMessage: ChatMessage = {
+            text: t('chatbotIntro', { modelsList: modelsList }),
+            type: 'received',
+        }
+
+        setMessages((m) => [...m, availabilitiyMessage])
+    }, [aiAvailable])
+
+    useEffect(() => {
+        ;(async () => {
+            const models = await checkModelsAvailable()
+            setModelsAvailable(models)
+        })()
+    }, [])
 
     useEffect(() => {
         if (!aiAnswerDone || !aiAnswer) {
@@ -63,26 +85,42 @@ const Chat = () => {
     }, [messages, aiAnswer])
 
     return (
-        <div className="chat-with-input-container">
-            <div ref={chatContainerRef} className="chat-container">
-                {messages.map((message, index) => (
-                    <div
-                        key={index}
-                        className={`message ${
-                            message.type === 'sent' ? 'sent' : 'received'
-                        }`}
-                    >
-                        <Markdown>{message.text}</Markdown>
+        <>
+            {aiAvailable ? (
+                <div className="chat-with-input-container">
+                    <div ref={chatContainerRef} className="chat-container">
+                        {messages.map((message, index) => (
+                            <div
+                                key={index}
+                                className={`message ${
+                                    message.type === 'sent'
+                                        ? 'sent'
+                                        : 'received'
+                                }`}
+                            >
+                                <Markdown>{message.text}</Markdown>
+                            </div>
+                        ))}
+                        {aiAnswer && (
+                            <div className={'message received'}>
+                                <Markdown>{aiAnswer}</Markdown>
+                            </div>
+                        )}
                     </div>
-                ))}
-                {aiAnswer && (
-                    <div className={'message received'}>
-                        <Markdown>{aiAnswer}</Markdown>
-                    </div>
-                )}
-            </div>
-            <input onKeyUp={handleInputKeyUp} />
-        </div>
+                    <textarea
+                        placeholder={t('yourMessage')}
+                        onKeyUp={handleInputKeyUp}
+                    ></textarea>
+                </div>
+            ) : (
+                <>
+                    <h1>{t('chatFeatureTitle')}</h1>
+                    <p>{t('chatFeatureIntro')}</p>
+                    <p>{t('chatFeatureOfflineNotice')}</p>
+                    <p>{t('chatFeatureContact')}</p>
+                </>
+            )}
+        </>
     )
 }
 
