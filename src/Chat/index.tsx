@@ -2,7 +2,7 @@ import { checkModelsAvailable, fetchAiResponse, Model } from 'AiApi'
 import { useEffect, useRef, useState } from 'react'
 import './Chat.css'
 import Markdown from 'react-markdown'
-import { t } from 'i18next'
+import { useTranslation } from 'react-i18next'
 
 type ChatMessageType = 'sent' | 'received'
 
@@ -19,6 +19,7 @@ const Chat = () => {
     const chatContainerRef = useRef<HTMLDivElement>(null)
     const aiAvailable = modelsAvailable && modelsAvailable.length > 0
     const modelsList = modelsAvailable?.map((m) => m.name).join(', ')
+    const { t } = useTranslation()
 
     useEffect(() => {
         if (!aiAvailable) return

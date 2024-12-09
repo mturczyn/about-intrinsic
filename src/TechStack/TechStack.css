@@ -7,6 +7,11 @@ h6 {
     margin: 2rem;
 }
 
+p:last-child {
+    margin-bottom: 0;
+    padding-bottom: 2rem;
+}
+
 #pwa-installation {
     margin-inline: 2rem;
 }
