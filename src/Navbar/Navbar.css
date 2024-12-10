@@ -26,12 +26,17 @@ nav.isOpen {
     box-shadow: 0 10px 30px 10px #000;
     background: rgb(var(--main-bg-color), var(--alpha-level));
     backdrop-filter: blur(20px);
+    align-items: stretch;
 
-    & div {
+    & > div:first-child {
         flex: 1;
         position: relative;
         & div:has(.hamburger-react) {
+            padding-left: 0.1ch;
             width: fit-content;
+            height: 100%;
+            display: grid;
+            align-items: center;
         }
     }
 }

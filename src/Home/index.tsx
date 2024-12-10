@@ -24,19 +24,11 @@ const Home = () => {
     return (
         <>
             <div>
-                <header className="Home-header">
-                    <img
-                        style={{ float: 'right', margin: '2rem' }}
-                        src={authorImage}
-                        className="Sized-image"
-                        alt="me"
-                    />
+                <header className="home-header">
+                    <img src={authorImage} alt="me" />
                     <h1>{t('helloWithIntro')}</h1>
                     <p>{t('homePageIntroduction.firstPara')}</p>
-                    <div
-                        className="programming-languages"
-                        style={{ float: 'left', margin: '2rem' }}
-                    >
+                    <div className="programming-languages">
                         <img src={cSharpLogo} alt="C#" className="csharp" />
                         <img src={jsLogo} alt="JavaScript" className="js" />
                         <img src={reactLogo} alt="React" className="react" />
