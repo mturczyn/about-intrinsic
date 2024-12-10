@@ -30,11 +30,12 @@ export async function checkModelsAvailable(): Promise<Model[]> {
 
 export async function fetchAiResponse(
     prompt: string,
+    modelToUse: string,
     onNewChunk: (string) => void,
     onAnswerComplete: () => void
 ) {
     const requestBody = {
-        model: 'llama3.2',
+        model: modelToUse,
         prompt,
     }
 

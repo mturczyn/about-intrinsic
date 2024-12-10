@@ -28,6 +28,11 @@ div.chat-with-input-container {
     font-size: var(--primary-font-size);
     line-height: 1.5;
     margin: 0.5rem 1rem;
+
+    & ol,
+    ul {
+        list-style-position: inside;
+    }
 }
 
 .message.sent {
