@@ -11,7 +11,7 @@ const resources = {
     [SUPPORTED_LANGUAGES.pl]: {
         translation: {
             chatbotIntro:
-                'Cześć, jestem chatbotem opartym na modelu językowym. Dostępne modele językowe: {{modelsList}}',
+                'Cześć, jestem chatbotem opartym na modelu językowym. Dostępne modele językowe: {{modelsList}}. Model {{modelToUse}} zostanie użyty w trakcie tej rozmowy',
             chatFeatureTitle: 'Funkcja czatu zasilana przez AI',
             chatFeatureIntro:
                 'Ta przestrzeń jest przeznaczona do prezentowania doświadczeń związanych z czatem opartym na AI.',
@@ -82,7 +82,7 @@ const resources = {
     [SUPPORTED_LANGUAGES.en]: {
         translation: {
             chatbotIntro:
-                'Hi, I am a chat bot, powered by language model. Available language models: {{modelsList}}',
+                'Hi, I am a chat bot, powered by language model. Available language models: {{modelsList}}. Model {{modelToUse}} will be used in this conversation.',
             chatFeatureTitle: 'AI-Powered Chat Feature',
             chatFeatureIntro:
                 'This space is dedicated to showcasing an AI-powered chat experience.',

@@ -12,6 +12,7 @@ div.chat-with-input-container {
 .chat-container {
     width: 100%;
     height: 100%;
+    position: relative;
     overflow-x: auto;
     display: flex;
     flex-direction: column;
@@ -47,31 +48,61 @@ div.chat-with-input-container {
     text-align: left;
 }
 
-div.chat-container + input {
-    min-width: 90%;
-    margin: 1rem;
-}
+#user-message-wrapper {
+    position: relative;
+    display: grid;
 
-textarea {
-    padding: 10px 15px;
-    margin: 1rem;
-    background-color: rgb(var(--main-bg-color)); /* Match the dark background */
-    border: 2px solid #444; /* Subtle border to define the input */
-    border-radius: 5px; /* Smooth edges */
-    color: #eee; /* Light text for readability */
-    font-size: var(--primary-font-size);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Add some depth */
-    transition: all 0.3s ease-in-out;
-}
+    & textarea {
+        padding: 10px 15px;
+        margin: 1rem;
+        background-color: rgb(var(--main-bg-color));
+        border: 2px solid #444;
+        border-radius: 5px;
+        color: #eee;
+        font-size: var(--primary-font-size);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        transition: all 0.3s ease-in-out;
 
-textarea:focus {
-    outline: none; /* Remove default focus outline */
-    border-color: #03a9f4; /* Highlight border on focus */
-    box-shadow: 0 0 10px #03a9f4; /* Glowing effect on focus */
-    background-color: #1e1e2e; /* Slightly darker on focus */
-}
+        &::placeholder {
+            color: #aaa;
+            font-style: italic;
+        }
 
-textarea::placeholder {
-    color: #aaa; /* Subtle placeholder color */
-    font-style: italic;
+        &:focus {
+            outline: none;
+            border-color: #03a9f4;
+            box-shadow: 0 0 10px #03a9f4;
+            background-color: #1e1e2e;
+        }
+    }
+
+    & button.scroll-down {
+        position: absolute;
+        top: -50%;
+        left: 50%;
+        width: 50px;
+        height: 50px;
+        overflow: hidden;
+        background-color: rgb(var(--main-bg-color));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border: 2px solid rgb(var(--main-color));
+        transition: transform 0.5s ease-in-out;
+        transform: translateX(-50%);
+
+        &.scroll-down-hidden {
+            transform: translateX(-50%) rotateX(90deg) rotateY(90deg);
+        }
+
+        & .arrow-down {
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 15px solid rgb(var(--main-color));
+        }
+    }
 }

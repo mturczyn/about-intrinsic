@@ -3,6 +3,7 @@ import { UIEvent, useEffect, useRef, useState, WheelEvent } from 'react'
 import './Chat.css'
 import Markdown from 'react-markdown'
 import { useTranslation } from 'react-i18next'
+import clsx from 'clsx'
 
 type ChatMessageType = 'sent' | 'received'
 
@@ -29,7 +30,10 @@ const Chat = () => {
         if (!modelToUse) return
 
         const availabilitiyMessage: ChatMessage = {
-            text: t('chatbotIntro', { modelsList: modelsList }),
+            text: t('chatbotIntro', {
+                modelsList: modelsList,
+                modelToUse: modelToUse.name,
+            }),
             type: 'received',
         }
 
@@ -77,6 +81,7 @@ const Chat = () => {
             },
         ])
 
+        setShouldScrollToLastMessage(true)
         setAiAnswerDone(false)
         fetchAiResponse(
             promptText,
@@ -93,8 +98,10 @@ const Chat = () => {
         }
 
         if (chatContainerRef.current) {
-            chatContainerRef.current.scrollTop =
-                chatContainerRef.current.scrollHeight
+            chatContainerRef.current.scrollTo({
+                top: chatContainerRef.current.scrollHeight,
+                behavior: 'smooth',
+            })
         }
     }, [messages, aiAnswer, shouldScrollToLastMessage])
 
@@ -148,10 +155,22 @@ const Chat = () => {
                             </div>
                         )}
                     </div>
-                    <textarea
-                        placeholder={t('yourMessage')}
-                        onKeyUp={handleInputKeyUp}
-                    ></textarea>
+                    <div id="user-message-wrapper">
+                        <button
+                            onClick={() => setShouldScrollToLastMessage(true)}
+                            className={clsx({
+                                'scroll-down': true,
+                                'scroll-down-hidden': shouldScrollToLastMessage,
+                            })}
+                        >
+                            <i className="arrow-down"></i>
+                        </button>
+
+                        <textarea
+                            placeholder={t('yourMessage')}
+                            onKeyUp={handleInputKeyUp}
+                        ></textarea>
+                    </div>
                 </div>
             ) : (
                 <>
