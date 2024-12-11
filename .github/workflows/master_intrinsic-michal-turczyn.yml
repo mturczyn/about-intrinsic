@@ -46,6 +46,7 @@ jobs:
         push: true
         tags: intrinsicweb.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_b39ad9b085d94d62a5cac8feedfcc353 }}/about-intrinsic:${{ github.sha }}
         file: ./Dockerfile
+        build-args: VITE_AI_SERVER_HOST=https://ai-prod-webapp.azurewebsites.net
 
   deploy:
     runs-on: ubuntu-latest

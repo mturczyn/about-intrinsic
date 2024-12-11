@@ -65,6 +65,7 @@ jobs:
         push: true
         tags: ${{ needs.deploy-infra.outputs.containerRegistryName }}.azurecr.io/${{ secrets.AzureAppService_ContainerUsername }}/about-intrinsic:${{ github.sha }}
         file: ./Dockerfile
+        build-args: VITE_AI_SERVER_HOST=https://ai-prod-webapp.azurewebsites.net
 
   deploy-app:
     runs-on: ubuntu-latest
