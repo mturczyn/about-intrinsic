@@ -1,11 +1,10 @@
-import { createContext, useEffect, useState } from 'react'
-import { Navbar } from './Navbar'
+import { useEffect, useState } from 'react'
+import { Navbar } from 'components/Navbar'
 import { Outlet } from 'react-router'
+import { PwaInstallerContext } from '../PwaInstallerContext'
 
-export const PwaInstallerContext = createContext<any>(null)
-
-function App() {
-    const [installEvent, setInstallEvent] = useState<any>(null)
+export function App() {
+    const [installEvent, setInstallEvent] = useState<BeforeInstallPromptEvent>()
 
     useEffect(() => {
         const captureInstallEvent = (e: any) => {
@@ -31,5 +30,3 @@ function App() {
         </PwaInstallerContext.Provider>
     )
 }
-
-export default App

@@ -10,16 +10,14 @@ import jsLogo from 'images/programming-languages-logo/js-logo.webp'
 import reactLogo from 'react-logo.svg'
 import './Home.css'
 import { Trans, useTranslation } from 'react-i18next'
-import { useEffect } from 'react'
+import { usePageTitle } from 'hooks/usePageTitle'
 
 export const PAGE_TITLE = 'Intrinsic | Web Development and Programming | Zabrze'
 
 const Home = () => {
     const { t } = useTranslation()
 
-    useEffect(() => {
-        document.title = t(PAGE_TITLE)
-    }, [t])
+    usePageTitle(t(PAGE_TITLE))
 
     return (
         <>

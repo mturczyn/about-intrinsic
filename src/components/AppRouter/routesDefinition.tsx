@@ -1,11 +1,11 @@
-import { AppRoute } from 'AppRouter/AppRoute'
-import { Loader } from 'CoreComponents/Loader'
-import Home from 'Home'
+import { AppRoute } from 'components/AppRouter/AppRoute'
+import { Loader } from 'components/Loader'
+import Home from 'pages/Home'
 import { Suspense, lazy } from 'react'
 
-const ContactInfo = lazy(() => import('ContactInfo'))
-const TechStack = lazy(() => import('TechStack'))
-const Chat = lazy(() => import('Chat'))
+const ContactInfo = lazy(() => import('pages/ContactInfo'))
+const TechStack = lazy(() => import('pages/TechStack'))
+const Chat = lazy(() => import('pages/Chat'))
 
 export const appRoutes: AppRoute[] = [
     {

@@ -10,6 +10,7 @@ export const SUPPORTED_LANGUAGES = { pl: 'pl-PL', en: 'en-US' }
 const resources = {
     [SUPPORTED_LANGUAGES.pl]: {
         translation: {
+            chatPageTitle: 'Porozmawiaj z botem AI',
             chatbotIntro:
                 'Cześć, jestem chatbotem opartym na modelu językowym. Dostępne modele językowe: {{modelsList}}. Model {{modelToUse}} zostanie użyty w trakcie tej rozmowy',
             chatFeatureTitle: 'Funkcja czatu zasilana przez AI',
@@ -81,6 +82,7 @@ const resources = {
     },
     [SUPPORTED_LANGUAGES.en]: {
         translation: {
+            chatPageTitle: 'Chat with AI powered bot',
             chatbotIntro:
                 'Hi, I am a chat bot, powered by language model. Available language models: {{modelsList}}. Model {{modelToUse}} will be used in this conversation.',
             chatFeatureTitle: 'AI-Powered Chat Feature',

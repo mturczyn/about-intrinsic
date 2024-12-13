@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react'
-import App from './App'
 import { expect, test, vi } from 'vitest'
+import { App } from '.'
 
 const outletMock = vi.fn()
 const navbarMock = vi.fn()
@@ -9,7 +9,7 @@ vi.mock('react-router', () => ({
     Outlet: () => outletMock(),
 }))
 
-vi.mock('Navbar', () => ({
+vi.mock('components/Navbar', () => ({
     Navbar: () => navbarMock(),
 }))
 

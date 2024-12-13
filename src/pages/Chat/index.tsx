@@ -1,9 +1,10 @@
-import { checkModelsAvailable, fetchAiResponse, Model } from 'AiApi'
+import { checkModelsAvailable, fetchAiResponse, Model } from 'utils/AiApi'
 import { UIEvent, useEffect, useRef, useState, WheelEvent } from 'react'
 import './Chat.css'
 import Markdown from 'react-markdown'
 import { useTranslation } from 'react-i18next'
 import clsx from 'clsx'
+import { usePageTitle } from 'hooks/usePageTitle'
 
 type ChatMessageType = 'sent' | 'received'
 
@@ -25,6 +26,8 @@ const Chat = () => {
     const modelsList = modelsAvailable?.map((m) => m.name).join(', ')
     const modelToUse =
         modelsAvailable && modelsAvailable.length > 0 && modelsAvailable[0]
+
+    usePageTitle(t('chatPageTitle'))
 
     useEffect(() => {
         if (!modelToUse) return

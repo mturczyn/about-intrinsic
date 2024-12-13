@@ -4,11 +4,11 @@ import { MdOutlineEmail } from 'react-icons/md'
 import { CiLinkedin } from 'react-icons/ci'
 import { FaStackOverflow } from 'react-icons/fa'
 import { FaGithub } from 'react-icons/fa'
-import { AnchorWithNewPage } from 'CoreComponents/AnchorWithNewPage'
+import { AnchorWithNewPage } from 'components/AnchorWithNewPage'
 import websiteLogo from 'website-logo.svg'
 import { CiLocationOn } from 'react-icons/ci'
 import { useTranslation } from 'react-i18next'
-import { useEffect } from 'react'
+import { usePageTitle } from 'hooks/usePageTitle'
 
 export const PAGE_TITLE =
     'Intrinsic | Web Development and Programming | Contact info'
@@ -18,9 +18,7 @@ const MAIL_ADDRESS = 'turek1992@o2.pl'
 const ContactInfo = () => {
     const { t } = useTranslation()
 
-    useEffect(() => {
-        document.title = t(PAGE_TITLE)
-    }, [t])
+    usePageTitle(t(PAGE_TITLE))
 
     return (
         <header className="contact-card">

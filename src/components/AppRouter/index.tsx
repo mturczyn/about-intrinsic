@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { appRoutes } from 'AppRouter/routesDefinition'
+import { appRoutes } from 'components/AppRouter/routesDefinition'
 
 export const AppRouter = ({ children }) => {
     return (

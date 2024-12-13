@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-import App from './App'
 import reportWebVitals from './reportWebVitals'
-import { AppRouter } from './AppRouter'
-import './i18n'
+import { AppRouter } from './components/AppRouter'
+import './utils/i18n'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration'
+import { App } from 'components/App'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 

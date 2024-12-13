@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react'
-import { appRoutes } from 'AppRouter/routesDefinition'
-import { Navbar } from 'Navbar'
+import { appRoutes } from 'components/AppRouter/routesDefinition'
+import { Navbar } from 'components/Navbar'
 import { expect, test, vi } from 'vitest'
 
 const linkMock = vi.fn()
