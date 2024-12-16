@@ -9,14 +9,25 @@
     --primary-font-size: calc(10px + 2vmin);
 }
 
-body {
-    box-shadow: 0 0px 30px 30px #000;
-    font-size: calc(10px + 2vmin);
+#navbar-container {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 10px 30px 10px #000;
+}
+
+#root {
     max-width: min(60ch, 100%);
+    margin: 0 auto;
+}
+
+body {
+    font-size: calc(10px + 2vmin);
     /* To make bottom shadow not visible to user */
     min-height: 100vh;
-
-    margin: 0 auto;
+    margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
         'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
         'Helvetica Neue', sans-serif;

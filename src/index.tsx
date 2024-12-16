@@ -6,12 +6,18 @@ import { AppRouter } from './components/AppRouter'
 import './utils/i18n'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration'
 import { App } from 'components/App'
+import { createPortal } from 'react-dom'
+import { Navbar } from 'components/Navbar'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
+const navbarContainer = document.getElementById(
+    'navbar-container'
+) as HTMLElement
 
 root.render(
     <React.StrictMode>
         <AppRouter>
+            {createPortal(<Navbar />, navbarContainer)}
             <App />
         </AppRouter>
     </React.StrictMode>

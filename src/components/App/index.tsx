@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { Navbar } from 'components/Navbar'
 import { Outlet } from 'react-router'
 import { PwaInstallerContext } from '../PwaInstallerContext'
 
@@ -25,7 +24,6 @@ export function App() {
 
     return (
         <PwaInstallerContext.Provider value={installEvent}>
-            <Navbar />
             <Outlet />
         </PwaInstallerContext.Provider>
     )
