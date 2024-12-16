@@ -26,12 +26,12 @@ const Home = () => {
                     <img src={authorImage} alt="me" />
                     <h1>{t('helloWithIntro')}</h1>
                     <p>{t('homePageIntroduction.firstPara')}</p>
+                    <p>{t('homePageIntroduction.secondPara')}</p>
                     <div className="programming-languages">
                         <img src={cSharpLogo} alt="C#" className="csharp" />
                         <img src={jsLogo} alt="JavaScript" className="js" />
                         <img src={reactLogo} alt="React" className="react" />
                     </div>
-                    <p>{t('homePageIntroduction.secondPara')}</p>
                     <p>{t('homePageIntroduction.thirdPara')}</p>
                     <Trans i18nKey="homePageIntroduction.fourthPara">
                         <p>

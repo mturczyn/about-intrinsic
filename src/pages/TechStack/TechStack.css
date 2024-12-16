@@ -4,16 +4,12 @@ h3,
 h4,
 h5,
 h6 {
-    margin: 2rem;
+    margin: 2rem 1rem;
 }
 
 p:last-child {
     margin-bottom: 0;
     padding-bottom: 2rem;
-}
-
-#pwa-installation {
-    margin-inline: 2rem;
 }
 
 #pwa-browser-support-note {
@@ -43,7 +39,7 @@ strong[data-pwa-installed] {
     max-height: 15rem;
     width: 40%;
     float: right;
-    margin: 2rem 2rem 0 2rem;
+    margin: 2rem 0 0 2rem;
     box-shadow: inset 5px 5px 20px 5px #000;
     place-items: center;
     display: grid;
