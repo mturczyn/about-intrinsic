@@ -32,7 +32,8 @@ export async function fetchAiResponse(
     prompt: string,
     modelToUse: string,
     onNewChunk: (string) => void,
-    onAnswerComplete: () => void
+    onAnswerComplete: () => void,
+    onServerFault: () => void
 ) {
     const requestBody = {
         model: modelToUse,
@@ -77,6 +78,6 @@ export async function fetchAiResponse(
         onAnswerComplete()
     } catch (error) {
         console.error('Error in fetchAiResponse:', error)
-        throw error
+        onServerFault()
     }
 }

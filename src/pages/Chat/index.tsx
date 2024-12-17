@@ -90,7 +90,8 @@ const Chat = () => {
             promptText,
             modelToUse.model,
             (chunk) => setAiAnswer((x) => x + chunk),
-            () => setAiAnswerDone(true)
+            () => setAiAnswerDone(true),
+            () => setModelsAvailable([])
         )
     }
 
