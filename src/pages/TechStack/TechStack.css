@@ -12,6 +12,10 @@ p:last-child {
     padding-bottom: 2rem;
 }
 
+#pwa-installation {
+    margin-inline: 1rem;
+}
+
 #pwa-browser-support-note {
     margin: 0;
     margin-inline-start: 1ch;
@@ -39,7 +43,7 @@ strong[data-pwa-installed] {
     max-height: 15rem;
     width: 40%;
     float: right;
-    margin: 2rem 0 0 2rem;
+    margin-inline: 1rem;
     box-shadow: inset 5px 5px 20px 5px #000;
     place-items: center;
     display: grid;

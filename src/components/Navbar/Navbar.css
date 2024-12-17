@@ -8,6 +8,8 @@ nav.isOpen {
 }
 
 .navbar {
+    box-sizing: border-box;
+    padding-inline: 1rem;
     max-width: min(60ch, 100%);
     margin: 0 auto;
     display: flex;
