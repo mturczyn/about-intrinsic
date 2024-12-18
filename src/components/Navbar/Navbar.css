@@ -9,7 +9,6 @@ nav.isOpen {
 
 .navbar {
     box-sizing: border-box;
-    padding-inline: 1rem;
     max-width: min(60ch, 100%);
     margin: 0 auto;
     display: flex;
@@ -21,7 +20,7 @@ nav.isOpen {
         flex: 1;
         position: relative;
         & div:has(.hamburger-react) {
-            padding-left: 0.1ch;
+            padding-inline-start: 1ch;
             width: fit-content;
             height: 100%;
             display: grid;
@@ -62,10 +61,8 @@ nav {
     transition: max-height 0.5s linear;
     max-height: 0;
     & > a {
-        transition: height 0.5s linear;
         display: flex;
         align-items: center;
-        opacity: 1;
         padding: 1rem;
         text-decoration: none;
         color: rgb(var(--main-color));
