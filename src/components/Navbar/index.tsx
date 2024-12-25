@@ -7,7 +7,7 @@ import { SUPPORTED_LANGUAGES } from 'utils/i18n'
 import clsx from 'clsx'
 import { Link, useLocation } from 'react-router-dom'
 import Hamburger from 'hamburger-react'
-import { ForwardedRef, forwardRef, useRef, useState } from 'react'
+import { ForwardedRef, forwardRef, useEffect, useRef, useState } from 'react'
 import { useDocumentMouseDown } from 'hooks/useClickOutside'
 
 export const Navbar = () => {
@@ -18,6 +18,17 @@ export const Navbar = () => {
         document.documentElement.setAttribute('lang', languageCode)
     }
     const menuButtonRef = useRef<HTMLDivElement>(null)
+    const navMenuRef = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        if (!navMenuRef.current) {
+            return
+        }
+
+        navMenuRef.current.style.height = navigationMenuOpen
+            ? navMenuRef.current.scrollHeight + 'px'
+            : '0'
+    }, [navigationMenuOpen])
 
     useDocumentMouseDown([menuButtonRef], () => setNavigationMenuOpen(false))
 
@@ -31,7 +42,7 @@ export const Navbar = () => {
                             toggle={(value) => setNavigationMenuOpen(value)}
                         />
                     </div>
-                    <NavigationMenu isOpen={navigationMenuOpen} />
+                    <NavigationMenu ref={navMenuRef} />
                 </div>
                 <button
                     onClick={() => changeLanguage(SUPPORTED_LANGUAGES.pl)}
@@ -57,27 +68,23 @@ export const Navbar = () => {
     )
 }
 
-const NavigationMenu = forwardRef(
-    (
-        { isOpen }: { isOpen: boolean },
-        ref: ForwardedRef<HTMLElement | null>
-    ) => {
-        const location = useLocation()
-        const { t } = useTranslation()
-        return (
-            <nav ref={ref} className={clsx({ isOpen: isOpen })}>
-                {appRoutes.map((i) => (
-                    <Link
-                        key={i.path + i.name}
-                        to={i.path}
-                        className={clsx({
-                            'current-location': location.pathname === i.path,
-                        })}
-                    >
-                        {t(i.name)}
-                    </Link>
-                ))}
-            </nav>
-        )
-    }
-)
+const NavigationMenu = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
+    const location = useLocation()
+    const { t } = useTranslation()
+
+    return (
+        <nav ref={ref}>
+            {appRoutes.map((i) => (
+                <Link
+                    key={i.path + i.name}
+                    to={i.path}
+                    className={clsx({
+                        'current-location': location.pathname === i.path,
+                    })}
+                >
+                    {t(i.name)}
+                </Link>
+            ))}
+        </nav>
+    )
+})

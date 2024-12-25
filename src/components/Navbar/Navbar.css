@@ -3,10 +3,6 @@
     --alpha-level: 0.7;
 }
 
-nav.isOpen {
-    max-height: 100vh;
-}
-
 .navbar {
     box-sizing: border-box;
     max-width: min(60ch, 100%);
@@ -58,8 +54,8 @@ nav {
     background: rgb(var(--main-bg-color));
     position: absolute;
     box-shadow: 0 2rem 2rem 0 #000;
-    transition: max-height 0.5s linear;
-    max-height: 0;
+    transition: height 0.4s cubic-bezier(0, 1.6, 1, 1.2);
+
     & > a {
         display: flex;
         align-items: center;
