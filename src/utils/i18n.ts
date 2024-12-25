@@ -85,7 +85,7 @@ const resources = {
             chatPageTitle: 'Chat with AI powered bot',
             chatbotIntro:
                 'Hi, I am a chat bot, powered by language model. Available language models: {{modelsList}}. Model {{modelToUse}} will be used in this conversation.',
-            chatFeatureTitle: 'AI-Powered Chat Feature',
+            chatFeatureTitle: 'AI powered Chat Feature',
             chatFeatureIntro:
                 'This space is dedicated to showcasing an AI-powered chat experience.',
             chatFeatureOfflineNotice:
