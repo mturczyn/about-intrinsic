@@ -25,15 +25,6 @@
     }
 }
 
-button.langButton:hover {
-    cursor: pointer;
-    filter: brightness(0.5);
-}
-
-button.langButton span {
-    opacity: 0;
-}
-
 button.langButton {
     align-self: center;
     margin: 0.5em;
@@ -47,6 +38,15 @@ button.langButton {
     text-decoration: none;
     border-radius: 50%;
     background-size: cover;
+
+    &:hover {
+        cursor: pointer;
+        filter: brightness(0.5);
+    }
+
+    & span {
+        opacity: 0;
+    }
 }
 
 nav {
@@ -54,7 +54,7 @@ nav {
     background: rgb(var(--main-bg-color));
     position: absolute;
     box-shadow: 0 2rem 2rem 0 #000;
-    transition: height 0.4s cubic-bezier(0, 1.6, 1, 1.2);
+    /* transition: height 0.4s cubic-bezier(0, 1.6, 1, 1.2); */
 
     & > a {
         display: flex;
@@ -69,17 +69,17 @@ nav {
         -o-transition: background-color var(--hover-transition-duration) linear;
         -ms-transition: background-color var(--hover-transition-duration) linear;
         transition: background-color var(--hover-transition-duration) linear;
+
+        &:hover,
+        &:hover:visited {
+            color: rgb(var(--secondary-color));
+        }
     }
 }
 
 .current-location,
 nav > a:hover {
     background-color: rgb(var(--secondary-bg-color));
-}
-
-nav > a:hover,
-nav > a:hover:visited {
-    color: rgb(var(--secondary-color));
 }
 
 nav > a,

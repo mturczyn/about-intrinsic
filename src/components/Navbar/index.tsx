@@ -25,9 +25,43 @@ export const Navbar = () => {
             return
         }
 
-        navMenuRef.current.style.height = navigationMenuOpen
-            ? navMenuRef.current.scrollHeight + 'px'
-            : '0'
+        const endHeight = navigationMenuOpen
+            ? navMenuRef.current.scrollHeight
+            : 0
+
+        const getStep = (percentage: number) => {
+            return endHeight * percentage + 'px'
+        }
+
+        const getEndStep = () => getStep(1)
+
+        if (navigationMenuOpen) {
+            navMenuRef.current.animate(
+                [
+                    { height: 0, offset: 0 },
+                    { height: getEndStep(), offset: 0.3 },
+                    { height: getStep(0.85), offset: 0.45 },
+                    { height: getEndStep(), offset: 0.7 },
+                    { height: getStep(0.95), offset: 0.875 },
+                    { height: getEndStep(), offset: 1 },
+                ],
+                {
+                    duration: 1000,
+                    iterations: 1,
+                }
+            )
+        } else {
+            navMenuRef.current.animate(
+                [
+                    { height: endHeight }, // Start at full height
+                    { height: '0' }, // End at zero height
+                ],
+                {
+                    duration: 1000,
+                    iterations: 1,
+                }
+            )
+        }
     }, [navigationMenuOpen])
 
     useDocumentMouseDown([menuButtonRef], () => setNavigationMenuOpen(false))
