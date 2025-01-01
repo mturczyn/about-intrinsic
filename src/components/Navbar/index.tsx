@@ -28,6 +28,14 @@ export const Navbar = () => {
         navMenuRef.current.style.height = navigationMenuOpen
             ? navMenuRef.current.scrollHeight + 'px'
             : '0'
+
+        requestAnimationFrame(() => {
+            if (navigationMenuOpen) {
+                navMenuRef.current?.classList.add('isOpen')
+            } else {
+                navMenuRef.current?.classList.remove('isOpen')
+            }
+        })
     }, [navigationMenuOpen])
 
     useDocumentMouseDown([menuButtonRef], () => setNavigationMenuOpen(false))

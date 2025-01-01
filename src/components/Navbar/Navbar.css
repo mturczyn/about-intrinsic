@@ -1,6 +1,8 @@
 :root {
     --hover-transition-duration: 500ms;
     --alpha-level: 0.7;
+    --expand-bezier: cubic-bezier(0, 1.6, 1, 1.2);
+    --collapse-bezier: cubic-bezier(1, -0.6, 0.4, 1);
 }
 
 .navbar {
@@ -54,7 +56,14 @@ nav {
     background: rgb(var(--main-bg-color));
     position: absolute;
     box-shadow: 0 2rem 2rem 0 #000;
-    transition: height 0.4s cubic-bezier(0, 1.6, 1, 1.2);
+
+    &:not(.isOpen) {
+        transition: height 0.4s var(--expand-bezier);
+    }
+
+    &.isOpen {
+        transition: height 0.4s var(--collapse-bezier);
+    }
 
     & > a {
         display: flex;
