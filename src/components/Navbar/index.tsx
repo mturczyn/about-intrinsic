@@ -19,6 +19,8 @@ export const Navbar = () => {
     }
     const menuButtonRef = useRef<HTMLDivElement>(null)
     const navMenuRef = useRef<HTMLDivElement>(null)
+    const plButtonRef = useRef<HTMLButtonElement>(null)
+    const engButtonRef = useRef<HTMLButtonElement>(null)
 
     useEffect(() => {
         if (!navMenuRef.current) {
@@ -38,7 +40,9 @@ export const Navbar = () => {
         })
     }, [navigationMenuOpen])
 
-    useDocumentMouseDown([menuButtonRef], () => setNavigationMenuOpen(false))
+    useDocumentMouseDown([menuButtonRef, plButtonRef, engButtonRef], () =>
+        setNavigationMenuOpen(false)
+    )
 
     return (
         <>
@@ -53,6 +57,7 @@ export const Navbar = () => {
                     <NavigationMenu ref={navMenuRef} />
                 </div>
                 <button
+                    ref={plButtonRef}
                     onClick={() => changeLanguage(SUPPORTED_LANGUAGES.pl)}
                     style={{
                         backgroundImage: 'url(' + CSS.escape(plFlag) + ')',
@@ -63,6 +68,7 @@ export const Navbar = () => {
                     <span>PL</span>
                 </button>
                 <button
+                    ref={engButtonRef}
                     onClick={() => changeLanguage(SUPPORTED_LANGUAGES.en)}
                     className="langButton"
                     style={{

@@ -5,6 +5,7 @@ import { AnchorWithNewPage } from 'components/AnchorWithNewPage'
 import { useEffect, useState } from 'react'
 import { usePwaInstallerContext } from 'hooks/usePwaInstallerContext'
 import { usePageTitle } from 'hooks/usePageTitle'
+import { Link } from 'react-router-dom'
 
 export const PAGE_TITLE =
     'Intrinsic | Web Development and Programming | Technology stack'
@@ -172,6 +173,20 @@ const TechStack = () => {
                     Later, after gaining more experience with GitHub Actions, I
                     decided to create a custom pipeline from scratch, which now
                     handles the deployment of the website.
+                </p>
+            </Trans>
+
+            <h1>{t('aiServerOverviewTitle')}</h1>
+            <Trans i18nKey={'aiServerOverview'}>
+                <p>
+                    <Link to="/chat"></Link>
+                </p>
+                <p>
+                    <a
+                        rel="noopener noreferrer"
+                        href="https://github.com/mturczyn/ai-cloud-service"
+                        target="_blank"
+                    ></a>
                 </p>
             </Trans>
         </>

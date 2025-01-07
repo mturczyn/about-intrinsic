@@ -5,7 +5,8 @@ import exadel from 'images/employers-logos/exadel.png'
 import rite from 'images/employers-logos/rite-nrg.png'
 import rac from 'images/employers-logos/rac.png'
 import rsm from 'images/employers-logos/rsm.png'
-import cSharpLogo from 'images/programming-languages-logo/c-sharp.png'
+import cSharpLogoHash from 'images/programming-languages-logo/c-sharp-hash.png'
+import cSharpLogoWithoutHash from 'images/programming-languages-logo/c-sharp-without-hash.png'
 import jsLogo from 'images/programming-languages-logo/js-logo.webp'
 import reactLogo from 'react-logo.svg'
 import './Home.css'
@@ -28,7 +29,10 @@ const Home = () => {
                     <p>{t('homePageIntroduction.firstPara')}</p>
                     <p>{t('homePageIntroduction.secondPara')}</p>
                     <div className="programming-languages">
-                        <img src={cSharpLogo} alt="C#" className="csharp" />
+                        <div className="csharp">
+                            <img src={cSharpLogoWithoutHash} alt="C#" />
+                            <img src={cSharpLogoHash} id="c-sharp-hash" />
+                        </div>
                         <img src={jsLogo} alt="JavaScript" className="js" />
                         <img src={reactLogo} alt="React" className="react" />
                     </div>

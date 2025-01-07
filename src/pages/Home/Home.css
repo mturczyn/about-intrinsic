@@ -1,3 +1,7 @@
+:root {
+    --aimation-duration: 7s;
+}
+
 .home-header {
     background-color: rgb(var(--main-bg-color));
 }
@@ -25,6 +29,7 @@
 
     & .react {
         grid-area: react;
+        animation: rotateZ var(--aimation-duration) infinite linear;
     }
 
     & .js {
@@ -32,7 +37,16 @@
     }
 
     & .csharp {
+        position: relative;
         grid-area: csharp;
+
+        & #c-sharp-hash {
+            position: absolute;
+            height: 20%;
+            left: 32%;
+            top: 38%;
+            animation: rotateY var(--aimation-duration) infinite linear;
+        }
     }
 
     & img {
@@ -44,6 +58,18 @@
 
 h1 {
     margin: 1rem 1rem;
+}
+
+@keyframes rotateY {
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+@keyframes rotateZ {
+    to {
+        transform: rotateZ(360deg);
+    }
 }
 
 @keyframes image-spin {

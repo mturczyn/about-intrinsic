@@ -2,6 +2,10 @@ import { render } from '@testing-library/react'
 import TechStack, { PAGE_TITLE } from './index'
 import { expect, test, vi } from 'vitest'
 
+vi.mock('react-router-dom', () => ({
+    Link: vi.fn().mockReturnValue(<div></div>),
+}))
+
 test('Sets correct title of the page', () => {
     Object.defineProperty(window, 'matchMedia', {
         writable: true,
@@ -16,6 +20,8 @@ test('Sets correct title of the page', () => {
             dispatchEvent: vi.fn(),
         })),
     })
+
     render(<TechStack />)
+
     expect(global.window.document.title).toBe(PAGE_TITLE)
 })
