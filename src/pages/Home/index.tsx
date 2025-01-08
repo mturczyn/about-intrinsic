@@ -5,6 +5,7 @@ import exadel from 'images/employers-logos/exadel.png'
 import rite from 'images/employers-logos/rite-nrg.png'
 import rac from 'images/employers-logos/rac.png'
 import rsm from 'images/employers-logos/rsm.png'
+import ocuco from 'images/employers-logos/ocuco-logo.png'
 import cSharpLogoHash from 'images/programming-languages-logo/c-sharp-hash.png'
 import cSharpLogoWithoutHash from 'images/programming-languages-logo/c-sharp-without-hash.png'
 import jsLogo from 'images/programming-languages-logo/js-logo.webp'
@@ -65,6 +66,9 @@ const Home = () => {
 
 const EmployersLogos = () => (
     <ul role="list" className="logos-slide">
+        <li>
+            <img src={ocuco} alt="Ocuco" />
+        </li>
         <li>
             <img src={arcelorMittal} alt="ArcelorMittal" />
         </li>
