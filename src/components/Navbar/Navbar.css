@@ -5,13 +5,16 @@
     --collapse-bezier: cubic-bezier(1, -0.6, 0.4, 1);
 }
 
+#navbar-container {
+    background: rgb(var(--main-bg-color), var(--alpha-level));
+    backdrop-filter: blur(20px);
+}
+
 .navbar {
     box-sizing: border-box;
     max-width: min(60ch, 100%);
     margin: 0 auto;
     display: flex;
-    background: rgb(var(--main-bg-color), var(--alpha-level));
-    backdrop-filter: blur(20px);
     align-items: stretch;
 
     & > div:first-child {
