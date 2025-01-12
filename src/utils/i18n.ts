@@ -83,6 +83,7 @@ const resources = {
             // Misc
             'I have worked for following companies throughout my career:':
                 'Przez całą moją karierę pracowałem dla następujących firm:',
+            copyToClipboard: 'Kopiuj do schowka',
         },
     },
     [SUPPORTED_LANGUAGES.en]: {
@@ -170,6 +171,7 @@ const resources = {
             // Misc
             'I have worked for following companies throughout my career:':
                 'I have worked for following companies throughout my career:',
+            copyToClipboard: 'Copy to clipboard',
         },
     },
 }

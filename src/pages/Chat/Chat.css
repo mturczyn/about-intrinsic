@@ -23,29 +23,48 @@ div.chat-with-input-container {
 }
 
 .message {
+    display: flex;
+    flex-direction: column;
     max-width: 70%;
     padding: 0.1rem;
     border-radius: 15px;
     font-size: var(--primary-font-size);
     line-height: 1.5;
     margin: 0.5rem 1rem;
+    text-align: left;
+
+    & > * {
+        margin: 1rem;
+    }
+
+    & button.copyToClipboard {
+        background-color: rgb(var(--main-bg-color));
+        color: rgb(var(--main-color));
+        cursor: pointer;
+        margin-top: 0;
+        align-self: flex-end;
+    }
+
+    & > pre {
+        overflow-x: auto;
+        box-shadow: inset 0px 3px 20px -5px #000;
+        padding: 0.5rem;
+    }
 
     & ol,
     ul {
         list-style-position: inside;
     }
-}
 
-.message.sent {
-    background-color: #000;
-    align-self: flex-end;
-    text-align: right;
-}
+    &.sent {
+        background-color: #000;
+        align-self: flex-end;
+    }
 
-.message.received {
-    background-color: #999;
-    align-self: flex-start;
-    text-align: left;
+    &.received {
+        background-color: #999;
+        align-self: flex-start;
+    }
 }
 
 #user-message-wrapper {

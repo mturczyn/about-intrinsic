@@ -1,5 +1,5 @@
 import { checkModelsAvailable, fetchAiResponse, Model } from 'utils/AiApi'
-import { UIEvent, useEffect, useRef, useState, WheelEvent } from 'react'
+import { UIEvent, useEffect, useRef, useState } from 'react'
 import './Chat.css'
 import Markdown from 'react-markdown'
 import { useTranslation } from 'react-i18next'
@@ -28,6 +28,18 @@ const Chat = () => {
         modelsAvailable && modelsAvailable.length > 0 && modelsAvailable[0]
 
     usePageTitle(t('chatPageTitle'))
+
+    useEffect(() => {
+        if (!chatContainerRef.current) return
+        const copyToClipboardButtons =
+            chatContainerRef.current.querySelectorAll(
+                'pre+button.copyToClipboard'
+            )
+
+        copyToClipboardButtons.forEach(
+            (b) => (b.textContent = t('copyToClipboard'))
+        )
+    }, [t])
 
     useEffect(() => {
         if (!modelToUse) return
@@ -142,21 +154,21 @@ const Chat = () => {
                         className="chat-container"
                     >
                         {messages.map((message, index) => (
-                            <div
+                            <ChatMessage
                                 key={index}
                                 className={`message ${
                                     message.type === 'sent'
                                         ? 'sent'
                                         : 'received'
                                 }`}
-                            >
-                                <Markdown>{message.text}</Markdown>
-                            </div>
+                                text={message.text}
+                            />
                         ))}
                         {aiAnswer && (
-                            <div className={'message received'}>
-                                <Markdown>{aiAnswer}</Markdown>
-                            </div>
+                            <ChatMessage
+                                text={aiAnswer}
+                                className={'message received'}
+                            />
                         )}
                     </div>
                     <div id="user-message-wrapper">
@@ -185,6 +197,45 @@ const Chat = () => {
                 </>
             )}
         </>
+    )
+}
+
+const ChatMessage = ({
+    text,
+    className,
+}: {
+    text: string
+    className?: string
+}) => {
+    const ref = useRef<HTMLDivElement>(null)
+    const { t } = useTranslation()
+
+    useEffect(() => {
+        if (!ref.current) return
+
+        // Select all pre elements, that do not have button yet.
+        const preElementsWithoutButtons = ref.current.querySelectorAll(
+            'pre:not(:has(+button))'
+        )
+
+        preElementsWithoutButtons.forEach((preElement) => {
+            const button = document.createElement('button')
+            button.classList.add('copyToClipboard')
+            button.innerText = t('copyToClipboard')
+
+            button.addEventListener('click', () => {
+                preElement.textContent &&
+                    navigator.clipboard.writeText(preElement.textContent)
+            })
+
+            preElement.insertAdjacentElement('afterend', button)
+        })
+    }, [text])
+
+    return (
+        <div className={className} ref={ref}>
+            <Markdown>{text}</Markdown>
+        </div>
     )
 }
 

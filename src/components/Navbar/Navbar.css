@@ -6,8 +6,20 @@
 }
 
 #navbar-container {
-    background: rgb(var(--main-bg-color), var(--alpha-level));
-    backdrop-filter: blur(20px);
+    position: sticky;
+    z-index: 1;
+
+    &:before {
+        content: '';
+        position: absolute;
+        z-index: -1;
+        background: rgb(var(--main-bg-color), var(--alpha-level));
+        backdrop-filter: blur(20px);
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+    }
 }
 
 .navbar {
@@ -56,9 +68,10 @@ button.langButton {
 
 nav {
     overflow: hidden;
-    background: rgb(var(--main-bg-color));
     position: absolute;
     box-shadow: 0 2rem 2rem 0 #000;
+    background: rgb(var(--main-bg-color), var(--alpha-level));
+    backdrop-filter: blur(20px);
 
     &:not(.isOpen) {
         transition: height 0.4s var(--expand-bezier);
@@ -86,7 +99,7 @@ nav {
 
 .current-location,
 nav > a:hover {
-    background-color: rgb(var(--secondary-bg-color));
+    background-color: rgb(var(--secondary-bg-color), var(--alpha-level));
 }
 
 nav > a:hover,
