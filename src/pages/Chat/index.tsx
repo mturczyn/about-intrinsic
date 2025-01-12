@@ -16,6 +16,7 @@ interface ChatMessage {
 
 const Chat = () => {
     const chatConteinerLastScrollPosition = useRef<number>()
+    const mouseIsDown = useRef(false)
     const [messages, setMessages] = useState<ChatMessage[]>([])
     const [aiAnswer, setAiAnswer] = useState<string>('')
     const [modelsAvailable, setModelsAvailable] = useState<Model[]>()
@@ -110,6 +111,10 @@ const Chat = () => {
         }
     }, [messages, aiAnswer, shouldScrollToLastMessage])
 
+    const handleWheel = (e) => {
+        if (e.deltaY < 0) setShouldScrollToLastMessage(false)
+    }
+
     const handleChatScroll = (e: UIEvent<HTMLElement>) => {
         const oldPostion = chatConteinerLastScrollPosition.current
         chatConteinerLastScrollPosition.current = e.currentTarget.scrollTop
@@ -120,7 +125,10 @@ const Chat = () => {
 
         const deltaY = e.currentTarget.scrollTop - oldPostion
 
-        if (deltaY < 0) {
+        // We need to account for that some AI models "stutter",
+        // causing sometimes random scroll up.
+        // Here we check if user has clicked the chat (maybe to scroll).
+        if (deltaY < 0 && mouseIsDown.current) {
             setShouldScrollToLastMessage(false)
         } else {
             const scrollTopWithClientHeight =
@@ -138,26 +146,29 @@ const Chat = () => {
             {modelToUse ? (
                 <div className="chat-with-input-container">
                     <div
+                        onMouseDown={() => (mouseIsDown.current = true)}
+                        onMouseUp={() => (mouseIsDown.current = false)}
                         ref={chatContainerRef}
+                        onWheel={handleWheel}
                         onScroll={handleChatScroll}
                         className="chat-container"
                     >
                         {messages.map((message, index) => (
-                            <div
+                            <ChatMessage
                                 key={index}
                                 className={`message ${
                                     message.type === 'sent'
                                         ? 'sent'
                                         : 'received'
                                 }`}
-                            >
-                                <Markdown>{message.text}</Markdown>
-                            </div>
+                                text={message.text}
+                            />
                         ))}
                         {aiAnswer && (
-                            <div className={'message received'}>
-                                <Markdown>{aiAnswer}</Markdown>
-                            </div>
+                            <ChatMessage
+                                text={aiAnswer}
+                                className={'message received'}
+                            />
                         )}
                     </div>
                     <div id="user-message-wrapper">
@@ -185,6 +196,54 @@ const Chat = () => {
                     <p>{t('chatFeatureContact')}</p>
                 </>
             )}
+        </>
+    )
+}
+
+const ChatMessage = ({
+    text,
+    className,
+}: {
+    text: string
+    className?: string
+}) => {
+    const divMarkdownContainerRef = useRef<HTMLDivElement>(null)
+    const preRefs = useRef<HTMLPreElement[]>([])
+    const { t } = useTranslation()
+
+    useEffect(() => {
+        if (!divMarkdownContainerRef.current) return
+        const preElementsWithoutButtons =
+            divMarkdownContainerRef.current.querySelectorAll('pre')
+        preElementsWithoutButtons.forEach((x) => {
+            if (!preRefs.current.find((r) => r === x)) {
+                preRefs.current.push(x)
+            }
+        })
+    }, [text])
+
+    return (
+        <>
+            {preRefs.current.map((x) =>
+                createPortal(
+                    <button
+                        onClick={(e) => {
+                            const button = e.target as HTMLButtonElement
+                            const codeElement =
+                                button?.previousSibling as HTMLElement
+                            if (!codeElement) return
+                            navigator.clipboard.writeText(codeElement.innerText)
+                        }}
+                        className="copyToClipboard"
+                    >
+                        {t('copyToClipboard')}
+                    </button>,
+                    x
+                )
+            )}
+            <div className={className} ref={divMarkdownContainerRef}>
+                <Markdown>{text}</Markdown>
+            </div>
         </>
     )
 }
