@@ -5,6 +5,7 @@ import Markdown from 'react-markdown'
 import { useTranslation } from 'react-i18next'
 import clsx from 'clsx'
 import { usePageTitle } from 'hooks/usePageTitle'
+import { createPortal } from 'react-dom'
 
 type ChatMessageType = 'sent' | 'received'
 
@@ -28,18 +29,6 @@ const Chat = () => {
         modelsAvailable && modelsAvailable.length > 0 && modelsAvailable[0]
 
     usePageTitle(t('chatPageTitle'))
-
-    useEffect(() => {
-        if (!chatContainerRef.current) return
-        const copyToClipboardButtons =
-            chatContainerRef.current.querySelectorAll(
-                'pre+button.copyToClipboard'
-            )
-
-        copyToClipboardButtons.forEach(
-            (b) => (b.textContent = t('copyToClipboard'))
-        )
-    }, [t])
 
     useEffect(() => {
         if (!modelToUse) return
@@ -208,34 +197,42 @@ const ChatMessage = ({
     className?: string
 }) => {
     const ref = useRef<HTMLDivElement>(null)
+    const preRefs = useRef<HTMLPreElement[]>([])
     const { t } = useTranslation()
 
     useEffect(() => {
         if (!ref.current) return
-
-        // Select all pre elements, that do not have button yet.
-        const preElementsWithoutButtons = ref.current.querySelectorAll(
-            'pre:not(:has(+button))'
-        )
-
-        preElementsWithoutButtons.forEach((preElement) => {
-            const button = document.createElement('button')
-            button.classList.add('copyToClipboard')
-            button.innerText = t('copyToClipboard')
-
-            button.addEventListener('click', () => {
-                preElement.textContent &&
-                    navigator.clipboard.writeText(preElement.textContent)
-            })
-
-            preElement.insertAdjacentElement('afterend', button)
+        const preElementsWithoutButtons = ref.current.querySelectorAll('pre')
+        preElementsWithoutButtons.forEach((x) => {
+            if (!preRefs.current.find((r) => r === x)) {
+                preRefs.current.push(x)
+            }
         })
     }, [text])
 
     return (
-        <div className={className} ref={ref}>
-            <Markdown>{text}</Markdown>
-        </div>
+        <>
+            {preRefs.current.map((x) =>
+                createPortal(
+                    <button
+                        onClick={(e) => {
+                            const button = e.target as HTMLButtonElement
+                            const codeElement =
+                                button?.previousSibling as HTMLElement
+                            if (!codeElement) return
+                            navigator.clipboard.writeText(codeElement.innerText)
+                        }}
+                        className="copyToClipboard"
+                    >
+                        {t('copyToClipboard')}
+                    </button>,
+                    x
+                )
+            )}
+            <div className={className} ref={ref}>
+                <Markdown>{text}</Markdown>
+            </div>
+        </>
     )
 }
 
