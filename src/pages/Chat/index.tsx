@@ -143,21 +143,21 @@ const Chat = () => {
                         className="chat-container"
                     >
                         {messages.map((message, index) => (
-                            <ChatMessage
+                            <div
                                 key={index}
                                 className={`message ${
                                     message.type === 'sent'
                                         ? 'sent'
                                         : 'received'
                                 }`}
-                                text={message.text}
-                            />
+                            >
+                                <Markdown>{message.text}</Markdown>
+                            </div>
                         ))}
                         {aiAnswer && (
-                            <ChatMessage
-                                text={aiAnswer}
-                                className={'message received'}
-                            />
+                            <div className={'message received'}>
+                                <Markdown>{aiAnswer}</Markdown>
+                            </div>
                         )}
                     </div>
                     <div id="user-message-wrapper">
@@ -185,53 +185,6 @@ const Chat = () => {
                     <p>{t('chatFeatureContact')}</p>
                 </>
             )}
-        </>
-    )
-}
-
-const ChatMessage = ({
-    text,
-    className,
-}: {
-    text: string
-    className?: string
-}) => {
-    const ref = useRef<HTMLDivElement>(null)
-    const preRefs = useRef<HTMLPreElement[]>([])
-    const { t } = useTranslation()
-
-    useEffect(() => {
-        if (!ref.current) return
-        const preElementsWithoutButtons = ref.current.querySelectorAll('pre')
-        preElementsWithoutButtons.forEach((x) => {
-            if (!preRefs.current.find((r) => r === x)) {
-                preRefs.current.push(x)
-            }
-        })
-    }, [text])
-
-    return (
-        <>
-            {preRefs.current.map((x) =>
-                createPortal(
-                    <button
-                        onClick={(e) => {
-                            const button = e.target as HTMLButtonElement
-                            const codeElement =
-                                button?.previousSibling as HTMLElement
-                            if (!codeElement) return
-                            navigator.clipboard.writeText(codeElement.innerText)
-                        }}
-                        className="copyToClipboard"
-                    >
-                        {t('copyToClipboard')}
-                    </button>,
-                    x
-                )
-            )}
-            <div className={className} ref={ref}>
-                <Markdown>{text}</Markdown>
-            </div>
         </>
     )
 }
