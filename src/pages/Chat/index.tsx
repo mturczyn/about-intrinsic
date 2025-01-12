@@ -209,30 +209,34 @@ const ChatMessage = ({
 }) => {
     const divMarkdownContainerRef = useRef<HTMLDivElement>(null)
     const preRefs = useRef<HTMLPreElement[]>([])
+    const divRefs = useRef<HTMLDivElement[]>([])
     const { t } = useTranslation()
 
     useEffect(() => {
         if (!divMarkdownContainerRef.current) return
         const preElementsWithoutButtons =
             divMarkdownContainerRef.current.querySelectorAll('pre')
-        preElementsWithoutButtons.forEach((x) => {
-            if (!preRefs.current.find((r) => r === x)) {
-                preRefs.current.push(x)
+        preElementsWithoutButtons.forEach((preElement) => {
+            if (!preRefs.current.find((r) => r === preElement)) {
+                preRefs.current.push(preElement)
+                const adjacentDiv = document.createElement('div')
+                divRefs.current.push(adjacentDiv)
+                preElement.insertAdjacentElement('afterend', adjacentDiv)
             }
         })
     }, [text])
 
     return (
         <>
-            {preRefs.current.map((x) =>
+            {divRefs.current.map((x) =>
                 createPortal(
                     <button
                         onClick={(e) => {
                             const button = e.target as HTMLButtonElement
-                            const codeElement =
-                                button?.previousSibling as HTMLElement
-                            if (!codeElement) return
-                            navigator.clipboard.writeText(codeElement.innerText)
+                            const preElement = button?.parentElement
+                                ?.previousSibling as HTMLPreElement
+                            if (!preElement) return
+                            navigator.clipboard.writeText(preElement.innerText)
                         }}
                         className="copyToClipboard"
                     >
