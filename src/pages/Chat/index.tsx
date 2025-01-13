@@ -1,5 +1,12 @@
 import { checkModelsAvailable, fetchAiResponse, Model } from 'utils/AiApi'
-import { UIEvent, useEffect, useRef, useState } from 'react'
+import {
+    TouchEventHandler,
+    UIEvent,
+    useEffect,
+    useRef,
+    useState,
+    WheelEventHandler,
+} from 'react'
 import './Chat.css'
 import Markdown from 'react-markdown'
 import { useTranslation } from 'react-i18next'
@@ -28,6 +35,7 @@ const Chat = () => {
     const modelsList = modelsAvailable?.map((m) => m.name).join(', ')
     const modelToUse =
         modelsAvailable && modelsAvailable.length > 0 && modelsAvailable[0]
+    const touched = useRef(false)
 
     usePageTitle(t('chatPageTitle'))
 
@@ -111,7 +119,7 @@ const Chat = () => {
         }
     }, [messages, aiAnswer, shouldScrollToLastMessage])
 
-    const handleWheel = (e) => {
+    const handleWheel: WheelEventHandler<HTMLDivElement> = (e) => {
         if (e.deltaY < 0) setShouldScrollToLastMessage(false)
     }
 
@@ -128,7 +136,8 @@ const Chat = () => {
         // We need to account for that some AI models "stutter",
         // causing sometimes random scroll up.
         // Here we check if user has clicked the chat (maybe to scroll).
-        if (deltaY < 0 && mouseIsDown.current) {
+        const isUserScroll = mouseIsDown.current || touched.current
+        if (deltaY < 0 && isUserScroll) {
             setShouldScrollToLastMessage(false)
         } else {
             const scrollTopWithClientHeight =
@@ -146,9 +155,11 @@ const Chat = () => {
             {modelToUse ? (
                 <div className="chat-with-input-container">
                     <div
+                        ref={chatContainerRef}
                         onMouseDown={() => (mouseIsDown.current = true)}
                         onMouseUp={() => (mouseIsDown.current = false)}
-                        ref={chatContainerRef}
+                        onTouchStart={() => (touched.current = true)}
+                        onTouchEnd={() => (touched.current = false)}
                         onWheel={handleWheel}
                         onScroll={handleChatScroll}
                         className="chat-container"
