@@ -209,26 +209,31 @@ const ChatMessage = ({
 }) => {
     const divMarkdownContainerRef = useRef<HTMLDivElement>(null)
     const preRefs = useRef<HTMLPreElement[]>([])
-    const divRefs = useRef<HTMLDivElement[]>([])
+    const [divRefs, setDivRefs] = useState<HTMLDivElement[]>([])
     const { t } = useTranslation()
 
     useEffect(() => {
         if (!divMarkdownContainerRef.current) return
-        const preElementsWithoutButtons =
+        const preElements =
             divMarkdownContainerRef.current.querySelectorAll('pre')
-        preElementsWithoutButtons.forEach((preElement) => {
+
+        const newDivRefs: HTMLDivElement[] = []
+
+        preElements.forEach((preElement) => {
             if (!preRefs.current.find((r) => r === preElement)) {
                 preRefs.current.push(preElement)
                 const adjacentDiv = document.createElement('div')
-                divRefs.current.push(adjacentDiv)
+                newDivRefs.push(adjacentDiv)
                 preElement.insertAdjacentElement('afterend', adjacentDiv)
             }
         })
+
+        if (newDivRefs.length) setDivRefs((refs) => [...refs, ...newDivRefs])
     }, [text])
 
     return (
         <>
-            {divRefs.current.map((x) =>
+            {divRefs.map((x) =>
                 createPortal(
                     <button
                         onClick={(e) => {
