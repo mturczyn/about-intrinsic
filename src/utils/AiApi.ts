@@ -71,7 +71,7 @@ export async function fetchAiResponse(
             if (value) {
                 // Decode the current chunk of data
                 const chunk = decoder.decode(value)
-                onNewChunk(JSON.parse(chunk).response)
+                handleChunk(chunk).forEach((x) => onNewChunk(x))
             }
         }
 
@@ -80,4 +80,24 @@ export async function fetchAiResponse(
         console.error('Error in fetchAiResponse:', error)
         onServerFault()
     }
+}
+
+const handleChunk = (chunk: string): string[] => {
+    const parsedChunks: string[] = []
+    const match = chunk.match(/\}\s*\{/)
+
+    // Sometimes AI server responds with 2 response
+    // objects, making JSON.parase to fail. Here we account
+    // for that.
+    if (match?.index) {
+        const chunk1 = chunk.slice(0, match.index + 1)
+        const chunk2 = chunk.slice(match.index + 1 + match.length)
+
+        parsedChunks.push(JSON.parse(chunk1).response)
+        parsedChunks.push(...handleChunk(chunk2))
+    } else {
+        parsedChunks.push(JSON.parse(chunk).response)
+    }
+
+    return parsedChunks
 }
