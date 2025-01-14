@@ -29,7 +29,7 @@
 
     & div:has(.react) {
         grid-area: react;
-        margin: 0.5ch;
+        margin: 0.7ch;
     }
 
     & .react {

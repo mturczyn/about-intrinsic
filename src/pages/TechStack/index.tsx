@@ -1,4 +1,4 @@
-import reactLogo from 'react-logo.svg'
+import reactLogo from 'images/react-logo.svg'
 import './TechStack.css'
 import { useTranslation, Trans } from 'react-i18next'
 import { AnchorWithNewPage } from 'components/AnchorWithNewPage'
