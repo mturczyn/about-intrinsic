@@ -2,12 +2,13 @@ import reactLogo from 'react-logo.svg'
 import './TechStack.css'
 import { useTranslation, Trans } from 'react-i18next'
 import { AnchorWithNewPage } from 'components/AnchorWithNewPage'
-import { RefObject, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { usePwaInstallerContext } from 'hooks/usePwaInstallerContext'
 import { usePageTitle } from 'hooks/usePageTitle'
 import { Link } from 'react-router-dom'
 import { Expander } from 'components/Expander'
 import { SkipLink } from 'components/SkipLink'
+import { HeaderWithSkipLink } from 'components/HeaderWithSkipLink'
 
 export const PAGE_TITLE =
     'Intrinsic | Web Development and Programming | Technology stack'
@@ -54,23 +55,6 @@ const TechStack = () => {
         }
     }, [])
 
-    const createHeader = (
-        title: string,
-        ref: RefObject<HTMLHeadingElement>
-    ) => (
-        <>
-            <h1 ref={ref} tabIndex={1}>
-                {title}
-            </h1>
-            <SkipLink
-                getScrollTo={() => expanderRef.current}
-                className="back-to-top"
-            >
-                {t('backToTop')}
-            </SkipLink>
-        </>
-    )
-
     const skipLinks = [
         { text: t('Theming'), header: themingHeader },
         {
@@ -89,6 +73,8 @@ const TechStack = () => {
         },
         { text: t('aiServerOverviewTitle'), header: aiServerOverviewHeader },
     ]
+
+    const getExpanderRef = () => expanderRef.current
 
     return (
         <>
@@ -119,14 +105,19 @@ const TechStack = () => {
                 </div>
             </Expander>
 
-            {createHeader(t('Theming'), themingHeader)}
+            <HeaderWithSkipLink
+                title={t('Theming')}
+                getScrollTo={getExpanderRef}
+                ref={themingHeader}
+            />
 
             <p>{t('themingDescription')}</p>
 
-            {createHeader(
-                t('frameworkAndLibraries'),
-                frameworkAndLibrariesHeader
-            )}
+            <HeaderWithSkipLink
+                title={t('frameworkAndLibraries')}
+                getScrollTo={getExpanderRef}
+                ref={frameworkAndLibrariesHeader}
+            />
 
             <Trans>
                 <p>
@@ -145,10 +136,11 @@ const TechStack = () => {
                 </p>
             </Trans>
 
-            {createHeader(
-                t('PWA and service workers'),
-                pwaAndServiceWorkersHeader
-            )}
+            <HeaderWithSkipLink
+                title={t('PWA and service workers')}
+                getScrollTo={getExpanderRef}
+                ref={pwaAndServiceWorkersHeader}
+            />
 
             <p>
                 {t(
@@ -195,7 +187,11 @@ const TechStack = () => {
                 </p>
             </Trans>
 
-            {createHeader('Docker', dockerHeader)}
+            <HeaderWithSkipLink
+                title={'Docker'}
+                getScrollTo={getExpanderRef}
+                ref={dockerHeader}
+            />
 
             <Trans>
                 <p>
@@ -215,7 +211,11 @@ const TechStack = () => {
                 </p>
             </Trans>
 
-            {createHeader(t('Hosting'), hostingHeader)}
+            <HeaderWithSkipLink
+                title={t('Hosting')}
+                getScrollTo={getExpanderRef}
+                ref={hostingHeader}
+            />
 
             <p>
                 {t(
@@ -223,10 +223,11 @@ const TechStack = () => {
                 )}
             </p>
 
-            {createHeader(
-                `${t('CICD')} ${t('and')} ${t('repository')}`,
-                cicdAndRepositoryHeader
-            )}
+            <HeaderWithSkipLink
+                title={`${t('CICD')} ${t('and')} ${t('repository')}`}
+                getScrollTo={getExpanderRef}
+                ref={cicdAndRepositoryHeader}
+            />
 
             <p>
                 {t('Code for the website is stored in')}{' '}
@@ -250,7 +251,11 @@ const TechStack = () => {
                 </p>
             </Trans>
 
-            {createHeader(t('aiServerOverviewTitle'), aiServerOverviewHeader)}
+            <HeaderWithSkipLink
+                title={t('aiServerOverviewTitle')}
+                getScrollTo={getExpanderRef}
+                ref={aiServerOverviewHeader}
+            />
 
             <Trans i18nKey={'aiServerOverview'}>
                 <p>

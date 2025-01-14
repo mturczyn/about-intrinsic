@@ -15,6 +15,10 @@ h6 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     place-items: stretch;
+
+    & li {
+        margin-bottom: 1ch;
+    }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -28,6 +32,7 @@ h1:has(+ a.back-to-top) {
 
     &:focus {
         border-bottom: 2px solid white;
+        border-top: 2px solid white;
     }
 }
 
@@ -69,7 +74,7 @@ strong[data-pwa-installed] {
 #logo-container {
     overflow: hidden;
     float: right;
-    margin-inline: 1rem;
+    margin: 1rem;
     box-shadow: inset 5px 5px 20px 5px #000;
     place-items: center;
     display: grid;
