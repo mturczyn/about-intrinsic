@@ -11,11 +11,12 @@ import './Expander.css'
 type ExpanderProps = PropsWithChildren & {
     expandedText: string
     collapsedText: string
+    className?: string
 }
 
 export const Expander = forwardRef(
     (
-        { expandedText, collapsedText, children }: ExpanderProps,
+        { expandedText, collapsedText, children, className }: ExpanderProps,
         forwardedRef: ForwardedRef<HTMLDivElement>
     ) => {
         const [expanded, setExpanded] = useState(false)
@@ -31,9 +32,9 @@ export const Expander = forwardRef(
         }, [expanded])
 
         return (
-            <div ref={forwardedRef}>
+            <div ref={forwardedRef} className={className}>
                 <button onClick={() => setExpanded((x) => !x)}>{text}</button>
-                <div ref={expanderRef} className="expander">
+                <div ref={expanderRef} className="expanderContainer">
                     {children}
                 </div>
             </div>

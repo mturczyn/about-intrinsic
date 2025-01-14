@@ -1,11 +1,5 @@
 import { SkipLink } from 'components/SkipLink'
-import {
-    forwardRef,
-    PropsWithChildren,
-    ForwardedRef,
-    ReactNode,
-    useRef,
-} from 'react'
+import { ReactNode, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { useTranslation } from 'react-i18next'
 
@@ -14,18 +8,22 @@ export const HeaderWithSkipLink = ({
     tableOfContentsElement,
     title,
     linkToSelf: linkTo,
+    skipLinkClassName,
 }: {
     scrollTo: HTMLElement | null
     tableOfContentsElement: HTMLElement | null
     title: string
     linkToSelf: (children: ReactNode) => ReactNode
+    skipLinkClassName?: string
 }) => {
     const { t } = useTranslation()
     const headingRef = useRef<HTMLHeadingElement>(null)
 
     return (
         <>
-            <h1 ref={headingRef}>{title}</h1>
+            <h1 tabIndex={1} className={skipLinkClassName} ref={headingRef}>
+                {title}
+            </h1>
             {tableOfContentsElement &&
                 createPortal(
                     linkTo(
@@ -35,7 +33,9 @@ export const HeaderWithSkipLink = ({
                     ),
                     tableOfContentsElement
                 )}
-            <SkipLink scrollTo={scrollTo}>{t('backToTop')}</SkipLink>
+            <SkipLink className={skipLinkClassName} scrollTo={scrollTo}>
+                {t('backToTop')}
+            </SkipLink>
         </>
     )
 }

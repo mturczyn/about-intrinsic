@@ -51,6 +51,7 @@ const TechStack = () => {
 
     const createHeader = (title: string) => (
         <HeaderWithSkipLink
+            skipLinkClassName="back-to-top"
             scrollTo={expanderRef.current}
             title={title}
             linkToSelf={(skipLink) => <li>{skipLink}</li>}
@@ -60,23 +61,23 @@ const TechStack = () => {
 
     return (
         <>
-            <div id="logo-container">
-                <img
-                    src={reactLogo}
-                    className="Spin-image"
-                    style={{
-                        width: '120%',
-                    }}
-                    alt="React logo"
-                />
-            </div>
-
             <Expander
+                className="expander"
                 ref={expanderRef}
                 expandedText={t('collapseTableOfContents')}
                 collapsedText={t('expandTableOfContents')}
             >
-                <ul ref={tableOfContentsRef}></ul>
+                <div className="table-of-contents">
+                    <ul ref={tableOfContentsRef}></ul>
+
+                    <div id="logo-container">
+                        <img
+                            src={reactLogo}
+                            className="spin-image"
+                            alt="React logo"
+                        />
+                    </div>
+                </div>
             </Expander>
 
             {createHeader(t('Theming'))}

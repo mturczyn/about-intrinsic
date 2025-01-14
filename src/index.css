@@ -42,12 +42,6 @@ code {
         monospace;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .Spin-image {
-        animation: image-spin infinite 20s linear;
-    }
-}
-
 a {
     color: rgb(var(--anchor-color));
 }
