@@ -84,6 +84,9 @@ const resources = {
             'I have worked for following companies throughout my career:':
                 'Przez całą moją karierę pracowałem dla następujących firm:',
             copyToClipboard: 'Kopiuj do schowka',
+            expandTableOfContents: 'Rozwiń spis treści',
+            collapseTableOfContents: 'Zwiń spis treści',
+            backToTop: 'Powrót na górę',
         },
     },
     [SUPPORTED_LANGUAGES.en]: {
@@ -172,6 +175,9 @@ const resources = {
             'I have worked for following companies throughout my career:':
                 'I have worked for following companies throughout my career:',
             copyToClipboard: 'Copy to clipboard',
+            expandTableOfContents: 'Expand table of contents',
+            collapseTableOfContents: 'Collapse table of contents',
+            backToTop: 'Back to top',
         },
     },
 }

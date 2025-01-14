@@ -1,0 +1,4 @@
+.expanderContainer {
+    transition: height 0.2s linear;
+    overflow: hidden;
+}

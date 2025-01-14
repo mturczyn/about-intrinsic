@@ -7,6 +7,34 @@ h6 {
     margin: 2rem 1rem;
 }
 
+.expander {
+    margin: 2rem 1rem 0 1rem;
+}
+
+.table-of-contents {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: stretch;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .spin-image {
+        animation: image-spin infinite 20s linear;
+    }
+}
+
+h1:has(+ a.back-to-top) {
+    margin-bottom: 0;
+
+    &:focus {
+        border-bottom: 2px solid white;
+    }
+}
+
+a.back-to-top {
+    margin-left: 1rem;
+}
+
 p:last-child {
     margin-bottom: 0;
     padding-bottom: 2rem;
@@ -26,6 +54,7 @@ strong[data-pwa-installed] {
     color: lightgreen;
 }
 
+.expander > button,
 #pwa-install-button {
     padding: 0;
     font-size: inherit;
@@ -39,9 +68,6 @@ strong[data-pwa-installed] {
 
 #logo-container {
     overflow: hidden;
-    max-width: 15rem;
-    max-height: 15rem;
-    width: 40%;
     float: right;
     margin-inline: 1rem;
     box-shadow: inset 5px 5px 20px 5px #000;
