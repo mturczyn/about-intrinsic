@@ -35,7 +35,13 @@ const Home = () => {
                             <img src={cSharpLogoHash} id="c-sharp-hash" />
                         </div>
                         <img src={jsLogo} alt="JavaScript" className="js" />
-                        <img src={reactLogo} alt="React" className="react" />
+                        <div>
+                            <img
+                                src={reactLogo}
+                                alt="React"
+                                className="react"
+                            />
+                        </div>
                     </div>
                     <p>{t('homePageIntroduction.thirdPara')}</p>
                     <Trans i18nKey="homePageIntroduction.fourthPara">

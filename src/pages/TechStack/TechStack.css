@@ -21,6 +21,17 @@ h6 {
     }
 }
 
+#logo-container {
+    overflow: hidden;
+    float: right;
+    border-radius: 50%;
+    box-shadow: inset 5px 5px 20px 5px #000;
+    place-items: center;
+    align-self: center;
+    display: grid;
+    padding: 20%;
+}
+
 @media (prefers-reduced-motion: no-preference) {
     .spin-image {
         animation: image-spin infinite 20s linear;
@@ -69,20 +80,4 @@ strong[data-pwa-installed] {
     color: rgb(20, 174, 234);
     text-decoration: underline;
     cursor: pointer;
-}
-
-#logo-container {
-    overflow: hidden;
-    float: right;
-    margin: 1rem;
-    box-shadow: inset 5px 5px 20px 5px #000;
-    place-items: center;
-    display: grid;
-}
-
-@media (max-width: 600px) {
-    #logo-container {
-        margin-left: 1rem;
-        margin-bottom: 1rem;
-    }
 }

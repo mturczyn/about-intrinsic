@@ -27,8 +27,12 @@
     grid-template-rows: 1fr 1fr;
     grid-template-areas: 'csharp js' 'csharp react';
 
-    & .react {
+    & div:has(.react) {
         grid-area: react;
+        margin: 0.5ch;
+    }
+
+    & .react {
         animation: rotateZ var(--aimation-duration) infinite linear;
     }
 

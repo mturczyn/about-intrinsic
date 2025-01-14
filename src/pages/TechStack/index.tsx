@@ -84,7 +84,7 @@ const TechStack = () => {
                 expandedText={t('collapseTableOfContents')}
                 collapsedText={t('expandTableOfContents')}
             >
-                <div className="table-of-contents" id="table-of-contents">
+                <div className="table-of-contents">
                     <ul>
                         {skipLinks.map(({ text, header }, index) => (
                             <li key={index}>
