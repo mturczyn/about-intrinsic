@@ -2,10 +2,13 @@ import reactLogo from 'react-logo.svg'
 import './TechStack.css'
 import { useTranslation, Trans } from 'react-i18next'
 import { AnchorWithNewPage } from 'components/AnchorWithNewPage'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { usePwaInstallerContext } from 'hooks/usePwaInstallerContext'
 import { usePageTitle } from 'hooks/usePageTitle'
 import { Link } from 'react-router-dom'
+import { Expander } from 'components/Expander'
+import { SkipLink } from 'components/SkipLink'
+import { HeaderWithSkipLink } from 'components/HeaderWithSkipLink'
 
 export const PAGE_TITLE =
     'Intrinsic | Web Development and Programming | Technology stack'
@@ -13,6 +16,8 @@ export const PAGE_TITLE =
 const TechStack = () => {
     const [pwaInstalled, setPwaInstalled] = useState(false)
     const pwaInstaller = usePwaInstallerContext()
+    const expanderRef = useRef<HTMLDivElement>(null)
+    const tableOfContentsRef = useRef<HTMLUListElement>(null)
 
     const pwaInstallationSupported = !!pwaInstaller
 
@@ -44,6 +49,15 @@ const TechStack = () => {
         }
     }, [])
 
+    const createHeader = (title: string) => (
+        <HeaderWithSkipLink
+            scrollTo={expanderRef.current}
+            title={title}
+            linkToSelf={(skipLink) => <li>{skipLink}</li>}
+            tableOfContentsElement={tableOfContentsRef.current}
+        />
+    )
+
     return (
         <>
             <div id="logo-container">
@@ -57,10 +71,20 @@ const TechStack = () => {
                 />
             </div>
 
-            <h1>{t('Theming')}</h1>
+            <Expander
+                ref={expanderRef}
+                expandedText={t('collapseTableOfContents')}
+                collapsedText={t('expandTableOfContents')}
+            >
+                <ul ref={tableOfContentsRef}></ul>
+            </Expander>
+
+            {createHeader(t('Theming'))}
+
             <p>{t('themingDescription')}</p>
 
-            <h1>{t('frameworkAndLibraries')}</h1>
+            {createHeader(t('frameworkAndLibraries'))}
+
             <Trans>
                 <p>
                     To create this website, I have used React framework, in
@@ -78,7 +102,8 @@ const TechStack = () => {
                 </p>
             </Trans>
 
-            <h1>{t('PWA and service workers')}</h1>
+            {createHeader(t('PWA and service workers'))}
+
             <p>
                 {t(
                     'By specifying manifest file for the webpage correctly, I have enabled this page to work as PWA (so it is installable as application). Moreover, I have added offline support using service workers (page can be still reachable, when user is offline).'
@@ -124,7 +149,8 @@ const TechStack = () => {
                 </p>
             </Trans>
 
-            <h1>Docker</h1>
+            {createHeader('Docker')}
+
             <Trans>
                 <p>
                     Docker allows to package any application (such as this site)
@@ -143,7 +169,7 @@ const TechStack = () => {
                 </p>
             </Trans>
 
-            <h1>{t('Hosting')}</h1>
+            {createHeader(t('Hosting'))}
 
             <p>
                 {t(
@@ -151,9 +177,8 @@ const TechStack = () => {
                 )}
             </p>
 
-            <h1>
-                {t('CICD')} {t('and')} {t('repository')}
-            </h1>
+            {createHeader(`${t('CICD')} ${t('and')} ${t('repository')}`)}
+
             <p>
                 {t('Code for the website is stored in')}{' '}
                 <AnchorWithNewPage
@@ -176,7 +201,8 @@ const TechStack = () => {
                 </p>
             </Trans>
 
-            <h1>{t('aiServerOverviewTitle')}</h1>
+            {createHeader(t('aiServerOverviewTitle'))}
+
             <Trans i18nKey={'aiServerOverview'}>
                 <p>
                     <Link to="/chat"></Link>
