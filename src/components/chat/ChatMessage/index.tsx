@@ -43,8 +43,10 @@ export const ChatMessage = ({
                             const button = e.target as HTMLButtonElement
                             const preElement = button?.parentElement
                                 ?.previousSibling as HTMLPreElement
-                            if (!preElement) return
-                            navigator.clipboard.writeText(preElement.innerText)
+
+                            navigator.clipboard.writeText(
+                                preElement?.innerText ?? ''
+                            )
                         }}
                         className="copyToClipboard"
                     >
