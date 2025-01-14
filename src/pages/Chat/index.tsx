@@ -1,18 +1,13 @@
-import { checkModelsAvailable, fetchAiResponse, Model } from 'utils/AiApi'
-import {
-    TouchEventHandler,
-    UIEvent,
-    useEffect,
-    useRef,
-    useState,
-    WheelEventHandler,
-} from 'react'
+import { LanguageModel } from 'utils/aiApi/LanguageModel'
+import { checkModelsAvailable } from 'utils/aiApi/checkModelsAvailable'
+import { fetchAiResponse } from 'utils/aiApi/fetchAiResponse'
+import { UIEvent, useEffect, useRef, useState, WheelEventHandler } from 'react'
 import './Chat.css'
-import Markdown from 'react-markdown'
 import { useTranslation } from 'react-i18next'
 import clsx from 'clsx'
 import { usePageTitle } from 'hooks/usePageTitle'
-import { createPortal } from 'react-dom'
+import { ChatMessage } from 'components/chat/ChatMessage'
+import { ChatOffline } from 'components/chat/ChatOffline'
 
 type ChatMessageType = 'sent' | 'received'
 
@@ -26,7 +21,7 @@ const Chat = () => {
     const mouseIsDown = useRef(false)
     const [messages, setMessages] = useState<ChatMessage[]>([])
     const [aiAnswer, setAiAnswer] = useState<string>('')
-    const [modelsAvailable, setModelsAvailable] = useState<Model[]>()
+    const [modelsAvailable, setModelsAvailable] = useState<LanguageModel[]>()
     const [aiAnswerDone, setAiAnswerDone] = useState(true)
     const [shouldScrollToLastMessage, setShouldScrollToLastMessage] =
         useState(true)
@@ -200,70 +195,8 @@ const Chat = () => {
                     </div>
                 </div>
             ) : (
-                <>
-                    <h1>{t('chatFeatureTitle')}</h1>
-                    <p>{t('chatFeatureIntro')}</p>
-                    <p>{t('chatFeatureOfflineNotice')}</p>
-                    <p>{t('chatFeatureContact')}</p>
-                </>
+                <ChatOffline />
             )}
-        </>
-    )
-}
-
-const ChatMessage = ({
-    text,
-    className,
-}: {
-    text: string
-    className?: string
-}) => {
-    const divMarkdownContainerRef = useRef<HTMLDivElement>(null)
-    const preRefs = useRef<HTMLPreElement[]>([])
-    const [divRefs, setDivRefs] = useState<HTMLDivElement[]>([])
-    const { t } = useTranslation()
-
-    useEffect(() => {
-        if (!divMarkdownContainerRef.current) return
-        const preElements =
-            divMarkdownContainerRef.current.querySelectorAll('pre')
-
-        const newDivRefs: HTMLDivElement[] = []
-
-        preElements.forEach((preElement) => {
-            if (!preRefs.current.find((r) => r === preElement)) {
-                preRefs.current.push(preElement)
-                const adjacentDiv = document.createElement('div')
-                newDivRefs.push(adjacentDiv)
-                preElement.insertAdjacentElement('afterend', adjacentDiv)
-            }
-        })
-
-        if (newDivRefs.length) setDivRefs((refs) => [...refs, ...newDivRefs])
-    }, [text])
-
-    return (
-        <>
-            {divRefs.map((x) =>
-                createPortal(
-                    <button
-                        onClick={(e) => {
-                            const button = e.target as HTMLButtonElement
-                            const preElement = button?.parentElement
-                                ?.previousSibling as HTMLPreElement
-                            if (!preElement) return
-                            navigator.clipboard.writeText(preElement.innerText)
-                        }}
-                        className="copyToClipboard"
-                    >
-                        {t('copyToClipboard')}
-                    </button>,
-                    x
-                )
-            )}
-            <div className={className} ref={divMarkdownContainerRef}>
-                <Markdown>{text}</Markdown>
-            </div>
         </>
     )
 }
