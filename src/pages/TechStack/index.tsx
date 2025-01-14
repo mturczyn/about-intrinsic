@@ -2,13 +2,12 @@ import reactLogo from 'react-logo.svg'
 import './TechStack.css'
 import { useTranslation, Trans } from 'react-i18next'
 import { AnchorWithNewPage } from 'components/AnchorWithNewPage'
-import { useEffect, useRef, useState } from 'react'
+import { RefObject, useEffect, useRef, useState } from 'react'
 import { usePwaInstallerContext } from 'hooks/usePwaInstallerContext'
 import { usePageTitle } from 'hooks/usePageTitle'
 import { Link } from 'react-router-dom'
 import { Expander } from 'components/Expander'
 import { SkipLink } from 'components/SkipLink'
-import { HeaderWithSkipLink } from 'components/HeaderWithSkipLink'
 
 export const PAGE_TITLE =
     'Intrinsic | Web Development and Programming | Technology stack'
@@ -17,7 +16,13 @@ const TechStack = () => {
     const [pwaInstalled, setPwaInstalled] = useState(false)
     const pwaInstaller = usePwaInstallerContext()
     const expanderRef = useRef<HTMLDivElement>(null)
-    const tableOfContentsRef = useRef<HTMLUListElement>(null)
+    const themingHeader = useRef<HTMLHeadingElement>(null)
+    const frameworkAndLibrariesHeader = useRef<HTMLHeadingElement>(null)
+    const pwaAndServiceWorkersHeader = useRef<HTMLHeadingElement>(null)
+    const dockerHeader = useRef<HTMLHeadingElement>(null)
+    const hostingHeader = useRef<HTMLHeadingElement>(null)
+    const cicdAndRepositoryHeader = useRef<HTMLHeadingElement>(null)
+    const aiServerOverviewHeader = useRef<HTMLHeadingElement>(null)
 
     const pwaInstallationSupported = !!pwaInstaller
 
@@ -49,15 +54,41 @@ const TechStack = () => {
         }
     }, [])
 
-    const createHeader = (title: string) => (
-        <HeaderWithSkipLink
-            skipLinkClassName="back-to-top"
-            scrollTo={expanderRef.current}
-            title={title}
-            linkToSelf={(skipLink) => <li>{skipLink}</li>}
-            tableOfContentsElement={tableOfContentsRef.current}
-        />
+    const createHeader = (
+        title: string,
+        ref: RefObject<HTMLHeadingElement>
+    ) => (
+        <>
+            <h1 ref={ref} tabIndex={1}>
+                {title}
+            </h1>
+            <SkipLink
+                getScrollTo={() => expanderRef.current}
+                className="back-to-top"
+            >
+                {t('backToTop')}
+            </SkipLink>
+        </>
     )
+
+    const skipLinks = [
+        { text: t('Theming'), header: themingHeader },
+        {
+            text: t('frameworkAndLibraries'),
+            header: frameworkAndLibrariesHeader,
+        },
+        {
+            text: t('PWA and service workers'),
+            header: pwaAndServiceWorkersHeader,
+        },
+        { text: 'Docker', header: dockerHeader },
+        { text: t('Hosting'), header: hostingHeader },
+        {
+            text: `${t('CICD')} ${t('and')} ${t('repository')}`,
+            header: cicdAndRepositoryHeader,
+        },
+        { text: t('aiServerOverviewTitle'), header: aiServerOverviewHeader },
+    ]
 
     return (
         <>
@@ -67,8 +98,16 @@ const TechStack = () => {
                 expandedText={t('collapseTableOfContents')}
                 collapsedText={t('expandTableOfContents')}
             >
-                <div className="table-of-contents">
-                    <ul ref={tableOfContentsRef}></ul>
+                <div className="table-of-contents" id="table-of-contents">
+                    <ul>
+                        {skipLinks.map(({ text, header }, index) => (
+                            <li key={index}>
+                                <SkipLink getScrollTo={() => header.current}>
+                                    {text}
+                                </SkipLink>
+                            </li>
+                        ))}
+                    </ul>
 
                     <div id="logo-container">
                         <img
@@ -80,11 +119,14 @@ const TechStack = () => {
                 </div>
             </Expander>
 
-            {createHeader(t('Theming'))}
+            {createHeader(t('Theming'), themingHeader)}
 
             <p>{t('themingDescription')}</p>
 
-            {createHeader(t('frameworkAndLibraries'))}
+            {createHeader(
+                t('frameworkAndLibraries'),
+                frameworkAndLibrariesHeader
+            )}
 
             <Trans>
                 <p>
@@ -103,7 +145,10 @@ const TechStack = () => {
                 </p>
             </Trans>
 
-            {createHeader(t('PWA and service workers'))}
+            {createHeader(
+                t('PWA and service workers'),
+                pwaAndServiceWorkersHeader
+            )}
 
             <p>
                 {t(
@@ -150,7 +195,7 @@ const TechStack = () => {
                 </p>
             </Trans>
 
-            {createHeader('Docker')}
+            {createHeader('Docker', dockerHeader)}
 
             <Trans>
                 <p>
@@ -170,7 +215,7 @@ const TechStack = () => {
                 </p>
             </Trans>
 
-            {createHeader(t('Hosting'))}
+            {createHeader(t('Hosting'), hostingHeader)}
 
             <p>
                 {t(
@@ -178,7 +223,10 @@ const TechStack = () => {
                 )}
             </p>
 
-            {createHeader(`${t('CICD')} ${t('and')} ${t('repository')}`)}
+            {createHeader(
+                `${t('CICD')} ${t('and')} ${t('repository')}`,
+                cicdAndRepositoryHeader
+            )}
 
             <p>
                 {t('Code for the website is stored in')}{' '}
@@ -202,7 +250,7 @@ const TechStack = () => {
                 </p>
             </Trans>
 
-            {createHeader(t('aiServerOverviewTitle'))}
+            {createHeader(t('aiServerOverviewTitle'), aiServerOverviewHeader)}
 
             <Trans i18nKey={'aiServerOverview'}>
                 <p>
