@@ -1,0 +1,96 @@
+:root {
+    --hover-transition-duration: 500ms;
+    --alpha-level: 0.7;
+    --expand-bezier: cubic-bezier(0, 1.6, 1, 1.2);
+    --collapse-bezier: cubic-bezier(1, -0.6, 0.4, 1);
+}
+
+.navbar {
+    box-sizing: border-box;
+    max-width: min(60ch, 100%);
+    margin: 0 auto;
+    display: flex;
+    align-items: stretch;
+
+    & > div:has(.hamburger-container) {
+        flex: 1;
+        position: relative;
+        & > .hamburger-container {
+            padding-inline-start: 1ch;
+            width: fit-content;
+            height: 100%;
+            display: grid;
+            align-items: center;
+        }
+    }
+}
+
+button.langButton:hover {
+    cursor: pointer;
+    filter: brightness(0.5);
+}
+
+button.langButton span {
+    opacity: 0;
+}
+
+button.langButton {
+    align-self: center;
+    margin: 0.5em;
+    margin-left: 0;
+    max-width: 2.5rem;
+    max-height: 2.5rem;
+    border: none;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+    background-size: cover;
+}
+
+nav {
+    overflow: hidden;
+    position: absolute;
+    box-shadow: 0 2rem 2rem 0 #000;
+    background: rgb(var(--main-bg-color), var(--alpha-level));
+    backdrop-filter: blur(20px);
+
+    &:not(.isOpen) {
+        transition: height 0.4s var(--expand-bezier);
+    }
+
+    &.isOpen {
+        transition: height 0.4s var(--collapse-bezier);
+    }
+
+    & > a {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        text-decoration: none;
+        color: rgb(var(--main-color));
+        -webkit-transition: background-color var(--hover-transition-duration)
+            linear;
+        -moz-transition: background-color var(--hover-transition-duration)
+            linear;
+        -o-transition: background-color var(--hover-transition-duration) linear;
+        -ms-transition: background-color var(--hover-transition-duration) linear;
+        transition: background-color var(--hover-transition-duration) linear;
+    }
+}
+
+.current-location,
+nav > a:hover {
+    background-color: rgb(var(--secondary-bg-color), var(--alpha-level));
+}
+
+nav > a:hover,
+nav > a:hover:visited {
+    color: rgb(var(--secondary-color));
+}
+
+nav > a,
+nav > a:visited {
+    color: rgb(var(--main-color));
+}

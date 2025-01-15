@@ -21,7 +21,7 @@ h6 {
     }
 }
 
-#logo-container {
+.logo-container {
     overflow: hidden;
     float: right;
     border-radius: 50%;
@@ -56,11 +56,11 @@ p:last-child {
     padding-bottom: 2rem;
 }
 
-#pwa-installation {
+.pwa-installation {
     margin-inline: 1rem;
 }
 
-#pwa-browser-support-note {
+.pwa-browser-support-note {
     margin: 0;
     margin-inline-start: 1ch;
     font-weight: normal;
@@ -71,7 +71,7 @@ strong[data-pwa-installed] {
 }
 
 .expander > button,
-#pwa-install-button {
+.pwa-install-button {
     padding: 0;
     font-size: inherit;
     background: none !important;

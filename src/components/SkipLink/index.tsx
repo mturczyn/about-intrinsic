@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react'
-import './SkipLink.css'
+import styles from './SkipLink.module.css'
 
 export const SkipLink = ({
     getScrollTo,

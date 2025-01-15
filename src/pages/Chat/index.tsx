@@ -2,7 +2,7 @@ import { LanguageModel } from 'utils/aiApi/LanguageModel'
 import { checkModelsAvailable } from 'utils/aiApi/checkModelsAvailable'
 import { fetchAiResponse } from 'utils/aiApi/fetchAiResponse'
 import { UIEvent, useEffect, useRef, useState, WheelEventHandler } from 'react'
-import './Chat.css'
+import styles from './Chat.module.css'
 import { useTranslation } from 'react-i18next'
 import clsx from 'clsx'
 import { usePageTitle } from 'hooks/usePageTitle'
@@ -148,7 +148,7 @@ const Chat = () => {
     return (
         <>
             {modelToUse ? (
-                <div className="chat-with-input-container">
+                <div className={styles['chat-with-input-container']}>
                     <div
                         ref={chatContainerRef}
                         onMouseDown={() => (mouseIsDown.current = true)}
@@ -157,35 +157,45 @@ const Chat = () => {
                         onTouchEnd={() => (touched.current = false)}
                         onWheel={handleWheel}
                         onScroll={handleChatScroll}
-                        className="chat-container"
+                        className={styles['chat-container']}
                     >
                         {messages.map((message, index) => (
                             <ChatMessage
+                                copyToClipboardButtonClassName={
+                                    styles.copyToClipboard
+                                }
                                 key={index}
-                                className={`message ${
+                                className={`${styles.message} ${
                                     message.type === 'sent'
-                                        ? 'sent'
-                                        : 'received'
+                                        ? styles.sent
+                                        : styles.received
                                 }`}
                                 text={message.text}
                             />
                         ))}
                         {aiAnswer && (
                             <ChatMessage
+                                copyToClipboardButtonClassName={
+                                    styles.copyToClipboard
+                                }
                                 text={aiAnswer}
-                                className={'message received'}
+                                className={clsx(
+                                    styles.message,
+                                    styles.received
+                                )} //{'message received'}
                             />
                         )}
                     </div>
-                    <div id="user-message-wrapper">
+                    <div className={styles['user-message-wrapper']}>
                         <button
                             onClick={() => setShouldScrollToLastMessage(true)}
                             className={clsx({
-                                'scroll-down': true,
-                                'scroll-down-hidden': shouldScrollToLastMessage,
+                                [styles['scroll-down']]: true,
+                                [styles['scroll-down-hidden']]:
+                                    shouldScrollToLastMessage,
                             })}
                         >
-                            <i className="arrow-down"></i>
+                            <i className={styles['arrow-down']}></i>
                         </button>
 
                         <textarea

@@ -1,5 +1,5 @@
 import reactLogo from 'images/react-logo.svg'
-import './TechStack.css'
+import styles from './TechStack.module.css'
 import { useTranslation, Trans } from 'react-i18next'
 import { AnchorWithNewPage } from 'components/AnchorWithNewPage'
 import { useEffect, useRef, useState } from 'react'
@@ -79,12 +79,12 @@ const TechStack = () => {
     return (
         <>
             <Expander
-                className="expander"
+                className={styles['expander']}
                 ref={expanderRef}
                 expandedText={t('collapseTableOfContents')}
                 collapsedText={t('expandTableOfContents')}
             >
-                <div className="table-of-contents">
+                <div className={styles['table-of-contents']}>
                     <ul>
                         {skipLinks.map(({ text, header }, index) => (
                             <li key={index}>
@@ -95,10 +95,10 @@ const TechStack = () => {
                         ))}
                     </ul>
 
-                    <div id="logo-container">
+                    <div className={styles['logo-container']}>
                         <img
                             src={reactLogo}
-                            className="spin-image"
+                            className={styles['spin-image']}
                             alt="React logo"
                         />
                     </div>
@@ -147,17 +147,20 @@ const TechStack = () => {
                     'By specifying manifest file for the webpage correctly, I have enabled this page to work as PWA (so it is installable as application). Moreover, I have added offline support using service workers (page can be still reachable, when user is offline).'
                 )}
             </p>
-            <div id="pwa-installation">
+            <div className={styles['pwa-installation']}>
                 {pwaInstalled ? (
                     <strong data-pwa-installed>
                         {t('Already installed as PWA')}
                     </strong>
                 ) : pwaInstallationSupported ? (
                     <>
-                        <button id="pwa-install-button" onClick={installPwa}>
+                        <button
+                            className={styles['pwa-install-button']}
+                            onClick={installPwa}
+                        >
                             {t('Install the page as PWA')}
                         </button>
-                        <strong id="pwa-browser-support-note">
+                        <strong className={styles['pwa-browser-support-note']}>
                             {t(
                                 '(if link is not working, try different browser, as some browsers, like Opera, do not support PWAs)'
                             )}

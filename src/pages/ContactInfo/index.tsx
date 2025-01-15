@@ -1,5 +1,5 @@
 import { BsTelephone } from 'react-icons/bs'
-import './ContactInfo.css'
+import styles from './ContactInfo.module.css'
 import { MdOutlineEmail } from 'react-icons/md'
 import { CiLinkedin } from 'react-icons/ci'
 import { FaStackOverflow } from 'react-icons/fa'
@@ -21,10 +21,10 @@ const ContactInfo = () => {
     usePageTitle(t(PAGE_TITLE))
 
     return (
-        <header className="contact-card">
+        <header className={styles['contact-card']}>
             <img src={websiteLogo} alt="Intrinsic Michał Turczyn logo"></img>
             <h1>INTRINSIC</h1>
-            <div className="contact-info-card">
+            <div className={styles['contact-info-card']}>
                 <ContactInfoEntry icon={<BsTelephone />}>
                     <a href={`tel:${PHONE_NUMBER.replace(' ', '')}`}>
                         {PHONE_NUMBER}

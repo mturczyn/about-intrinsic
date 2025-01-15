@@ -77,7 +77,7 @@ div.chat-with-input-container {
     }
 }
 
-#user-message-wrapper {
+.user-message-wrapper {
     position: relative;
     display: grid;
 

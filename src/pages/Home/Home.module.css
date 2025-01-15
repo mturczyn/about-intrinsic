@@ -44,7 +44,7 @@
         position: relative;
         grid-area: csharp;
 
-        & #c-sharp-hash {
+        & .c-sharp-hash {
             position: absolute;
             height: 20%;
             left: 32%;

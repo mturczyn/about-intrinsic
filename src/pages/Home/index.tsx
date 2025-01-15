@@ -10,7 +10,7 @@ import cSharpLogoHash from 'images/programming-languages-logo/c-sharp-hash.png'
 import cSharpLogoWithoutHash from 'images/programming-languages-logo/c-sharp-without-hash.png'
 import jsLogo from 'images/programming-languages-logo/js-logo.webp'
 import reactLogo from 'images/react-logo.svg'
-import './Home.css'
+import styles from './Home.module.css'
 import { Trans, useTranslation } from 'react-i18next'
 import { usePageTitle } from 'hooks/usePageTitle'
 
@@ -24,22 +24,29 @@ const Home = () => {
     return (
         <>
             <div>
-                <header className="home-header">
+                <header className={styles['home-header']}>
                     <img src={authorImage} alt="me" />
                     <h1>{t('helloWithIntro')}</h1>
                     <p>{t('homePageIntroduction.firstPara')}</p>
                     <p>{t('homePageIntroduction.secondPara')}</p>
-                    <div className="programming-languages">
-                        <div className="csharp">
+                    <div className={styles['programming-languages']}>
+                        <div className={styles['csharp']}>
                             <img src={cSharpLogoWithoutHash} alt="C#" />
-                            <img src={cSharpLogoHash} id="c-sharp-hash" />
+                            <img
+                                src={cSharpLogoHash}
+                                className={styles['c-sharp-hash']}
+                            />
                         </div>
-                        <img src={jsLogo} alt="JavaScript" className="js" />
+                        <img
+                            src={jsLogo}
+                            alt="JavaScript"
+                            className={styles['js']}
+                        />
                         <div>
                             <img
                                 src={reactLogo}
                                 alt="React"
-                                className="react"
+                                className={styles['react']}
                             />
                         </div>
                     </div>
@@ -61,7 +68,7 @@ const Home = () => {
                         'I have worked for following companies throughout my career:'
                     )}
                 </p>
-                <div className="logos">
+                <div className={styles['logos']}>
                     <EmployersLogos />
                     <EmployersLogos />
                 </div>
@@ -71,7 +78,7 @@ const Home = () => {
 }
 
 const EmployersLogos = () => (
-    <ul role="list" className="logos-slide">
+    <ul role="list" className={styles['logos-slide']}>
         <li>
             <img src={ocuco} alt="Ocuco" />
         </li>

@@ -1,3 +1,4 @@
+import styles from './Navbar.module.css'
 import './Navbar.css'
 import { appRoutes } from 'components/AppRouter/routesDefinition'
 import plFlag from 'images/flags/pl.svg'
@@ -46,9 +47,12 @@ export const Navbar = () => {
 
     return (
         <>
-            <div className="navbar">
+            <div className={styles['navbar']}>
                 <div>
-                    <div ref={menuButtonRef}>
+                    <div
+                        className={styles['hamburger-container']}
+                        ref={menuButtonRef}
+                    >
                         <Hamburger
                             toggled={navigationMenuOpen}
                             toggle={(value) => setNavigationMenuOpen(value)}
@@ -63,14 +67,14 @@ export const Navbar = () => {
                         backgroundImage: 'url(' + CSS.escape(plFlag) + ')',
                         backgroundPosition: '0px 0px',
                     }}
-                    className="langButton"
+                    className={styles['langButton']}
                 >
                     <span>PL</span>
                 </button>
                 <button
                     ref={engButtonRef}
                     onClick={() => changeLanguage(SUPPORTED_LANGUAGES.en)}
-                    className="langButton"
+                    className={styles['langButton']}
                     style={{
                         backgroundImage: 'url(' + CSS.escape(gbFlag) + ')',
                     }}
@@ -93,7 +97,8 @@ const NavigationMenu = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
                     key={i.path + i.name}
                     to={i.path}
                     className={clsx({
-                        'current-location': location.pathname === i.path,
+                        [styles['current-location']]:
+                            location.pathname === i.path,
                     })}
                 >
                     {t(i.name)}

@@ -6,7 +6,7 @@ import {
     useRef,
     useState,
 } from 'react'
-import './Expander.css'
+import styles from './Expander.module.css'
 
 type ExpanderProps = PropsWithChildren & {
     expandedText: string
@@ -34,7 +34,7 @@ export const Expander = forwardRef(
         return (
             <div ref={forwardedRef} className={className}>
                 <button onClick={() => setExpanded((x) => !x)}>{text}</button>
-                <div ref={expanderRef} className="expanderContainer">
+                <div ref={expanderRef} className={styles['expanderContainer']}>
                     {children}
                 </div>
             </div>

@@ -6,9 +6,11 @@ import Markdown from 'react-markdown'
 export const ChatMessage = ({
     text,
     className,
+    copyToClipboardButtonClassName,
 }: {
     text: string
     className?: string
+    copyToClipboardButtonClassName?: string
 }) => {
     const divMarkdownContainerRef = useRef<HTMLDivElement>(null)
     const preRefs = useRef<HTMLPreElement[]>([])
@@ -48,7 +50,7 @@ export const ChatMessage = ({
                                 preElement?.innerText ?? ''
                             )
                         }}
-                        className="copyToClipboard"
+                        className={copyToClipboardButtonClassName}
                     >
                         {t('copyToClipboard')}
                     </button>,
