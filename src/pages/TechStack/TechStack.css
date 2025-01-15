@@ -1,0 +1,12 @@
+h1:has(+ a.back-to-top) {
+    margin-bottom: 0;
+
+    &:focus {
+        border-bottom: 2px solid white;
+        border-top: 2px solid white;
+    }
+}
+
+a.back-to-top {
+    margin-left: 1rem;
+}

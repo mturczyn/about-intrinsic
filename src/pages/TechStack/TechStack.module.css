@@ -38,17 +38,13 @@ h6 {
     }
 }
 
-h1:has(+ a.back-to-top) {
-    margin-bottom: 0;
-
-    &:focus {
-        border-bottom: 2px solid white;
-        border-top: 2px solid white;
+@keyframes image-spin {
+    from {
+        transform: rotate(0deg);
     }
-}
-
-a.back-to-top {
-    margin-left: 1rem;
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 p:last-child {

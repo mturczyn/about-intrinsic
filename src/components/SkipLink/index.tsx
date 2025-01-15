@@ -1,5 +1,6 @@
 import { PropsWithChildren } from 'react'
 import styles from './SkipLink.module.css'
+import clsx from 'clsx'
 
 export const SkipLink = ({
     getScrollTo,
@@ -11,7 +12,7 @@ export const SkipLink = ({
 }) => {
     return (
         <a
-            className={className}
+            className={clsx(className, styles.skipLink)}
             onClick={() => {
                 const scrollTo = getScrollTo()
 

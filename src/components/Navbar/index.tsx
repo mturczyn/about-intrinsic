@@ -34,9 +34,9 @@ export const Navbar = () => {
 
         requestAnimationFrame(() => {
             if (navigationMenuOpen) {
-                navMenuRef.current?.classList.add('isOpen')
+                navMenuRef.current?.classList.add(styles.isOpen)
             } else {
-                navMenuRef.current?.classList.remove('isOpen')
+                navMenuRef.current?.classList.remove(styles.isOpen)
             }
         })
     }, [navigationMenuOpen])

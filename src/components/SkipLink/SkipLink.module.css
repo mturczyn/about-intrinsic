@@ -1,3 +1,3 @@
-a:hover {
+a.skipLink:hover {
     cursor: pointer;
 }

@@ -7,7 +7,10 @@ export const HeaderWithSkipLink = forwardRef(
         {
             title,
             getScrollTo,
-        }: { title: string; getScrollTo: () => HTMLElement | null },
+        }: {
+            title: string
+            getScrollTo: () => HTMLElement | null
+        },
         ref: ForwardedRef<HTMLHeadingElement>
     ) => {
         const { t } = useTranslation()

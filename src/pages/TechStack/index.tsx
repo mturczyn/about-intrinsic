@@ -1,5 +1,6 @@
 import reactLogo from 'images/react-logo.svg'
 import styles from './TechStack.module.css'
+import './TechStack.css'
 import { useTranslation, Trans } from 'react-i18next'
 import { AnchorWithNewPage } from 'components/AnchorWithNewPage'
 import { useEffect, useRef, useState } from 'react'
