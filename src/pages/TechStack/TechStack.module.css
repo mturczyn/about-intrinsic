@@ -16,8 +16,12 @@ h6 {
     grid-template-columns: 1fr 1fr;
     place-items: stretch;
 
-    & li {
-        margin-bottom: 1ch;
+    & ul {
+        list-style-type: square;
+        padding-left: 2ch;
+        & li {
+            margin-bottom: 1ch;
+        }
     }
 }
 
