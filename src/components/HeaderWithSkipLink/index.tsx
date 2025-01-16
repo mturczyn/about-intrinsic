@@ -1,28 +1,37 @@
 import { SkipLink } from 'components/SkipLink'
-import { forwardRef, ForwardedRef } from 'react'
+import { ReactNode, RefObject, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import { useTranslation } from 'react-i18next'
 
-export const HeaderWithSkipLink = forwardRef(
-    (
-        {
-            title,
-            getScrollTo,
-        }: {
-            title: string
-            getScrollTo: () => HTMLElement | null
-        },
-        ref: ForwardedRef<HTMLHeadingElement>
-    ) => {
-        const { t } = useTranslation()
-        return (
-            <>
-                <h1 ref={ref} tabIndex={1}>
-                    {title}
-                </h1>
-                <SkipLink getScrollTo={getScrollTo} className="back-to-top">
-                    {t('backToTop')}
-                </SkipLink>
-            </>
-        )
-    }
-)
+export const HeaderWithSkipLink = ({
+    title,
+    scrollTo,
+    tableOfContents,
+    renderSkipLink,
+}: {
+    title: string
+    scrollTo: RefObject<HTMLElement>
+    tableOfContents: HTMLElement | null
+    renderSkipLink: (children: ReactNode) => ReactNode
+}) => {
+    const { t } = useTranslation()
+    const innerRef = useRef<HTMLHeadingElement>(null)
+
+    return (
+        <>
+            {tableOfContents &&
+                createPortal(
+                    renderSkipLink(
+                        <SkipLink scrollTo={innerRef}>{title}</SkipLink>
+                    ),
+                    tableOfContents
+                )}
+            <h1 ref={innerRef} tabIndex={1}>
+                {title}
+            </h1>
+            <SkipLink scrollTo={scrollTo} className="back-to-top">
+                {t('backToTop')}
+            </SkipLink>
+        </>
+    )
+}

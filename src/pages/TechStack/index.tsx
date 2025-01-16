@@ -8,7 +8,6 @@ import { usePwaInstallerContext } from 'hooks/usePwaInstallerContext'
 import { usePageTitle } from 'hooks/usePageTitle'
 import { Link } from 'react-router-dom'
 import { Expander } from 'components/Expander'
-import { SkipLink } from 'components/SkipLink'
 import { HeaderWithSkipLink } from 'components/HeaderWithSkipLink'
 
 export const PAGE_TITLE =
@@ -18,13 +17,24 @@ const TechStack = () => {
     const [pwaInstalled, setPwaInstalled] = useState(false)
     const pwaInstaller = usePwaInstallerContext()
     const expanderRef = useRef<HTMLDivElement>(null)
-    const themingHeader = useRef<HTMLHeadingElement>(null)
-    const frameworkAndLibrariesHeader = useRef<HTMLHeadingElement>(null)
-    const pwaAndServiceWorkersHeader = useRef<HTMLHeadingElement>(null)
-    const dockerHeader = useRef<HTMLHeadingElement>(null)
-    const hostingHeader = useRef<HTMLHeadingElement>(null)
-    const cicdAndRepositoryHeader = useRef<HTMLHeadingElement>(null)
-    const aiServerOverviewHeader = useRef<HTMLHeadingElement>(null)
+    const tableOfContentsRef = useRef<HTMLUListElement>(null)
+    const [tableOfContentsElement, setTableOfContentsElement] =
+        useState<HTMLElement | null>(null)
+    const { t } = useTranslation()
+
+    usePageTitle(t(PAGE_TITLE))
+
+    useEffect(() => {
+        // If we want to check if the app runs as PWA, we must check
+        // against display mode defined in manifest file.
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+            setPwaInstalled(true)
+        }
+    }, [])
+
+    useEffect(() => {
+        setTableOfContentsElement(tableOfContentsRef.current)
+    }, [])
 
     const pwaInstallationSupported = !!pwaInstaller
 
@@ -44,38 +54,14 @@ const TechStack = () => {
         })
     }
 
-    const { t } = useTranslation()
-
-    usePageTitle(t(PAGE_TITLE))
-
-    useEffect(() => {
-        // If we want to check if the app runs as PWA, we must check
-        // against display mode defined in manifest file.
-        if (window.matchMedia('(display-mode: standalone)').matches) {
-            setPwaInstalled(true)
-        }
-    }, [])
-
-    const skipLinks = [
-        { text: t('Theming'), header: themingHeader },
-        {
-            text: t('frameworkAndLibraries'),
-            header: frameworkAndLibrariesHeader,
-        },
-        {
-            text: t('PWA and service workers'),
-            header: pwaAndServiceWorkersHeader,
-        },
-        { text: 'Docker', header: dockerHeader },
-        { text: t('Hosting'), header: hostingHeader },
-        {
-            text: `${t('CICD')} ${t('and')} ${t('repository')}`,
-            header: cicdAndRepositoryHeader,
-        },
-        { text: t('aiServerOverviewTitle'), header: aiServerOverviewHeader },
-    ]
-
-    const getExpanderRef = () => expanderRef.current
+    const createHeader = (title: string) => (
+        <HeaderWithSkipLink
+            title={title}
+            scrollTo={expanderRef}
+            tableOfContents={tableOfContentsElement}
+            renderSkipLink={(skipLink) => <li>{skipLink}</li>}
+        />
+    )
 
     return (
         <>
@@ -86,15 +72,7 @@ const TechStack = () => {
                 collapsedText={t('expandTableOfContents')}
             >
                 <div className={styles['table-of-contents']}>
-                    <ul>
-                        {skipLinks.map(({ text, header }, index) => (
-                            <li key={index}>
-                                <SkipLink getScrollTo={() => header.current}>
-                                    {text}
-                                </SkipLink>
-                            </li>
-                        ))}
-                    </ul>
+                    <ul ref={tableOfContentsRef}></ul>
 
                     <div className={styles['logo-container']}>
                         <img
@@ -106,19 +84,11 @@ const TechStack = () => {
                 </div>
             </Expander>
 
-            <HeaderWithSkipLink
-                title={t('Theming')}
-                getScrollTo={getExpanderRef}
-                ref={themingHeader}
-            />
+            {createHeader(t('Theming'))}
 
             <p>{t('themingDescription')}</p>
 
-            <HeaderWithSkipLink
-                title={t('frameworkAndLibraries')}
-                getScrollTo={getExpanderRef}
-                ref={frameworkAndLibrariesHeader}
-            />
+            {createHeader(t('frameworkAndLibraries'))}
 
             <Trans>
                 <p>
@@ -137,11 +107,7 @@ const TechStack = () => {
                 </p>
             </Trans>
 
-            <HeaderWithSkipLink
-                title={t('PWA and service workers')}
-                getScrollTo={getExpanderRef}
-                ref={pwaAndServiceWorkersHeader}
-            />
+            {createHeader(t('PWA and service workers'))}
 
             <p>
                 {t(
@@ -191,11 +157,7 @@ const TechStack = () => {
                 </p>
             </Trans>
 
-            <HeaderWithSkipLink
-                title={'Docker'}
-                getScrollTo={getExpanderRef}
-                ref={dockerHeader}
-            />
+            {createHeader('Docker')}
 
             <Trans>
                 <p>
@@ -215,11 +177,7 @@ const TechStack = () => {
                 </p>
             </Trans>
 
-            <HeaderWithSkipLink
-                title={t('Hosting')}
-                getScrollTo={getExpanderRef}
-                ref={hostingHeader}
-            />
+            {createHeader(t('Hosting'))}
 
             <p>
                 {t(
@@ -227,11 +185,7 @@ const TechStack = () => {
                 )}
             </p>
 
-            <HeaderWithSkipLink
-                title={`${t('CICD')} ${t('and')} ${t('repository')}`}
-                getScrollTo={getExpanderRef}
-                ref={cicdAndRepositoryHeader}
-            />
+            {createHeader(`${t('CICD')} ${t('and')} ${t('repository')}`)}
 
             <p>
                 {t('Code for the website is stored in')}{' '}
@@ -255,11 +209,7 @@ const TechStack = () => {
                 </p>
             </Trans>
 
-            <HeaderWithSkipLink
-                title={t('aiServerOverviewTitle')}
-                getScrollTo={getExpanderRef}
-                ref={aiServerOverviewHeader}
-            />
+            {createHeader(t('aiServerOverviewTitle'))}
 
             <Trans i18nKey={'aiServerOverview'}>
                 <p>

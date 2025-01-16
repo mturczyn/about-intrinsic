@@ -1,27 +1,27 @@
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren, RefObject } from 'react'
 import styles from './SkipLink.module.css'
 import clsx from 'clsx'
 
 export const SkipLink = ({
-    getScrollTo,
+    scrollTo,
     children,
     className,
 }: PropsWithChildren & {
-    getScrollTo: () => HTMLElement | null
+    scrollTo: RefObject<HTMLElement>
     className?: string
 }) => {
     return (
         <a
             className={clsx(className, styles.skipLink)}
             onClick={() => {
-                const scrollTo = getScrollTo()
+                if (!scrollTo.current) return
 
-                scrollTo?.scrollIntoView({
+                scrollTo.current.scrollIntoView({
                     behavior: 'smooth',
                     block: 'center',
                 })
 
-                scrollTo?.focus({ preventScroll: true })
+                scrollTo.current.focus({ preventScroll: true })
             }}
         >
             {children}
