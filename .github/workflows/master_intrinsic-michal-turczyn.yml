@@ -1,10 +1,10 @@
 name: Build and deploy container app to Azure Web App - intrinsic-michal-turczyn
 
 on:
-  push:
-    branches:
-      - master
-      - features/docker-hub-for-images
+  # push:
+  #   branches:
+  #     - master
+  #     - features/docker-hub-for-images
   workflow_dispatch:
 
 env:
