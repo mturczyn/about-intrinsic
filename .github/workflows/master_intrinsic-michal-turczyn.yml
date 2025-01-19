@@ -7,6 +7,10 @@ on:
       - features/docker-hub-for-images
   workflow_dispatch:
 
+env:
+  DOCKER_BASE_URL: index.docker.io
+  DOCKER_IMAGE_NAME_AND_TAG: about-intrinsic:latest
+
 jobs:
   test:
     runs-on: 'ubuntu-latest'
@@ -36,6 +40,7 @@ jobs:
       with:
         resourceGroupName: intrinsic-rg
         template: ./deploy/main.bicep
+        parameters: dockerImageFullUrl=${{ env.DOCKER_BASE_URL }}/${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGE_NAME_AND_TAG }}
   
   build:
     needs: [deploy-infrastructure]
@@ -59,7 +64,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: index.docker.io/turekturek/about-intrinsic:latest
+        tags: ${{ env.DOCKER_BASE_URL }}/${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGE_NAME_AND_TAG }}
         file: ./Dockerfile
         build-args: VITE_AI_SERVER_HOST=https://ai-prod-webapp.azurewebsites.net
 
@@ -68,13 +73,13 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ needs.deploy-infrastructure.outputs.webAppName }}
-        images: 'index.docker.io/turekturek/about-intrinsic:latest'
+        images: '${{ env.DOCKER_BASE_URL }}/${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGE_NAME_AND_TAG }}'
       
     - name: Set Docker Settings in Web App
       uses: azure/cli@v2
       with: 
         inlineScript: |
           az webapp config container set \
-            --docker-registry-server-url 'index.docker.io/turekturek/about-intrinsic:latest' \
+            --docker-registry-server-url '${{ env.DOCKER_BASE_URL }}/${{ secrets.DOCKER_USERNAME }}/${{ env.DOCKER_IMAGE_NAME_AND_TAG }}' \
             --name ${{ needs.deploy-infrastructure.outputs.webAppName }} \
             --resource-group intrinsic-rg

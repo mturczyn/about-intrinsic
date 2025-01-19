@@ -26,7 +26,6 @@ const Home = () => {
             <div>
                 <header className={styles['home-header']}>
                     <img src={authorImage} alt="me" />
-                    <h1>Long live Docker!</h1>
                     <h1>{t('helloWithIntro')}</h1>
                     <p>{t('homePageIntroduction.firstPara')}</p>
                     <p>{t('homePageIntroduction.secondPara')}</p>
