@@ -12,5 +12,4 @@ module webApp 'webAppWithPlan.bicep' = {
   }
 }
 
-output containerRegistryName string = containerRegistry.outputs.containerRegistryName
 output webAppName string = webApp.outputs.webAppName

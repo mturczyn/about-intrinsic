@@ -1,35 +1,24 @@
-var location = resourceGroup().location
+@minLength(5)
+@maxLength(50)
+@description('Provide a globally unique name of your Azure Container Registry')
+param acrName string = '${uniqueString(resourceGroup().id)}testacr'
 
-resource containerRegistry 'Microsoft.ContainerRegistry/registries@2023-07-01' = {
+@description('Provide a location for the registry.')
+param location string = resourceGroup().location
+
+@description('Provide a tier of your Azure Container Registry.')
+param acrSku string = 'Basic'
+
+resource acrResource 'Microsoft.ContainerRegistry/registries@2023-01-01-preview' = {
+  name: acrName
+  location: location
   sku: {
-    name: 'Standard'
+    name: acrSku
   }
   properties: {
-    #disable-next-line BCP037
-    anonymousPullEnabled: false
-    adminUserEnabled: true
-    dataEndpointEnabled:  false
-    encryption: {
-      status: 'disabled'
-    }
-    policies: {
-      #disable-next-line BCP037
-      azureADAuthenticationAsArmPolicy: {
-        status: 'enabled'
-      }
-      retentionPolicy: { 
-        days: 7 
-        status: 'disabled'
-      }
-      #disable-next-line BCP037
-      softDeletePolicy: {
-        retentionDays: 7
-        status: 'disabled'
-      }
-    }
+    adminUserEnabled: false
   }
-  location: location
-  name: 'intrinsicweb'
 }
 
-output containerRegistryName string = containerRegistry.name
+@description('Output the login server property for later use')
+output loginServer string = acrResource.properties.loginServer
