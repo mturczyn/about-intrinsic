@@ -1,5 +1,6 @@
 @allowed(['prod', 'nonprod'])
 param environmentType string
+param acrLoginServer string
 
 var location = resourceGroup().location
 var tags = { env: environmentType }
@@ -26,11 +27,11 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2023-12-01' = {
 resource webApplication 'Microsoft.Web/sites@2023-12-01' = {
   name: webappName
   location: location
-  kind: 'app,linux,container'
+  kind: 'linux'
   properties: {
     serverFarmId: appServicePlan.id
     siteConfig: {
-      linuxFxVersion: 'DOCKER|intrinsicweb.azurecr.io/intrinsicweb/about-intrinsic:724fee6883ff4fa2ba1b5a9c4f1939687dafbcd0'
+      linuxFxVersion: 'DOCKER|${acrLoginServer}/about-intrinsic:latest'
     }
   }
   tags: tags
