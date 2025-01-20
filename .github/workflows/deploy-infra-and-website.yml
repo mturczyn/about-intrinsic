@@ -27,13 +27,15 @@ jobs:
         run: npm i
       - name: 'Run tests'
         run: npm run test
+    outputs:
+      AZURE_RESOURCEGROUP_NAME: ${{ env.AZURE_RESOURCEGROUP_NAME }}
 
   deploy-to-nonprod:
     needs: test
     uses: './.github/workflows/deploy-infra-and-website-to-env.yml'
     with:
       environmentType: 'nonprod'
-      resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
+      resourceGroupName: ${{ needs.test.outputs.AZURE_RESOURCEGROUP_NAME }}
       DOCKER_BASE_URL: index.docker.io
       DOCKER_IMAGE_NAME_AND_TAG: about-intrinsic:latest
     secrets:
@@ -46,7 +48,7 @@ jobs:
     uses: './.github/workflows/deploy-infra-and-website-to-env.yml'
     with:
       environmentType: 'prod'
-      resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
+      resourceGroupName: ${{ needs.test.outputs.AZURE_RESOURCEGROUP_NAME }}
       DOCKER_BASE_URL: index.docker.io
       DOCKER_IMAGE_NAME_AND_TAG: about-intrinsic:latest
     secrets:
