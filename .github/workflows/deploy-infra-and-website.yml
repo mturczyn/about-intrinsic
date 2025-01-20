@@ -48,7 +48,7 @@ jobs:
   deploy-to-prod:
     needs: [test, deploy-to-nonprod]
     if: |
-      always() && 
+      !cancelled() && 
       (needs.deploy-to-nonprod.result == 'skipped' || needs.deploy-to-nonprod.result == 'success')
     uses: './.github/workflows/deploy-infra-and-website-to-env.yml'
     with:
