@@ -7,40 +7,36 @@ on:
         type: string
       resourceGroupName:
         type: string
+      dockerBaseUrl:
+        type: string
+      dockerImageNameAndTag:
+        type: string
     secrets:
-      AZURE_CLIENT_ID:
+      dockerUsername:
         required: true
-      AZURE_TENANT_ID:
+      dockerPassword:
         required: true
-      AZURE_SUBSCRIPTION_ID:
-        required: true
-      AzureAppService_ContainerUsername:
-        required: true
-      AzureAppService_ContainerPassword:
+      azureCredentials:
         required: true
 
 jobs:
   deploy-infra:
-    environment:
-      name: 'production'
+    # environment:
+    #   name: 'production'
     runs-on: ubuntu-latest
     outputs:
-      containerRegistryName: ${{ steps.deploy-infrastructure.outputs.containerRegistryName }}
       webAppName: ${{ steps.deploy-infrastructure.outputs.webAppName }}
     steps:
     - uses: actions/checkout@v3
     - uses: azure/login@v1
       with:
-        client-id: ${{ secrets.AZURE_CLIENT_ID }}
-        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        creds: ${{ secrets.azureCredentials }}
     - uses: azure/arm-deploy@v1
       id: deploy-infrastructure
       with:
-        deploymentNumber: ${{ github.run_number }}
         resourceGroupName: ${{ inputs.resourceGroupName }}
         template: ./deploy/main.bicep
-        parameters: environmentType=${{ inputs.environmentType }}
+        parameters: environmentType=${{ inputs.environmentType }} dockerImageFullUrl=${{ inputs.dockerBaseUrl }}/${{ secrets.dockerUsername }}/${{ inputs.dockerImageNameAndTag }}
 
   build:
     runs-on: 'ubuntu-latest'
@@ -52,24 +48,24 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
 
-    - name: Log in to registry
-      uses: docker/login-action@v2
+    - name: Log in to Docker Hub
+      uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
       with:
-        registry: https://${{ needs.deploy-infra.outputs.containerRegistryName }}.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername }}
-        password: ${{ secrets.AzureAppService_ContainerPassword }}
+        username: ${{ secrets.dockerUsername }}
+        password: ${{ secrets.dockerPassword }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: ${{ needs.deploy-infra.outputs.containerRegistryName }}.azurecr.io/${{ secrets.AzureAppService_ContainerUsername }}/about-intrinsic:${{ github.sha }}
+        tags: ${{ inputs.dockerBaseUrl }}/${{ secrets.dockerUsername }}/${{ inputs.dockerImageNameAndTag }}
         file: ./Dockerfile
         build-args: VITE_AI_SERVER_HOST=https://ai-prod-webapp.azurewebsites.net
 
   deploy-app:
     runs-on: ubuntu-latest
     needs: [deploy-infra, build]
+    # Outputs URL
     environment:
       name: 'production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
@@ -78,20 +74,20 @@ jobs:
     - uses: azure/login@v1
       name: Sign in to Azure
       with:
-        client-id: ${{ secrets.AZURE_CLIENT_ID }}
-        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        creds: ${{ secrets.azureCredentials }}
+    
     - name: Deploy to Azure Web App
       id: deploy-to-webapp
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ needs.deploy-infra.outputs.webAppName }}
-        images: '${{ needs.deploy-infra.outputs.containerRegistryName }}.azurecr.io/${{ secrets.AzureAppService_ContainerUsername }}/about-intrinsic:${{ github.sha }}'
+        images: '${{ inputs.dockerBaseUrl }}/${{ secrets.dockerUsername }}/${{ inputs.dockerImageNameAndTag }}'
+    
     - name: Set Docker Settings in Web App
       uses: azure/cli@v2
       with: 
         inlineScript: |
           az webapp config container set \
-            --docker-registry-server-url 'https://${{ needs.deploy-infra.outputs.containerRegistryName }}.azurecr.io' \
+            --docker-registry-server-url 'https://${{ inputs.dockerBaseUrl }}' \
             --name ${{ needs.deploy-infra.outputs.webAppName }} \
             --resource-group ${{ inputs.resourceGroupName }}

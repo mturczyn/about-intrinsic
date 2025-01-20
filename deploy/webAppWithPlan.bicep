@@ -1,6 +1,7 @@
 @allowed(['prod', 'nonprod'])
 param environmentType string
-param acrLoginServer string
+@secure()
+param dockerImageFullUrl string
 
 var location = resourceGroup().location
 var tags = { env: environmentType }
@@ -31,7 +32,7 @@ resource webApplication 'Microsoft.Web/sites@2023-12-01' = {
   properties: {
     serverFarmId: appServicePlan.id
     siteConfig: {
-      linuxFxVersion: 'DOCKER|${acrLoginServer}/about-intrinsic:latest'
+      linuxFxVersion: 'DOCKER|${dockerImageFullUrl}'
     }
   }
   tags: tags
