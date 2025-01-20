@@ -46,8 +46,7 @@ jobs:
       dockerPassword: ${{ secrets.DOCKER_PASSWORD }}
 
   deploy-to-prod:
-    needs: [test, deploy-to-nonprod]
-    if: ${{ needs.deploy-to-nonprod.result == 'success' || needs.test.outputs.DEPLOY_NONPROD_ENV == 'false' }}
+    needs: [test]
     uses: './.github/workflows/deploy-infra-and-website-to-env.yml'
     with:
       environmentType: 'prod'
