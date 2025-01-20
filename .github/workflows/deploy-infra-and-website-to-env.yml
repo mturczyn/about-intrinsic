@@ -65,9 +65,10 @@ jobs:
   deploy-app:
     runs-on: ubuntu-latest
     needs: [deploy-infra, build]
-    # environment:
-    #   name: 'production'
-    #   url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    # Outputs URL
+    environment:
+      name: 'production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
     - uses: azure/login@v1
