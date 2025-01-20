@@ -8,11 +8,12 @@
 
 .home-header > img {
     border-radius: 10%;
-    max-height: 15rem;
+    /* max-height: 15rem; */
+    width: 30%;
     float: right;
     margin: 1.5rem;
     margin-right: 2rem;
-    height: 40vmin;
+    /* height: 40vmin; */
     pointer-events: none;
 }
 
