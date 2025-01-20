@@ -32,7 +32,7 @@ jobs:
       DEPLOY_NONPROD_ENV: ${{ env.DEPLOY_NONPROD_ENV }}
 
   deploy-to-nonprod:
-    if: ${{ needs.test.outputs.DEPLOY_NONPROD_ENV }}
+    if: ${{ needs.test.outputs.DEPLOY_NONPROD_ENV }} == ${{ false }}
     needs: test
     uses: './.github/workflows/deploy-infra-and-website-to-env.yml'
     with:
