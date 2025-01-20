@@ -37,6 +37,28 @@ Additional resources searched in order to resolve the issue:
     ```
     az webapp config container set --docker-custom-image-name MyDockerCustomImage --docker-registry-server-password StrongPassword --docker-registry-server-url https://{azure-container-registry-name}.azurecr.io --docker-registry-server-user DockerUserId --name MyWebApp --resource-group MyResourceGroup
     ```
+### 
+
+[In this commit in file `.github/workflows/master_intrinsic-michal-turczyn.yml`](https://github.com/mturczyn/about-intrinsic/blob/dcb988f0a15a63bf15e515d771265d1eb1e38b1c/.github/workflows/master_intrinsic-michal-turczyn.yml) we can see final version of deployment of docker image to webapp from pipeline:
+```
+deploy:
+  runs-on: ubuntu-latest
+  needs: build
+  environment:
+    name: 'production'
+    url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+  
+  steps:
+  - name: Deploy to Azure Web App
+    id: deploy-to-webapp
+    uses: azure/webapps-deploy@v2
+    with:
+      app-name: 'intrinsic-michal-turczyn'
+      slot-name: 'production'
+      publish-profile: ${{ secrets.AzureAppService_PublishProfile_74f8e300dad240ab93104d5863e0758e }}
+      images: 'intrinsicweb.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_b39ad9b085d94d62a5cac8feedfcc353 }}/about-intrinsic:${{ github.sha }}'
+```
+After the commit, this approach was changed in [this PR](https://github.com/mturczyn/about-intrinsic/pull/11/files), in favor of approach in this file [.github/workflows/deploy-infra-and-website-to-env.yml](https://github.com/mturczyn/about-intrinsic/blob/master/.github/workflows/deploy-infra-and-website-to-env.yml)
 
 # Dockerizing application
 
