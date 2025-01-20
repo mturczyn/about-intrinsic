@@ -4,7 +4,6 @@ on:
   push:
     branches:
     - master
-    - features/docker-hub-for-images
   workflow_dispatch:
 
 env:
