@@ -8,7 +8,7 @@ env:
 
 jobs:
   if-true: 
-    if: ${{ needs.test.outputs.DEPLOY_NONPROD_ENV == 'false' }}
+    if: ${{ env.DEPLOY_NONPROD_ENV == 'true' }}
     runs-on: 'ubuntu-latest'
     steps:
       - name: Checkout repository
@@ -16,7 +16,7 @@ jobs:
       - name: Echo message
         run: 'echo "Condition evaluated to true: Deploy to non-prod is enabled."'
   if-false: 
-    if: ${{ needs.test.outputs.DEPLOY_NONPROD_ENV }} == ${{ true }}
+    if: ${{ env.DEPLOY_NONPROD_ENV == 'false' }}
     runs-on: 'ubuntu-latest'
     steps:
       - name: Checkout repository
