@@ -36,22 +36,22 @@ jobs:
     with:
       environmentType: 'nonprod'
       resourceGroupName: ${{ needs.test.outputs.AZURE_RESOURCEGROUP_NAME }}
-      DOCKER_BASE_URL: index.docker.io
-      DOCKER_IMAGE_NAME_AND_TAG: about-intrinsic:latest
+      dockerBaseUrl: index.docker.io
+      dockerImageNameAndTag: about-intrinsic:latest
     secrets:
-      AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
-      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      azureCredentials: ${{ secrets.AZURE_CREDENTIALS }}
+      dockerUsername: ${{ secrets.DOCKER_USERNAME }}
+      dockerPassword: ${{ secrets.DOCKER_PASSWORD }}
 
   deploy-to-prod:
-    needs: [test]
+    needs: [test, deploy-to-nonprod]
     uses: './.github/workflows/deploy-infra-and-website-to-env.yml'
     with:
       environmentType: 'prod'
       resourceGroupName: ${{ needs.test.outputs.AZURE_RESOURCEGROUP_NAME }}
-      DOCKER_BASE_URL: index.docker.io
-      DOCKER_IMAGE_NAME_AND_TAG: about-intrinsic:latest
+      dockerBaseUrl: index.docker.io
+      dockerImageNameAndTag: about-intrinsic:latest
     secrets:
-      AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
-      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      azureCredentials: ${{ secrets.AZURE_CREDENTIALS }}
+      dockerUsername: ${{ secrets.DOCKER_USERNAME }}
+      dockerPassword: ${{ secrets.DOCKER_PASSWORD }}
