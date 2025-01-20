@@ -74,12 +74,14 @@ jobs:
       name: Sign in to Azure
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+    
     - name: Deploy to Azure Web App
       id: deploy-to-webapp
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ needs.deploy-infra.outputs.webAppName }}
         images: '${{ inputs.DOCKER_BASE_URL }}/${{ secrets.DOCKER_USERNAME }}/${{ inputs.DOCKER_IMAGE_NAME_AND_TAG }}'
+    
     - name: Set Docker Settings in Web App
       uses: azure/cli@v2
       with: 
