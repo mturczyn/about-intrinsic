@@ -25,7 +25,7 @@ export const en = {
                         experience other .NET frameworks, such as ASP.NET (Core, Razor Pages) or WPF. I also leanred JS along the way (HTML, CSS, JS)
                         and React framework.`,
         fourthPara:
-            '<0>I try to constantly learn and improve. After building this website, I started learning Next.js to explore React Server Components. I have created <0>other site</0> with Next.js as a learning project.</0>',
+            '<0>I try to constantly learn and improve. After building this website, I started learning Next.js to explore React Server Components. I have created <0>another site</0> with Next.js as a learning project, and also developed <1>another page</1> using TanStack Start to better explore SSR.</0>',
     },
     pastEmployers: 'Past employers',
     Poland: 'Poland',
