@@ -7,13 +7,11 @@ import { FaGithub } from 'react-icons/fa'
 import { AnchorWithNewPage } from 'components/AnchorWithNewPage'
 import websiteLogo from 'images/website-logo.svg'
 import { CiLocationOn } from 'react-icons/ci'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { usePageTitle } from 'hooks/usePageTitle'
 
 export const PAGE_TITLE =
     'Intrinsic | Web Development and Programming | Contact info'
-const PHONE_NUMBER = '503 536 506'
-const MAIL_ADDRESS = 'turek1992@o2.pl'
 
 const ContactInfo = () => {
     const { t } = useTranslation()
@@ -26,12 +24,18 @@ const ContactInfo = () => {
             <h1>INTRINSIC</h1>
             <div className={styles['contact-info-card']}>
                 <ContactInfoEntry icon={<BsTelephone />}>
-                    <a href={`tel:${PHONE_NUMBER.replace(' ', '')}`}>
-                        {PHONE_NUMBER}
-                    </a>
+                    <div title={t('protectedContactInfoNote')}>
+                        <Trans i18nKey="seeAt">
+                            <a href="https://intrinsic-michal-turczyn.turek1992.workers.dev"></a>
+                        </Trans>
+                    </div>
                 </ContactInfoEntry>
                 <ContactInfoEntry icon={<MdOutlineEmail />}>
-                    <a href={`mailto:${MAIL_ADDRESS}`}>{MAIL_ADDRESS}</a>
+                    <div title={t('protectedContactInfoNote')}>
+                        <Trans i18nKey="seeAt">
+                            <a href="https://intrinsic-michal-turczyn.turek1992.workers.dev"></a>
+                        </Trans>
+                    </div>
                 </ContactInfoEntry>
                 <ContactInfoEntry icon={<CiLocationOn />}>
                     Zabrze, {t('Poland')}

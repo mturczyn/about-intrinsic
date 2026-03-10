@@ -1,4 +1,7 @@
 export const pl = {
+    seeAt: 'Zobacz na <0>stronie chronionej reCAPTCHA</0>',
+    protectedContactInfoNote:
+        'Ze względu na to, że ta strona jest czystą aplikacją SPA, zabezpieczenia takie jak reCAPTCHA nie mogły zostać zaimplementowane – aby zobaczyć numer telefonu i adres email, odwiedź stronę z włączoną reCAPTCHA.',
     chatPageTitle: 'Porozmawiaj z botem AI',
     chatbotIntro:
         'Cześć, jestem chatbotem opartym na modelu językowym. Dostępne modele językowe: {{modelsList}}. Model {{modelToUse}} zostanie użyty w trakcie tej rozmowy',

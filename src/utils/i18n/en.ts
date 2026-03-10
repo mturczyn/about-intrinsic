@@ -1,4 +1,7 @@
 export const en = {
+    seeAt: 'See at <0>reCAPTCHA protected page</0>',
+    protectedContactInfoNote:
+        "Due to this site being a pure SPA application, safeguards such as reCAPTCHA couldn't be implemented – to see the number and email, visit the site with reCAPTCHA enabled.",
     chatPageTitle: 'Chat with AI powered bot',
     chatbotIntro:
         'Hi, I am a chat bot, powered by language model. Available language models: {{modelsList}}. Model {{modelToUse}} will be used in this conversation.',
