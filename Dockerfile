@@ -1,5 +1,5 @@
 # 1. For build React app
-FROM node:22-alpine AS development
+FROM node:25-alpine AS development
 
 ARG VITE_AI_SERVER_HOST
 ENV VITE_AI_SERVER_HOST=$VITE_AI_SERVER_HOST
