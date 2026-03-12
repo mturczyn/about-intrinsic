@@ -17,7 +17,7 @@ interface ChatMessage {
 }
 
 const Chat = () => {
-    const chatConteinerLastScrollPosition = useRef<number>()
+    const chatConteinerLastScrollPosition = useRef<number>(0)
     const mouseIsDown = useRef(false)
     const [messages, setMessages] = useState<ChatMessage[]>([])
     const [aiAnswer, setAiAnswer] = useState<string>('')

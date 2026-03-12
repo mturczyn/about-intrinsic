@@ -7,7 +7,7 @@ export const SkipLink = ({
     children,
     className,
 }: PropsWithChildren & {
-    scrollTo: RefObject<HTMLElement>
+    scrollTo: RefObject<HTMLElement | null>
     className?: string
 }) => {
     return (

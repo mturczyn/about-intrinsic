@@ -1,7 +1,7 @@
 import { RefObject, useEffect } from 'react'
 
 export const useDocumentMouseDown = (
-    exceptRefs: RefObject<HTMLElement>[],
+    exceptRefs: RefObject<HTMLElement | null>[],
     clicked: () => void
 ) => {
     useEffect(() => {

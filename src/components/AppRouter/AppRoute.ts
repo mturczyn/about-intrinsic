@@ -1,5 +1,7 @@
+import { ReactElement } from 'react'
+
 export interface AppRoute {
     name: string
     path: string
-    element: JSX.Element
+    element: ReactElement
 }

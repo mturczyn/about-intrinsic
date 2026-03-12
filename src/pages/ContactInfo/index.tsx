@@ -9,6 +9,8 @@ import websiteLogo from 'images/website-logo.svg'
 import { CiLocationOn } from 'react-icons/ci'
 import { Trans, useTranslation } from 'react-i18next'
 import { usePageTitle } from 'hooks/usePageTitle'
+import { Tooltip } from 'react-tooltip'
+import { ReactElement } from 'react'
 
 export const PAGE_TITLE =
     'Intrinsic | Web Development and Programming | Contact info'
@@ -24,14 +26,20 @@ const ContactInfo = () => {
             <h1>INTRINSIC</h1>
             <div className={styles['contact-info-card']}>
                 <ContactInfoEntry icon={<BsTelephone />}>
-                    <div title={t('protectedContactInfoNote')}>
+                    <div
+                        data-tooltip-id="tooltip"
+                        data-tooltip-content={t('protectedContactInfoNote')}
+                    >
                         <Trans i18nKey="seeAt">
                             <a href="https://intrinsic-michal-turczyn.turek1992.workers.dev"></a>
                         </Trans>
                     </div>
                 </ContactInfoEntry>
                 <ContactInfoEntry icon={<MdOutlineEmail />}>
-                    <div title={t('protectedContactInfoNote')}>
+                    <div
+                        data-tooltip-id="tooltip"
+                        data-tooltip-content={t('protectedContactInfoNote')}
+                    >
                         <Trans i18nKey="seeAt">
                             <a href="https://intrinsic-michal-turczyn.turek1992.workers.dev"></a>
                         </Trans>
@@ -59,6 +67,7 @@ const ContactInfo = () => {
                     />
                 </ContactInfoEntry>
             </div>
+            <Tooltip id="tooltip" style={{ maxWidth: '50vw' }} place="bottom" />
         </header>
     )
 }
@@ -68,7 +77,7 @@ const ContactInfoEntry = ({
     icon,
 }: {
     children: any
-    icon: JSX.Element
+    icon: ReactElement
 }) => {
     return (
         <div>

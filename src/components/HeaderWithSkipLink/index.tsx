@@ -10,7 +10,7 @@ export const HeaderWithSkipLink = ({
     renderSkipLink,
 }: {
     title: string
-    scrollTo: RefObject<HTMLElement>
+    scrollTo: RefObject<HTMLElement | null>
     tableOfContents: HTMLElement | null
     renderSkipLink: (children: ReactNode) => ReactNode
 }) => {
